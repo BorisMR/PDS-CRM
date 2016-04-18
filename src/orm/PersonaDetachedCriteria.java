@@ -20,7 +20,7 @@ import org.orm.criteria.*;
 
 public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression idP;
-	public final IntegerExpression run;
+	public final StringExpression run;
 	public final StringExpression nombre;
 	public final StringExpression apellido;
 	public final StringExpression email;
@@ -31,7 +31,7 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public PersonaDetachedCriteria() {
 		super(orm.Persona.class, orm.PersonaCriteria.class);
 		idP = new IntegerExpression("idP", this.getDetachedCriteria());
-		run = new IntegerExpression("run", this.getDetachedCriteria());
+		run = new StringExpression("run", this.getDetachedCriteria());
 		nombre = new StringExpression("nombre", this.getDetachedCriteria());
 		apellido = new StringExpression("apellido", this.getDetachedCriteria());
 		email = new StringExpression("email", this.getDetachedCriteria());
@@ -43,7 +43,7 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public PersonaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, orm.PersonaCriteria.class);
 		idP = new IntegerExpression("idP", this.getDetachedCriteria());
-		run = new IntegerExpression("run", this.getDetachedCriteria());
+		run = new StringExpression("run", this.getDetachedCriteria());
 		nombre = new StringExpression("nombre", this.getDetachedCriteria());
 		apellido = new StringExpression("apellido", this.getDetachedCriteria());
 		email = new StringExpression("email", this.getDetachedCriteria());

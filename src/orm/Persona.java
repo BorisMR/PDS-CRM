@@ -19,7 +19,7 @@ public class Persona {
 	
 	private int idP;
 	
-	private int run;
+	private String run;
 	
 	private String nombre;
 	
@@ -45,11 +45,11 @@ public class Persona {
 		return getIdP();
 	}
 	
-	public void setRun(int value) {
+	public void setRun(String value) {
 		this.run = value;
 	}
 	
-	public int getRun() {
+	public String getRun() {
 		return run;
 	}
 	

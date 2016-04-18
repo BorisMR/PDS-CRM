@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Model quotesql="1" tablecharset="" mysql_version="504" mssql_version="2005" derby_version="106" ingres_version="9">
-  <Entity name="persona">
+  <Entity name="persona" PKClustered="0">
     <Column name="idP">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -16,8 +16,8 @@
     <Column name="run">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>10</Length>
+      <Type>27</Type>
+      <Length>20</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>true</Unique>
@@ -91,7 +91,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="empresa">
+  <Entity name="empresa" PKClustered="0">
     <Column name="idE">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
@@ -159,7 +159,7 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="usuario">
+  <Entity name="usuario" PKClustered="0">
     <Column name="idU">
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>

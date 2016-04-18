@@ -8,7 +8,7 @@ import org.orm.PersistentTransaction;
 
 public class Usuario {
 
-	private int uidU;
+	private int idU;
 	
 	private String user;
 	
@@ -53,7 +53,7 @@ public class Usuario {
 	public String delUsuarioBusiness(Usuario usuario) throws PersistentException {
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		try {
-			orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.uidu = '"+usuario.uidU+"'", null);
+			orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.idU = '"+usuario.idU+"'", null);
 			// Delete the persistent object
 			orm.UsuarioDAO.delete(lormUsuario);
 			t.commit();
@@ -79,7 +79,7 @@ public class Usuario {
 			t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 			try {
 				
-				orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.uidu = '"+usuario.uidU+"'", null);
+				orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.idU = '"+usuario.idU+"'", null);
 				// Update the properties of the persistent object
 				lormUsuario.setUser(usuario.user);
 				lormUsuario.setPass(usuario.pass);
@@ -159,7 +159,7 @@ public class Usuario {
 		}else{
 			return false;
 		}
-						//UsuarioByQuery("Usuario.uidu = '"+usuario.uidU+"'", null);
+						//UsuarioByQuery("Usuario.idU = '"+usuario.idU+"'", null);
 				// Update the properties of the persistent object
 		
 	}
@@ -168,15 +168,15 @@ public class Usuario {
 	 * 
 	 * @return int Id del usuario
 	 */
-	public int getUidU() {
-		return uidU;
+	public int getidU() {
+		return idU;
 	}
 	/**
 	 * 
 	 * @param uid Id del usuario
 	 */
-	public void setUidU(int uidu) {
-		this.uidU = uidu;
+	public void setidU(int idU) {
+		this.idU = idU;
 	}
 	/**
 	 * 

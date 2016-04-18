@@ -10,7 +10,7 @@ License Type: Academic
 			<generator class="increment">
 			</generator>
 		</id>
-		<property name="run" column="run" unique="true" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="run" column="run" unique="true" type="string" length="20" not-null="true" lazy="false"/>
 		<property name="nombre" column="nombre" type="string" length="60" not-null="true" lazy="false"/>
 		<property name="apellido" column="apellido" type="string" length="60" not-null="true" lazy="false"/>
 		<property name="email" column="email" type="string" length="60" not-null="false" lazy="false"/>

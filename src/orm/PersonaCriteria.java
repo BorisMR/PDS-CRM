@@ -20,7 +20,7 @@ import org.orm.criteria.*;
 
 public class PersonaCriteria extends AbstractORMCriteria {
 	public final IntegerExpression idP;
-	public final IntegerExpression run;
+	public final StringExpression run;
 	public final StringExpression nombre;
 	public final StringExpression apellido;
 	public final StringExpression email;
@@ -31,7 +31,7 @@ public class PersonaCriteria extends AbstractORMCriteria {
 	public PersonaCriteria(Criteria criteria) {
 		super(criteria);
 		idP = new IntegerExpression("idP", this);
-		run = new IntegerExpression("run", this);
+		run = new StringExpression("run", this);
 		nombre = new StringExpression("nombre", this);
 		apellido = new StringExpression("apellido", this);
 		email = new StringExpression("email", this);
