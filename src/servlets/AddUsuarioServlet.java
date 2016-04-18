@@ -57,15 +57,16 @@ public class AddUsuarioServlet extends HttpServlet {
 		if( user.trim().equals("") || user.trim().length() == 0 ){
 			 out.println("Error en el campo User");
 			 validado = false;
+		}else{
+			usuario.setUser(user);
 		}
 
 		if( pass.trim().equals("") || pass.trim().length() == 0 ){
 			 out.println("Error en el campo Password");
 			 validado = false;
-		}
-		
-		usuario.setUser(user);
-		usuario.setPassword(pass);
+		}else{
+			usuario.setPassword(pass);
+		}	
 		
 		if(validado){
 			try {

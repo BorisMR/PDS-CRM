@@ -2,7 +2,7 @@
 **Autor:** Boris Morales Ríos
 
 Aplicación de prueba para comprender uso de Java EE
-Codigo de ORM generado a traves de MDD usando VP 12.0 (lic:UFRO)
+Codigo de ORM generado a traves de MDD usando VP 13.0 (lic:UFRO)
 
 - Driver: postgresql-9.4.1208.jre6.jar
 - Entorno: Eclipse Java EE Mars 2. (4.5.2)
@@ -11,6 +11,7 @@ Codigo de ORM generado a traves de MDD usando VP 12.0 (lic:UFRO)
 
 ***Lista Tareas***
 - [x] Commit inicial changes
+- [x] Packages
 - [ ] Jsps
 - [ ] Servlet Handlers
 - [ ] Validar Jsps y Servlets
