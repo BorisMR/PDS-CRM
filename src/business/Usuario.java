@@ -8,10 +8,8 @@ import org.orm.PersistentTransaction;
 
 public class Usuario {
 
-	private int idU;
-	
-	private String user;
-	
+	private int idU;	
+	private String user;	
 	private String pass;
 		
 	public Usuario() {
@@ -168,14 +166,14 @@ public class Usuario {
 	 * 
 	 * @return int Id del usuario
 	 */
-	public int getidU() {
+	public int getIdU() {
 		return idU;
 	}
 	/**
 	 * 
-	 * @param uid Id del usuario
+	 * @param int Id del usuario
 	 */
-	public void setidU(int idU) {
+	public void setIdU(int idU) {
 		this.idU = idU;
 	}
 	/**
@@ -188,7 +186,7 @@ public class Usuario {
 	
 	/**
 	 * 
-	 * @param user User para el usuario
+	 * @param String User para el usuario
 	 */
 	public void setUser(String user) {
 		this.user = user;
@@ -203,7 +201,7 @@ public class Usuario {
 	}
 	/**
 	 * 
-	 * @param pass Password para el usuario
+	 * @param String Password para el usuario
 	 */
 	public void setPassword(String pass) {
 		this.pass = pass;

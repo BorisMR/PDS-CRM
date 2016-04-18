@@ -7,7 +7,8 @@ License Type: Academic
 <hibernate-mapping>
 	<class name="orm.Persona" table="persona" lazy="false">
 		<id name="idP" column="idP" type="integer" unsaved-value="0">
-			<generator class="increment">
+			<generator class="sequence">
+				<param name="sequence">seq_persona</param>
 			</generator>
 		</id>
 		<property name="run" column="run" unique="true" type="string" length="20" not-null="true" lazy="false"/>

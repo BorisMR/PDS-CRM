@@ -6,9 +6,9 @@
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
-      <Length>10</Length>
+      <Length>0</Length>
       <Nullable>false</Nullable>
-      <IDGenerator>increment</IDGenerator>
+      <IDGenerator>sequence</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
       <UserTypes/>
@@ -96,9 +96,9 @@
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
-      <Length>10</Length>
+      <Length>0</Length>
       <Nullable>false</Nullable>
-      <IDGenerator>increment</IDGenerator>
+      <IDGenerator>sequence</IDGenerator>
       <Unique>true</Unique>
       <Index>false</Index>
       <UserTypes/>
@@ -164,9 +164,9 @@
       <PrimaryKey>true</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
-      <Length>10</Length>
+      <Length>0</Length>
       <Nullable>false</Nullable>
-      <IDGenerator>increment</IDGenerator>
+      <IDGenerator>sequence</IDGenerator>
       <Unique>true</Unique>
       <Index>false</Index>
       <UserTypes/>
