@@ -25,7 +25,7 @@ public class Empresa {
 	}
 	
 	/**
-	 * Metodo que añade una Empresa a la Base de datos
+	 * Metodo que agrega una Empresa a la Base de datos
 	 *
 	 * @param Empresa Objeto que contiene la data a ingresar
 	 * @return String Mensaje que indica si se ralizo la transaccion
@@ -50,6 +50,90 @@ public class Empresa {
 			t.rollback();
 			return "ERROR";			
 		}		
+	}
+
+	/**
+	 * @return int id de la Empresa
+	 */
+	public int getIdE() {
+		return idE;
+	}
+
+	/**
+	 * @param id el idE a asignar
+	 */
+	public void setIdE(int idE) {
+		this.idE = idE;
+	}
+
+	/**
+	 * @return String el rut
+	 */
+	public String getRut() {
+		return rut;
+	}
+
+	/**
+	 * @param rut el rut a asignar
+	 */
+	public void setRut(String rut) {
+		this.rut = rut;
+	}
+
+	/**
+	 * @return String el nombre
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * @param nombre el nombre a asignar
+	 */
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	/**
+	 * @return String el email
+	 */
+	public String getEmail() {
+		return email;
+	}
+
+	/**
+	 * @param email El email a asignar
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @return String el telefono
+	 */
+	public String getFono() {
+		return fono;
+	}
+
+	/**
+	 * @param fono el telefono a asignar
+	 */
+	public void setFono(String fono) {
+		this.fono = fono;
+	}
+
+	/**
+	 * @return String la direccion
+	 */
+	public String getDireccion() {
+		return direccion;
+	}
+
+	/**
+	 * @param direccion la direccion a asignar
+	 */
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	
 }
