@@ -11,7 +11,7 @@ import org.orm.PersistentTransaction;
  * @author Boris Morales R.
  * 
  * Clase encargada de la logica de negocio de la aplicacion
- * su tarea es la de enviar transacciones a la BD
+ * su tarea es la de efectuar transacciones con la BD
  *
  */
 public class Empresa {

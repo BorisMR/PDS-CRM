@@ -6,6 +6,14 @@ import java.util.List;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
+/**
+ * 
+ * @author Boris Morales R.
+ * 
+ * Clase encargada de la logica de negocio de la aplicacion
+ * su tarea es la de enviar transacciones a la BD
+ *
+ */
 public class Usuario {
 
 	private int idU;	
@@ -146,20 +154,27 @@ public class Usuario {
 
 	}
 	
+	/**
+	 * 
+	 * @param Usuario
+	 * @return Verdadero solo si el usuario existe en la BD
+	 * @throws PersistentException
+	 */
 	public boolean validarUsuarioBusiness(Usuario usuario) throws PersistentException{
 		
 		orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 				
-		List<orm.Usuario> lista = orm.UsuarioDAO.queryUsuario("Usuario.user = '"+usuario.getUser()+"' & usuario.pass = '"+usuario.getPassword()+"'", null);
+		List<orm.Usuario> listaUsuarios = orm.UsuarioDAO.queryUsuario("Usuario.user = '"+usuario.getUser()+"' & usuario.pass = '"+usuario.getPassword()+"'", null);
 		
-		if(lista.contains(usuario)){
+		if(listaUsuarios.contains(usuario)){
 			return true;
 		}else{
 			return false;
 		}
-						//UsuarioByQuery("Usuario.idU = '"+usuario.idU+"'", null);
-				// Update the properties of the persistent object
-		
+	}
+	
+	public boolean validarPassBusiness(){
+		return false;
 	}
 	
 	/**
