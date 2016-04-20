@@ -12,29 +12,24 @@
 <h1>Registro de Personas</h1>
 <table class="table table-bordered table-hover table-responsive">
 	<tr class="success">
-		<th>RUT</th>
+		<th>RUN</th>
 		<th>Nombre</th>
 		<th>Apellido</th>
 		<th>E-mail</th>
 		<th>Telefono</th>
 		<th>Direccion</th>
-		<th>Sexo</th>
-		
+		<th>Genero</th>		
 	</tr>
 	
-<i:forEach items="${listaContactos}" var="contacto">
+<i:forEach items="${listaPersonasJSP}" var="listaP">
 	<tr>
-		<td>${contacto.rut}</td>
+		<td>${contacto.run}</td>
 		<td>${contacto.nombre}</td>
 		<td>${contacto.apellido}</td>
-		<td>${contacto.mail}</td>
-		<td>${contacto.telefono}</td>
-		<td>${contacto.ciudad}</td>
-		<td>${contacto.sexo}</td>
-		<td>${contacto.nacionalidad}</td>
-		<td>${contacto.profesion}</td>
+		<td>${contacto.email}</td>
+		<td>${contacto.fono}</td>
 		<td>${contacto.direccion}</td>
-		<td>${contacto.empresa}</td>
+		<td>${contacto.genero}</td>
 		<td>
 			<table>
 				<tr>
