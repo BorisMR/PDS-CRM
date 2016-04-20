@@ -17,6 +17,6 @@ License Type: Academic
 		<property name="email" column="email" type="string" length="60" not-null="false" lazy="false"/>
 		<property name="fono" column="fono" type="string" length="30" not-null="false" lazy="false"/>
 		<property name="direccion" column="direccion" type="string" length="60" not-null="false" lazy="false"/>
-		<property name="genero" column="genero" type="integer" length="1" not-null="true" lazy="false"/>
+		<property name="genero" column="genero" type="string" length="2" not-null="false" lazy="false"/>
 	</class>
 </hibernate-mapping>

@@ -51,11 +51,11 @@ public class AddUsuarioServlet extends HttpServlet {
 		
 		boolean validado = true;
 				
-		user = request.getParameter("user");
+		user = request.getParameter("usser");
 		pass = request.getParameter("pass");		
 		
 		if( user.trim().equals("") || user.trim().length() == 0 ){
-			 out.println("Error en el campo User");
+			 out.println("Error en el campo Usuario");
 			 validado = false;
 		}else{
 			usuario.setUser(user);

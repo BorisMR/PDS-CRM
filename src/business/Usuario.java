@@ -17,7 +17,7 @@ import org.orm.PersistentTransaction;
 public class Usuario {
 
 	private int idU;	
-	private String user;	
+	private String usser;	
 	private String pass;
 		
 	public Usuario() {
@@ -35,7 +35,7 @@ public class Usuario {
 		try {
 			orm.Usuario lormUsuario = orm.UsuarioDAO.createUsuario();
 			// Initialize the properties of the persistent object here
-			lormUsuario.setUser(usuario.user);
+			lormUsuario.setUsser(usuario.usser);
 			lormUsuario.setPass(usuario.pass);
 			
 			orm.UsuarioDAO.save(lormUsuario);
@@ -87,7 +87,7 @@ public class Usuario {
 				
 				orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.idU = '"+usuario.idU+"'", null);
 				// Update the properties of the persistent object
-				lormUsuario.setUser(usuario.user);
+				lormUsuario.setUsser(usuario.usser);
 				lormUsuario.setPass(usuario.pass);
 				
 				orm.UsuarioDAO.save(lormUsuario);
@@ -134,7 +134,7 @@ public class Usuario {
 				
 				for (i = 0; i < ormUsuario.length; i++) {
 					salida += "<tr>";
-					salida += ("<td>"+ormUsuario[i].getUser()+"</td>");
+					salida += ("<td>"+ormUsuario[i].getUsser()+"</td>");
 					salida += ("<td>"+ormUsuario[i].getPass()+"</td>");
 					salida += "</tr>";
 				}
@@ -166,7 +166,7 @@ public class Usuario {
 		//orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.uidu = '"+usuario.idU+"'", null);
 		//List<orm.Usuario> listaUsuarios 
 		orm.Usuario[] usuarioQ = orm.UsuarioDAO.listUsuarioByQuery
-				("Usuario.user = '"+usuario.user+"', Usuario.pass = '"+usuario.pass+"'", null);
+				("Usuario.usser = '"+usuario.usser+"', Usuario.pass = '"+usuario.pass+"'", null);
 		
 		if(!usuarioQ[0].equals("")){
 			return true;
@@ -194,7 +194,7 @@ public class Usuario {
 	 * @return String User del usuario
 	 */
 	public String getUser() {
-		return user;
+		return usser;
 	}
 	
 	/**
@@ -202,7 +202,7 @@ public class Usuario {
 	 * @param String User para el usuario
 	 */
 	public void setUser(String user) {
-		this.user = user;
+		this.usser = user;
 	}
 	
 	/**

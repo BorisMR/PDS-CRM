@@ -20,13 +20,13 @@ import org.orm.criteria.*;
 
 public class UsuarioCriteria extends AbstractORMCriteria {
 	public final IntegerExpression idU;
-	public final StringExpression user;
+	public final StringExpression usser;
 	public final StringExpression pass;
 	
 	public UsuarioCriteria(Criteria criteria) {
 		super(criteria);
 		idU = new IntegerExpression("idU", this);
-		user = new StringExpression("user", this);
+		usser = new StringExpression("usser", this);
 		pass = new StringExpression("pass", this);
 	}
 	

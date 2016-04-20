@@ -11,7 +11,7 @@ License Type: Academic
 				<param name="sequence">seq_usuario</param>
 			</generator>
 		</id>
-		<property name="user" column="`user`" unique="true" type="string" length="50" not-null="true" lazy="false"/>
-		<property name="pass" column="pass" type="string" length="50" not-null="true" lazy="false"/>
+		<property name="usser" column="usser" unique="true" type="string" length="20" not-null="true" lazy="false"/>
+		<property name="pass" column="pass" type="string" length="20" not-null="true" lazy="false"/>
 	</class>
 </hibernate-mapping>

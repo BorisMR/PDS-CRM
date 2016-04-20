@@ -13,7 +13,7 @@
 		<form role="form" action="AddUsuarioServlet" method="post" class="form-horizontal" >
 	  		<div class="form-group">
 	    		<label for="nombre">Usuario:</label>
-	    		<input type="text" class="form-control" id="user" name="user" required>
+	    		<input type="text" class="form-control" id="usser" name="usser" required>
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="password">Password:</label>

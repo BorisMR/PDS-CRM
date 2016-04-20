@@ -20,20 +20,20 @@ import org.orm.criteria.*;
 
 public class UsuarioDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression idU;
-	public final StringExpression user;
+	public final StringExpression usser;
 	public final StringExpression pass;
 	
 	public UsuarioDetachedCriteria() {
 		super(orm.Usuario.class, orm.UsuarioCriteria.class);
 		idU = new IntegerExpression("idU", this.getDetachedCriteria());
-		user = new StringExpression("user", this.getDetachedCriteria());
+		usser = new StringExpression("usser", this.getDetachedCriteria());
 		pass = new StringExpression("pass", this.getDetachedCriteria());
 	}
 	
 	public UsuarioDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, orm.UsuarioCriteria.class);
 		idU = new IntegerExpression("idU", this.getDetachedCriteria());
-		user = new StringExpression("user", this.getDetachedCriteria());
+		usser = new StringExpression("usser", this.getDetachedCriteria());
 		pass = new StringExpression("pass", this.getDetachedCriteria());
 	}
 	

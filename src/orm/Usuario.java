@@ -19,7 +19,7 @@ public class Usuario {
 	
 	private int idU;
 	
-	private String user;
+	private String usser;
 	
 	private String pass;
 	
@@ -35,12 +35,12 @@ public class Usuario {
 		return getIdU();
 	}
 	
-	public void setUser(String value) {
-		this.user = value;
+	public void setUsser(String value) {
+		this.usser = value;
 	}
 	
-	public String getUser() {
-		return user;
+	public String getUsser() {
+		return usser;
 	}
 	
 	public void setPass(String value) {

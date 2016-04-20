@@ -26,7 +26,7 @@ public class PersonaCriteria extends AbstractORMCriteria {
 	public final StringExpression email;
 	public final StringExpression fono;
 	public final StringExpression direccion;
-	public final IntegerExpression genero;
+	public final StringExpression genero;
 	
 	public PersonaCriteria(Criteria criteria) {
 		super(criteria);
@@ -37,7 +37,7 @@ public class PersonaCriteria extends AbstractORMCriteria {
 		email = new StringExpression("email", this);
 		fono = new StringExpression("fono", this);
 		direccion = new StringExpression("direccion", this);
-		genero = new IntegerExpression("genero", this);
+		genero = new StringExpression("genero", this);
 	}
 	
 	public PersonaCriteria(PersistentSession session) {

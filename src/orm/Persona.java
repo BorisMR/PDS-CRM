@@ -31,7 +31,7 @@ public class Persona {
 	
 	private String direccion;
 	
-	private int genero;
+	private String genero;
 	
 	private void setIdP(int value) {
 		this.idP = value;
@@ -93,11 +93,11 @@ public class Persona {
 		return direccion;
 	}
 	
-	public void setGenero(int value) {
+	public void setGenero(String value) {
 		this.genero = value;
 	}
 	
-	public int getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 	

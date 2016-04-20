@@ -9,7 +9,7 @@
       <Length>0</Length>
       <Nullable>false</Nullable>
       <IDGenerator>sequence</IDGenerator>
-      <Unique>false</Unique>
+      <Unique>true</Unique>
       <Index>false</Index>
       <UserTypes/>
     </Column>
@@ -82,9 +82,9 @@
     <Column name="genero">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>1</Length>
-      <Nullable>false</Nullable>
+      <Type>27</Type>
+      <Length>2</Length>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -171,11 +171,11 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="user">
+    <Column name="usser">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
-      <Length>50</Length>
+      <Length>20</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>true</Unique>
@@ -186,7 +186,7 @@
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
-      <Length>50</Length>
+      <Length>20</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>

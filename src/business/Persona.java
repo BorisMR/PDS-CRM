@@ -25,7 +25,7 @@ public class Persona {
 	private String email;
 	private String fono;
 	private String direccion;
-	private int genero;
+	private String genero;
 	
 	public Persona(){
 		
@@ -300,17 +300,17 @@ public class Persona {
 	
 	/**
 	 * 
-	 * @return int genero de la persona
+	 * @return String genero de la persona
 	 */
-	public int getGenero() {
+	public String getGenero() {
 		return genero;
 	}
 
 	/**
 	 * 
-	 * @param int genero de la persona
+	 * @param String genero de la persona
 	 */
-	public void setGenero(int genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 	
