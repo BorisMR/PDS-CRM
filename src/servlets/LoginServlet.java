@@ -1,9 +1,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 
-import javax.persistence.PersistenceException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.orm.PersistentException;
 
-import orm.Persona;
+import business.Usuario;
 
 /**
- * Servlet implementation class ListPersonaServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/ListPersonaServlet")
-public class ListPersonaServlet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListPersonaServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,16 +42,30 @@ public class ListPersonaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ArrayList<orm.Persona> listaP = null;
-		try{
-			business.Persona persona = new business.Persona();
-			listaP = persona.listaRegistros();
+		PrintWriter out = response.getWriter();
+		
+		String user = request.getParameter("user");
+		String pass = request.getParameter("pass");
+		
+		Usuario usuarioAVerificar = new Usuario();
+		usuarioAVerificar.setUser(user);
+		usuarioAVerificar.setPassword(pass);
+		
+		
+		try {
+			if(usuarioAVerificar.validarUsuarioBusiness(usuarioAVerificar)){
+				RequestDispatcher rs = request.getRequestDispatcher("Bienvenido");
+				rs.forward(request, response);
+			}else{
+				out.println("User o Password Incorrecto");
+				RequestDispatcher rs = request.getRequestDispatcher("index.html");
+				rs.include(request, response);
+			}
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		request.setAttribute("listaPersonasJSP", listaP);
-		request.getRequestDispatcher("/listaPersonas.jsp").forward(request, response);
 	}
 
 }

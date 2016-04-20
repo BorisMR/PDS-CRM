@@ -1,6 +1,7 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.orm.PersistentException;
@@ -171,6 +172,18 @@ public class Persona {
 			e.printStackTrace();
 			return salida;
 		}
+	}
+	
+	/**
+	 * LISTA ARRAYLIST
+	 */
+	public ArrayList<orm.Persona> listaRegistros()throws PersistentException{
+		ArrayList<orm.Persona> personas = null;
+		orm.Persona[] aux;
+		aux = orm.PersonaDAO.listPersonaByQuery(null, null);
+		personas = new ArrayList<>(Arrays.asList(aux));
+		return personas;
+		
 	}
 	
 	/**

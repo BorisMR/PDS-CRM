@@ -161,20 +161,18 @@ public class Usuario {
 	 * @throws PersistentException
 	 */
 	public boolean validarUsuarioBusiness(Usuario usuario) throws PersistentException{
-		
 		orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
-				
-		List<orm.Usuario> listaUsuarios = orm.UsuarioDAO.queryUsuario("Usuario.user = '"+usuario.getUser()+"' & usuario.pass = '"+usuario.getPassword()+"'", null);
 		
-		if(listaUsuarios.contains(usuario)){
+		//orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.uidu = '"+usuario.idU+"'", null);
+		//List<orm.Usuario> listaUsuarios 
+		orm.Usuario[] usuarioQ = orm.UsuarioDAO.listUsuarioByQuery
+				("Usuario.user = '"+usuario.user+"', Usuario.pass = '"+usuario.pass+"'", null);
+		
+		if(!usuarioQ[0].equals("")){
 			return true;
 		}else{
 			return false;
 		}
-	}
-	
-	public boolean validarPassBusiness(){
-		return false;
 	}
 	
 	/**
