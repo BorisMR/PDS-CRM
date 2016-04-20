@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 				RequestDispatcher rs = request.getRequestDispatcher("menu.html");
 				rs.forward(request, response);
 			}else{
-				out.println("User o Password Incorrecto");
+				
 				RequestDispatcher rs = request.getRequestDispatcher("loginfailed.html");
 				rs.include(request, response);
 			}
