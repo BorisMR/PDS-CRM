@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			if(usuarioAVerificar.validarUsuarioBusiness(usuarioAVerificar)){
-				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+				RequestDispatcher rs = request.getRequestDispatcher("menu.html");
 				rs.forward(request, response);
 			}else{				
 				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
