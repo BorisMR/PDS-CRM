@@ -15,7 +15,9 @@
 			Password:<input class="form-control" type="password" name="pass" required/><br/>
 			<button type="submit" class="btn btn-default" value="login">Entrar</button>
 		</form>
-		<h3>${LoginStatus}</h3>
+		
+		<h3>${LoginStatus}</h3>	
+		
 	</div>
 </body>
 </html>
