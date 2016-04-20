@@ -177,14 +177,14 @@ public class Empresa {
 		List<Empresa> listaEmpresa = new ArrayList<Empresa>();
 		List<orm.Empresa> listaEmpresas = new ArrayList<orm.Empresa>();
 		
-		//if( busqueda != null || !busqueda.equals("")){			
+			
 			listaEmpresas = orm.EmpresaDAO.queryEmpresa("Empresa.rut='"+busqueda
 					+"' or Empresa.nombre='"+busqueda
 					+"' or Empresa.email='"+busqueda
 					+"' or Empresa.fono='"+busqueda
 					+"' or Empresa.direccion='"+busqueda
 					+"' ",null);
-		//}
+		
 				
 		return listaEmpresa;
 	}
