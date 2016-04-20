@@ -47,9 +47,8 @@ public class AddPersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter(); // devuelve PrinWriter para obtener encode y establecer el retorno
 		
+		String AddStatus = "";
 		Persona persona = new Persona();
 		
 		String run;
@@ -71,38 +70,32 @@ public class AddPersonaServlet extends HttpServlet {
 		genero = request.getParameter("genero");
 		
 		if( run.trim().equals("") || run.trim().length() == 0 ){
-			 out.println("Error en el campo Run");
-			 validado = false;
-		}
-		
+			AddStatus += "Run ";
+			validado = false;
+		}		
 		if( nombre.trim().equals("") || nombre.trim().length() == 0 ){
-			 out.println("Error en el campo Nombre");
-			 validado = false;
+			AddStatus += "Nombre ";
+			validado = false;
 		}
-
 		if( apellido.trim().equals("") || apellido.trim().length() == 0 ){
-			 out.println("Error en el campo Apellido");
-			 validado = false;
+			AddStatus += "Apellido";
+			validado = false;
 		}
-
 		if( email.trim().equals("") || email.trim().length() == 0 ){
-			 out.println("Error en el campo Mail");
-			 validado = false;
+			AddStatus += "Email ";
+			validado = false;
 		}
-
 		if( telefono.trim().equals("") || telefono.trim().length() == 0 ){
-			 out.println("Error en el campo Telefono");
-			 validado = false;
+			AddStatus += "Telefono ";
+			validado = false;
 		}
-
 		if( direccion.trim().equals("") || direccion.trim().length() == 0 ){
-			 out.println("Error en el campo Direccion");
-			 validado = false;
+			AddStatus += "Direccion ";
+			validado = false;
 		}
-
 		if( genero.trim().equals("") || genero.trim().length() == 0 ){
-			 out.println("Error en el campo Genero");
-			 validado = false;
+			AddStatus += "Error en el campo Genero";
+			validado = false;
 		}
 		
 		persona.setRun(run);
@@ -115,13 +108,19 @@ public class AddPersonaServlet extends HttpServlet {
 		
 		if(validado){
 			try {
-				out.println(persona.addPersonaBusiness(persona));
+				AddStatus = persona.addPersonaBusiness(persona);
+				RequestDispatcher rs = request.getRequestDispatcher("FormAddPersona.jsp");
+				request.setAttribute("AddStatus", AddStatus);
+				rs.forward(request, response);
+								
 			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else{
-			out.println("Error en la validacion de los datos");
+			AddStatus = "Error en la validacion de los datos";
+			RequestDispatcher rs = request.getRequestDispatcher("FormAddPersona.jsp");
+			request.setAttribute("AddStatus", AddStatus);
+			rs.forward(request, response);
 		}				
 	}
 

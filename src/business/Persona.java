@@ -52,9 +52,9 @@ public class Persona {
 			orm.PersonaDAO.save(lormPersona);
 			t.commit();
 			return "Data Ingresada";
-		}catch(Exception e) {
+		}catch(PersistentException e) {
 			t.rollback();
-			return "ERROR: No se pudo ingresar a la Persona";			
+			return "No se pudo ingresar a la Persona en la BD";			
 		}		
 	}
 	
@@ -200,17 +200,16 @@ public class Persona {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
 		
-		//if( busqueda != null || !busqueda.equals("")){			
+		if( busqueda != null || !busqueda.equals("") ){			
 			listaPersonas = orm.PersonaDAO.queryPersona("Persona.run='"+busqueda
-					+"' OR Persona.nombre='"+busqueda
-					+"' OR Persona.apellido='"+busqueda
-					+"' OR Persona.email='"+busqueda
-					+"' OR Persona.fono='"+busqueda
-					+"' OR Persona.direccion='"+busqueda
-					+"' OR Persona.genero='"+busqueda
-					+"' ",null);
-		//}
-				
+				+"' OR Persona.nombre ='"+busqueda
+				+"' OR Persona.apellido ='"+busqueda
+				+"' OR Persona.email = '"+busqueda
+				+"' OR Persona.fono = '"+busqueda
+				+"' OR Persona.direccion ='"+busqueda
+				+"' OR Persona.genero ='"+busqueda
+				+"' ",null);
+		}				
 		return listaPersona;
 	}
 	
