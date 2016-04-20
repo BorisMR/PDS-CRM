@@ -12,18 +12,13 @@
 <h1>Registro de Personas</h1>
 <table class="table table-bordered table-hover table-responsive">
 	<tr class="success">
+		<th>RUT</th>
 		<th>Nombre</th>
 		<th>Apellido</th>
-		<th>RUT</th>
 		<th>E-mail</th>
 		<th>Telefono</th>
-		<th>Ciudad</th>
+		<th>Direccion</th>
 		<th>Sexo</th>
-		<th>Nacionalidad</th>
-		<th>Profesión</th>
-		<th>Dirección</th>
-		<th>Empresa</th>
-		<th>Acciones</th>
 		
 	</tr>
 	
