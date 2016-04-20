@@ -12,11 +12,11 @@
 		<h3>Agregar Usuario</h3>
 		<form role="form" action="AddUsuarioServlet" method="post" class="form-horizontal" >
 	  		<div class="form-group">
-	    		<label for="nombre">Usuario:</label>
+	    		<label for="nombre">Usuario</label>
 	    		<input type="text" class="form-control" id="usser" name="usser" required>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="password">Password:</label>
+	    		<label for="password">Password</label>
 	    		<input type="password" class="form-control" id="pass" name="pass" required>
 	  		</div>
 	  		<button type="submit" class="btn btn-default" value="enviar">Submit</button>
