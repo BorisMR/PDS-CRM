@@ -51,15 +51,16 @@ public class LoginServlet extends HttpServlet {
 		usuarioAVerificar.setUser(user);
 		usuarioAVerificar.setPassword(pass);
 		
+		String LoginStatus = "";
 		
 		try {
 			if(usuarioAVerificar.validarUsuarioBusiness(usuarioAVerificar)){
-				RequestDispatcher rs = request.getRequestDispatcher("menu.html");
+				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 				rs.forward(request, response);
-			}else{
-				
-				RequestDispatcher rs = request.getRequestDispatcher("loginfailed.html");
-				rs.include(request, response);
+			}else{				
+				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+				request.setAttribute("LoginStatus",	" Error en los datos ingresados. Saludos "+usuarioAVerificar.getUser()+"!!!");
+				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block

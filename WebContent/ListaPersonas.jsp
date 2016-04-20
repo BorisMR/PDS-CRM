@@ -23,25 +23,25 @@
 	
 <i:forEach items="${listaPersonasJSP}" var="listaP">
 	<tr>
-		<td>${contacto.run}</td>
-		<td>${contacto.nombre}</td>
-		<td>${contacto.apellido}</td>
-		<td>${contacto.email}</td>
-		<td>${contacto.fono}</td>
-		<td>${contacto.direccion}</td>
-		<td>${contacto.genero}</td>
+		<td>${persona.run}</td>
+		<td>${persona.nombre}</td>
+		<td>${persona.apellido}</td>
+		<td>${persona.email}</td>
+		<td>${persona.fono}</td>
+		<td>${persona.direccion}</td>
+		<td>${persona.genero}</td>
 		<td>
 			<table>
 				<tr>
-					<td><form action="UpdateContact.jsp" method="get">
-						<input type="hidden" value="${contacto.id}" name="id">
-						<input type="submit" value="Editar" class="btn btn-default">	
+					<td><form action="EditPersonaServlet.jsp" method="post">
+						<input type="hidden" value="${contacto.idP}" name="idP">
+						<input type="submit" value="Editar" class="btn btn-primary">	
 					</form>
 					</td>
 					<td>
-					<form action="DeleteContact" method="get">
-						<input type="hidden" value="${contacto.id}" name="id">
-						<input type="submit" value="Eliminar" class="btn btn-default">	
+					<form action="DelPersonaServlet" method="post">
+						<input type="hidden" value="${contacto.idP}" name="idP">
+						<input type="submit" value="Eliminar" class="btn btn-danger">	
 					</form>
 					</td>
 				</tr>
@@ -52,6 +52,6 @@
 	</tr>
 </i:forEach>
 </table>
-<center><a href="index.html" class="btn btn-default"><img src="volver.png">Volver</a></center>
+<center><a href="index.html" class="btn btn-default">Volver</a></center>
 </body>
 </html>
