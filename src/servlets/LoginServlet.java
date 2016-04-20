@@ -35,7 +35,12 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		session.invalidate();
+		String LoginStatus = "";
+		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
+		rs.forward(request, response);
 	}
 
 	/**
@@ -71,5 +76,4 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }

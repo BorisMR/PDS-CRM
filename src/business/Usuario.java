@@ -163,8 +163,6 @@ public class Usuario {
 	public boolean validarUsuarioBusiness(Usuario usuario) throws PersistentException{
 		orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		
-		//orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.uidu = '"+usuario.idU+"'", null);
-		//List<orm.Usuario> listaUsuarios 
 		orm.Usuario[] usuarioQ; 
 		usuarioQ = orm.UsuarioDAO.listUsuarioByQuery("Usuario.usser = '"+usuario.usser+"' AND Usuario.pass = '"+usuario.pass+"'", null);
 		
