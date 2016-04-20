@@ -197,16 +197,16 @@ public class Persona {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
 		
-		if( busqueda != null || !busqueda.equals("")){			
+		//if( busqueda != null || !busqueda.equals("")){			
 			listaPersonas = orm.PersonaDAO.queryPersona("Persona.run='"+busqueda
-					+"' or Persona.nombre='"+busqueda
-					+"' or Persona.apellido='"+busqueda
-					+"' or Persona.email='"+busqueda
-					+"' or Persona.fono='"+busqueda
-					+"' or Persona.direccion='"+busqueda
-					+"' or Persona.genero='"+busqueda
+					+"' OR Persona.nombre='"+busqueda
+					+"' OR Persona.apellido='"+busqueda
+					+"' OR Persona.email='"+busqueda
+					+"' OR Persona.fono='"+busqueda
+					+"' OR Persona.direccion='"+busqueda
+					+"' OR Persona.genero='"+busqueda
 					+"' ",null);
-		}
+		//}
 				
 		return listaPersona;
 	}

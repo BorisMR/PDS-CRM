@@ -165,10 +165,10 @@ public class Usuario {
 		
 		//orm.Usuario lormUsuario = orm.UsuarioDAO.loadUsuarioByQuery("Usuario.uidu = '"+usuario.idU+"'", null);
 		//List<orm.Usuario> listaUsuarios 
-		orm.Usuario[] usuarioQ = orm.UsuarioDAO.listUsuarioByQuery
-				("Usuario.usser = '"+usuario.usser+"', Usuario.pass = '"+usuario.pass+"'", null);
+		orm.Usuario[] usuarioQ; 
+		usuarioQ = orm.UsuarioDAO.listUsuarioByQuery("Usuario.usser = '"+usuario.usser+"' AND Usuario.pass = '"+usuario.pass+"'", null);
 		
-		if(!usuarioQ[0].equals("")){
+		if(usuarioQ.length > 0){
 			return true;
 		}else{
 			return false;
@@ -182,13 +182,15 @@ public class Usuario {
 	 * @return
 	 * @throws PersistentException
 	 */
-	public List<orm.Usuario> busquedaSimpleUsuario(String busqueda) throws PersistentException {
-		//List<Usuario> listaUsuario = new ArrayList<Usuario>();
+	public List<Usuario> busquedaSimpleUsuario(String busqueda) throws PersistentException {
+		List<Usuario> listaUsuario = new ArrayList<Usuario>();
 		List<orm.Usuario> listaUsuarios = new ArrayList<orm.Usuario>();
 		
-		listaUsuarios = orm.UsuarioDAO.queryUsuario("Usuario.usser='"+busqueda+"' ",null);
+		listaUsuarios = orm.UsuarioDAO.queryUsuario("Usuario.usser='"+busqueda
+				//+"' OR Usuario.pass='"+busqueda
+				+"' ",null);
 				
-		return listaUsuarios;
+		return listaUsuario;
 	}
 	
 	/**
