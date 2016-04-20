@@ -165,6 +165,30 @@ public class Empresa {
 			return salida;
 		}
 	}
+	
+	/**
+	 * Efectua una busqueda simple utilizando una cadena de texto comun
+	 * 
+	 * @param busqueda
+	 * @return
+	 * @throws PersistentException
+	 */
+	public List<Empresa> busquedaSimpleEmpresa(String busqueda) throws PersistentException {
+		List<Empresa> listaEmpresa = new ArrayList<Empresa>();
+		List<orm.Empresa> listaEmpresas = new ArrayList<orm.Empresa>();
+		
+		if( busqueda != null || !busqueda.equals("")){			
+			listaEmpresas = orm.EmpresaDAO.queryEmpresa("Empresa.rut='"+busqueda
+					+"' or Empresa.nombre='"+busqueda
+					+"' or Empresa.email='"+busqueda
+					+"' or Empresa.fono='"+busqueda
+					+"' or Empresa.direccion='"+busqueda
+					+"' ",null);
+		}
+				
+		return listaEmpresa;
+	}
+		
 
 	/**
 	 * @return int id de la Empresa

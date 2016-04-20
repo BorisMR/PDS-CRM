@@ -176,6 +176,22 @@ public class Usuario {
 	}
 	
 	/**
+	 * Efectua una busqueda simple de usuarios basada en una cadena de texto
+	 * 
+	 * @param busqueda
+	 * @return
+	 * @throws PersistentException
+	 */
+	public List<orm.Usuario> busquedaSimpleUsuario(String busqueda) throws PersistentException {
+		//List<Usuario> listaUsuario = new ArrayList<Usuario>();
+		List<orm.Usuario> listaUsuarios = new ArrayList<orm.Usuario>();
+		
+		listaUsuarios = orm.UsuarioDAO.queryUsuario("Usuario.usser='"+busqueda+"' ",null);
+				
+		return listaUsuarios;
+	}
+	
+	/**
 	 * 
 	 * @return int Id del usuario
 	 */

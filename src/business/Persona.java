@@ -187,6 +187,31 @@ public class Persona {
 	}
 	
 	/**
+	 * Efectua una busqueda simple utilizando una cadena de texto comun
+	 * 
+	 * @param busqueda
+	 * @return
+	 * @throws PersistentException
+	 */
+	public List<Persona> busquedaSimplePersona(String busqueda) throws PersistentException {
+		List<Persona> listaPersona = new ArrayList<Persona>();
+		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
+		
+		if( busqueda != null || !busqueda.equals("")){			
+			listaPersonas = orm.PersonaDAO.queryPersona("Persona.run='"+busqueda
+					+"' or Persona.nombre='"+busqueda
+					+"' or Persona.apellido='"+busqueda
+					+"' or Persona.email='"+busqueda
+					+"' or Persona.fono='"+busqueda
+					+"' or Persona.direccion='"+busqueda
+					+"' or Persona.genero='"+busqueda
+					+"' ",null);
+		}
+				
+		return listaPersona;
+	}
+	
+	/**
 	 * 
 	 * @return int Id de la persona
 	 */
