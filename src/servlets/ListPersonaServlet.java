@@ -45,13 +45,13 @@ public class ListPersonaServlet extends HttpServlet {
 		ArrayList<orm.Persona> listaP = null;
 		try{
 			business.Persona persona = new business.Persona();
-			listaP = persona.listaRegistros();
+			listaP = persona.listPersonaArray();
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("listaPersonasJSP", listaP);
-		request.getRequestDispatcher("/listaPersonas.jsp").forward(request, response);
+		request.setAttribute("ListaPersonasJSP", listaP);
+		request.getRequestDispatcher("/ListaPersonas.jsp").forward(request, response);
 	}
 
 }

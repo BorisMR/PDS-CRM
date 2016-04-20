@@ -175,9 +175,12 @@ public class Persona {
 	}
 	
 	/**
-	 * LISTA ARRAYLIST
+	 * metodo que retorna un ArrayList con las personas agregadas
+	 * 
+	 * @return ArrayList<orm.Persona>
+	 * @throws PersistentException
 	 */
-	public ArrayList<orm.Persona> listaRegistros()throws PersistentException{
+	public ArrayList<orm.Persona> listPersonaArray()throws PersistentException{
 		ArrayList<orm.Persona> personas = null;
 		orm.Persona[] aux;
 		aux = orm.PersonaDAO.listPersonaByQuery(null, null);

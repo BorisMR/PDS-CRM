@@ -54,11 +54,11 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			if(usuarioAVerificar.validarUsuarioBusiness(usuarioAVerificar)){
-				RequestDispatcher rs = request.getRequestDispatcher("Bienvenido");
+				RequestDispatcher rs = request.getRequestDispatcher("menu.html");
 				rs.forward(request, response);
 			}else{
 				out.println("User o Password Incorrecto");
-				RequestDispatcher rs = request.getRequestDispatcher("index.html");
+				RequestDispatcher rs = request.getRequestDispatcher("loginfailed.html");
 				rs.include(request, response);
 			}
 		} catch (PersistentException e) {
