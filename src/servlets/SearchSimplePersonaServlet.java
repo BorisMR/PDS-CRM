@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.orm.PersistentException;
+
+import business.Persona;
 
 /**
  * Servlet implementation class SearchSimplePersonaServlet
@@ -41,6 +46,18 @@ public class SearchSimplePersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String busqueda = request.getParameter("busqueda");
+		
+		Persona persona = new Persona();
+		
+		try {
+			List<Persona> listaBusqueda = persona.busquedaSimplePersona(busqueda);
+			
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 		
 	}
 

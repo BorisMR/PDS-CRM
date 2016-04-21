@@ -69,6 +69,7 @@ public class AddPersonaServlet extends HttpServlet {
 		direccion = request.getParameter("direccion");
 		genero = request.getParameter("genero");
 		
+		//--verifica campos vacios
 		if( run.trim().equals("") || run.trim().length() == 0 ){
 			AddStatus += "Run ";
 			validado = false;
@@ -97,6 +98,7 @@ public class AddPersonaServlet extends HttpServlet {
 			AddStatus += "Error en el campo Genero";
 			validado = false;
 		}
+		//-FIN-verifica campos vacios
 		
 		persona.setRun(run);
 		persona.setNombre(nombre);
