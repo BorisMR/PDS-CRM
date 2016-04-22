@@ -26,6 +26,7 @@ public class Persona {
 	private String fono;
 	private String direccion;
 	private String genero;
+	private Empresa empresa;
 	
 	public Persona(){
 		
@@ -41,6 +42,10 @@ public class Persona {
 	public String addPersonaBusiness(Persona persona) throws PersistentException{
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction(); 
 		try{
+			orm.Empresa lormEmpresa = orm.EmpresaDAO.createEmpresa();
+			lormEmpresa.setNombre(persona.getEmpresa().getNombre());
+			orm.EmpresaDAO.save(lormEmpresa);
+			
 			orm.Persona lormPersona = orm.PersonaDAO.createPersona();
 			lormPersona.setRun(persona.run);
 			lormPersona.setNombre(persona.nombre);
@@ -50,7 +55,9 @@ public class Persona {
 			lormPersona.setDireccion(persona.direccion);
 			lormPersona.setGenero(persona.genero);
 			orm.PersonaDAO.save(lormPersona);
+			orm.PersonaDAO.refresh(lormPersona);
 			t.commit();
+			//return = lormPersona.getUidP(); // para metodo int
 			return "Data Ingresada";
 		}catch(PersistentException e) {
 			t.rollback();
@@ -69,19 +76,23 @@ public class Persona {
 	public String delPersonaBusiness(Persona persona) throws PersistentException {
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		try {
-			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run = '"+persona.run+"'", null);
-			// Delete the persistent object
+			//orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run = '"+persona.run+"'", null);
+			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByORMID(persona.getIdP());
 			orm.PersonaDAO.delete(lormPersona);
+			//borra empresa al borrar persona
+			orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
+			orm.EmpresaDAO.delete(lormEmpresa);
+			
 			t.commit();
 			return "Data Eliminada";
 		}
 
 		catch (NullPointerException e){
-			return "ERROR: No existe una Persona con ese RUN";
+			return "ERROR: No existe una Persona con el ID:"+persona.getIdP();
 		}
 		catch (Exception e) {
 			t.rollback();
-			return "ERROR: No existe una Persona con ese RUN";
+			return "ERROR: No existe una Persona con el ID:"+persona.getIdP();
 		}
 	}
 	
@@ -97,7 +108,8 @@ public class Persona {
 		try {
 			t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 			try {
-				
+				orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
+				lormEmpresa.setNombre(persona.getEmpresa().getNombre());
 				orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run = '"+persona.run+"'", null);
 				// Update the properties of the persistent object
 				lormPersona.setRun(persona.run);
@@ -109,6 +121,7 @@ public class Persona {
 				lormPersona.setGenero(persona.genero);
 								
 				orm.PersonaDAO.save(lormPersona);
+				//orm.PersonaDAO.refresh(lormPersona);
 				t.commit();
 				return "Data Editada";
 			}
@@ -196,20 +209,48 @@ public class Persona {
 	 * @return
 	 * @throws PersistentException
 	 */
-	public List<Persona> busquedaSimplePersona(String busqueda) throws PersistentException {
+	public List<Persona> busquedaSimplePersona(String cadenaBusqueda) throws PersistentException {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
 		
-		if( busqueda != null || !busqueda.equals("") ){			
-			listaPersonas = orm.PersonaDAO.queryPersona("Persona.run='"+busqueda
-				+"' OR Persona.nombre ='"+busqueda
-				+"' OR Persona.apellido ='"+busqueda
-				+"' OR Persona.email = '"+busqueda
-				+"' OR Persona.fono = '"+busqueda
-				+"' OR Persona.direccion ='"+busqueda
-				+"' OR Persona.genero ='"+busqueda
+		if( cadenaBusqueda != null || !cadenaBusqueda.equals("") ){			
+			listaPersonas = orm.PersonaDAO.queryPersona("Persona.run='"+cadenaBusqueda
+				+"' OR Persona.nombre ='"+cadenaBusqueda
+				+"' OR Persona.apellido ='"+cadenaBusqueda
+				+"' OR Persona.email = '"+cadenaBusqueda
+				+"' OR Persona.fono = '"+cadenaBusqueda
+				+"' OR Persona.direccion ='"+cadenaBusqueda
+				+"' OR Persona.genero ='"+cadenaBusqueda
 				+"' ",null);
-		}				
+		}
+		
+		if(listaPersonas != null){
+			for( orm.Persona personaORM : listaPersonas){
+				
+				Empresa empresaB = new Empresa();				
+				
+				orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
+				
+				empresaB.setNombre(empresaORM.getNombre());
+				empresaB.setEmail(empresaORM.getEmail());
+				empresaB.setFono(empresaORM.getFono());
+				empresaB.setDireccion(empresaORM.getDireccion());
+				empresaB.setRut(empresaORM.getRut());
+				
+				Persona personaB = new Persona();
+				
+				personaB.setEmpresa(empresaB);
+				personaB.setRun(personaORM.getRun());
+				personaB.setNombre(personaORM.getNombre());
+				personaB.setApellido(personaORM.getApellido());
+				personaB.setEmail(personaORM.getEmail());
+				personaB.setFono(personaORM.getFono());
+				personaB.setDireccion(personaORM.getDireccion());
+				personaB.setGenero(personaORM.getGenero());
+				
+				listaPersona.add(personaB);
+			}
+		}
 		return listaPersona;
 	}
 	
@@ -340,5 +381,21 @@ public class Persona {
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
+
+	/**
+	 * @return Empresa retorna un objeto de tipo empresa
+	 */
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	/**
+	 * @param Empresa La empresa a asignar
+	 */
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+	
+	
 	
 }
