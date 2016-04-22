@@ -19,13 +19,13 @@ import business.Persona;
  * Servlet implementation class SearchSimplePersonaServlet
  */
 @WebServlet("/SearchSimplePersonaServlet")
-public class SearchSimplePersonaServlet extends HttpServlet {
+public class SearchSimpleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchSimplePersonaServlet() {
+    public SearchSimpleServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

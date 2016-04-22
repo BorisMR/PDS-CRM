@@ -233,6 +233,7 @@ public class Persona {
 				
 				orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
 				
+				empresaB.setIdE(empresaORM.getIdE());
 				empresaB.setNombre(empresaORM.getNombre());
 				empresaB.setEmail(empresaORM.getEmail());
 				empresaB.setFono(empresaORM.getFono());
@@ -252,6 +253,45 @@ public class Persona {
 				
 				listaPersona.add(personaB);
 			}
+		}
+		return listaPersona;
+	}
+	
+	public List<Persona> busquedaAvanzada(Persona persona) throws PersistentException{
+		
+		String queryToSearch="";
+		List<Persona> listaPersona = new ArrayList<Persona>();
+		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
+		//armar query
+		
+		
+		
+		//crear listaPersona foreach
+		for( orm.Persona personaORM : listaPersonas){			
+			Empresa empresaB = new Empresa();				
+			
+			orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
+			
+			empresaB.setIdE(empresaORM.getIdE());
+			empresaB.setRut(empresaORM.getRut());
+			empresaB.setNombre(empresaORM.getNombre());
+			empresaB.setEmail(empresaORM.getEmail());
+			empresaB.setFono(empresaORM.getFono());
+			empresaB.setDireccion(empresaORM.getDireccion());			
+			
+			Persona personaB = new Persona();
+			
+			personaB.setIdP(personaORM.getIdP());
+			personaB.setEmpresa(empresaB);
+			personaB.setRun(personaORM.getRun());
+			personaB.setNombre(personaORM.getNombre());
+			personaB.setApellido(personaORM.getApellido());
+			personaB.setEmail(personaORM.getEmail());
+			personaB.setFono(personaORM.getFono());
+			personaB.setDireccion(personaORM.getDireccion());
+			personaB.setGenero(personaORM.getGenero());
+			
+			listaPersona.add(personaB);
 		}
 		return listaPersona;
 	}
