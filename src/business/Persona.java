@@ -263,7 +263,17 @@ public class Persona {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
 		//armar query
-		
+		if(persona.getNombre()!=null && persona.getNombre().equals("")){
+			queryToSearch += "Persona.nombre='"+persona.getNombre()+"' ";
+		}
+		if((persona.getNombre()!=null && persona.getNombre().equals(""))
+				&& (persona.getApellido()!=null && persona.getApellido().equals(""))){
+			queryToSearch += "AND ";
+		}
+		if(persona.getApellido()!=null && persona.getApellido().equals("")){
+			queryToSearch += "Persona.apellido='"+persona.getApellido()+"' ";
+		}
+		//completar query
 		
 		
 		//crear listaPersona foreach
