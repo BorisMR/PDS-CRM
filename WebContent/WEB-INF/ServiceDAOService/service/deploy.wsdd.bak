@@ -20,11 +20,20 @@
       <parameter name="className" value="service.ServiceDAOSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="ServiceDAO"/>
       <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="busquedaSimpleUsuario" qname="operNS:busquedaSimpleUsuario" xmlns:operNS="http://service" returnQName="retNS:busquedaSimpleUsuarioReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="busquedaSimpleEmpresa" qname="operNS:busquedaSimpleEmpresa" xmlns:operNS="http://service" returnQName="retNS:busquedaSimpleEmpresaReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="busquedaSimplePersona" qname="operNS:busquedaSimplePersona" xmlns:operNS="http://service" returnQName="retNS:busquedaSimplePersonaReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="addUsuario" qname="operNS:addUsuario" xmlns:operNS="http://service" returnQName="retNS:addUsuarioReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:user" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:pass" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="addUsuario"/>
+      <parameter name="allowedMethods" value="busquedaSimpleUsuario busquedaSimplePersona busquedaSimpleEmpresa addUsuario"/>
 
   </service>
 </deployment>

@@ -47,7 +47,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		PrintWriter out = response.getWriter();
 		
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
@@ -56,7 +55,8 @@ public class LoginServlet extends HttpServlet {
 		usuarioAVerificar.setUser(user);
 		usuarioAVerificar.setPassword(pass);
 		
-		String LoginStatus = "";
+		//String LoginStatus = "";
+		
 		try {
 			if(usuarioAVerificar.validarUsuarioBusiness(usuarioAVerificar)){
 				RequestDispatcher rs = request.getRequestDispatcher("menu.html");
@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 				rs.forward(request, response);
 			}else{				
 				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
-				request.setAttribute("LoginStatus",	" Error en los datos ingresados. Saludos "+usuarioAVerificar.getUser()+"!!!");
+				request.setAttribute("LoginStatus",	"El usuario Ingresado no existe");
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {

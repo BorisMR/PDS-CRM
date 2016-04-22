@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -33,11 +33,20 @@
   <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:service name="ServiceDAO" provider="java:RPC" style="wrapped" use="literal">
-  <ns2:operation name="addUsuario" qname="ns1:addUsuario" returnQName="ns1:addUsuarioReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
-   <ns2:parameter qname="ns1:user" type="xsd:string"/>
-   <ns2:parameter qname="ns1:pass" type="xsd:string"/>
+  <ns2:operation name="busquedaSimpleUsuario" qname="ns1:busquedaSimpleUsuario" returnQName="ns1:busquedaSimpleUsuarioReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:cadenaBusqueda" type="xsd:string"/>
   </ns2:operation>
-  <ns1:parameter name="allowedMethods" value="addUsuario"/>
+  <ns1:operation name="busquedaSimpleEmpresa" qname="ns2:busquedaSimpleEmpresa" returnQName="ns2:busquedaSimpleEmpresaReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:cadenaBusqueda" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="busquedaSimplePersona" qname="ns3:busquedaSimplePersona" returnQName="ns3:busquedaSimplePersonaReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:cadenaBusqueda" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="addUsuario" qname="ns4:addUsuario" returnQName="ns4:addUsuarioReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:user" type="xsd:string"/>
+   <ns1:parameter qname="ns4:pass" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="busquedaSimpleUsuario busquedaSimplePersona busquedaSimpleEmpresa addUsuario"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="ServiceDAO"/>
   <ns1:parameter name="className" value="service.ServiceDAO"/>

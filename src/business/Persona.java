@@ -213,7 +213,8 @@ public class Persona {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
 		
-		if( cadenaBusqueda != null || !cadenaBusqueda.equals("") ){			
+		if( cadenaBusqueda != null || !cadenaBusqueda.equals("") ){	
+			//cadena compuesta por OR para encontrar al el dato en al menos uno de los campos
 			listaPersonas = orm.PersonaDAO.queryPersona("Persona.run='"+cadenaBusqueda
 				+"' OR Persona.nombre ='"+cadenaBusqueda
 				+"' OR Persona.apellido ='"+cadenaBusqueda
@@ -225,6 +226,7 @@ public class Persona {
 		}
 		
 		if(listaPersonas != null){
+			
 			for( orm.Persona personaORM : listaPersonas){
 				
 				Empresa empresaB = new Empresa();				
