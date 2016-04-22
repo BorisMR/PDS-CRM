@@ -27,6 +27,8 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression fono;
 	public final StringExpression direccion;
 	public final StringExpression genero;
+	public final IntegerExpression empresaidEId;
+	public final AssociationExpression empresaidE;
 	
 	public PersonaDetachedCriteria() {
 		super(orm.Persona.class, orm.PersonaCriteria.class);
@@ -38,6 +40,8 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 		fono = new StringExpression("fono", this.getDetachedCriteria());
 		direccion = new StringExpression("direccion", this.getDetachedCriteria());
 		genero = new StringExpression("genero", this.getDetachedCriteria());
+		empresaidEId = new IntegerExpression("empresaidE.idE", this.getDetachedCriteria());
+		empresaidE = new AssociationExpression("empresaidE", this.getDetachedCriteria());
 	}
 	
 	public PersonaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -50,6 +54,12 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 		fono = new StringExpression("fono", this.getDetachedCriteria());
 		direccion = new StringExpression("direccion", this.getDetachedCriteria());
 		genero = new StringExpression("genero", this.getDetachedCriteria());
+		empresaidEId = new IntegerExpression("empresaidE.idE", this.getDetachedCriteria());
+		empresaidE = new AssociationExpression("empresaidE", this.getDetachedCriteria());
+	}
+	
+	public EmpresaDetachedCriteria createEmpresaidECriteria() {
+		return new EmpresaDetachedCriteria(createCriteria("empresaidE"));
 	}
 	
 	public Persona uniquePersona(PersistentSession session) {

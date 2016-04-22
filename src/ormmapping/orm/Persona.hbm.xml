@@ -13,10 +13,12 @@ License Type: Academic
 		</id>
 		<property name="run" column="run" unique="true" type="string" length="20" not-null="true" lazy="false"/>
 		<property name="nombre" column="nombre" type="string" length="60" not-null="true" lazy="false"/>
-		<property name="apellido" column="apellido" type="string" length="60" not-null="true" lazy="false"/>
+		<property name="apellido" column="apellido" type="string" length="60" not-null="false" lazy="false"/>
 		<property name="email" column="email" type="string" length="60" not-null="false" lazy="false"/>
 		<property name="fono" column="fono" type="string" length="30" not-null="false" lazy="false"/>
 		<property name="direccion" column="direccion" type="string" length="60" not-null="false" lazy="false"/>
-		<property name="genero" column="genero" type="string" length="2" not-null="false" lazy="false"/>
+		<property name="genero" column="genero" type="string" length="1" not-null="false" lazy="false"/>
+		<many-to-one name="empresaidE" cascade="lock" column="empresaidE" class="orm.Empresa" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
 	</class>
 </hibernate-mapping>

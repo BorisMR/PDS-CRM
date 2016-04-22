@@ -40,7 +40,7 @@
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
       <Length>60</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -83,8 +83,20 @@
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
-      <Length>2</Length>
+      <Length>1</Length>
       <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="empresaidE">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>empresa.idE</ReferencedColumn>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -98,7 +110,7 @@
       <Type>9</Type>
       <Length>0</Length>
       <Nullable>false</Nullable>
-      <IDGenerator>sequence</IDGenerator>
+      <IDGenerator>native</IDGenerator>
       <Unique>true</Unique>
       <Index>false</Index>
       <UserTypes/>
@@ -186,7 +198,7 @@
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
       <Type>27</Type>
-      <Length>20</Length>
+      <Length>30</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -194,4 +206,14 @@
       <UserTypes/>
     </Column>
   </Entity>
+  <ForeignKey name="FKpersona97364">
+    <ReferenceTable>persona</ReferenceTable>
+    <ReferencedTable>empresa</ReferencedTable>
+    <Columns>
+      <Column>empresaidE</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idE</Column>
+    </RefColumns>
+  </ForeignKey>
 </Model>

@@ -25,6 +25,7 @@ public class EmpresaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression email;
 	public final StringExpression fono;
 	public final StringExpression direccion;
+	public final CollectionExpression persona;
 	
 	public EmpresaDetachedCriteria() {
 		super(orm.Empresa.class, orm.EmpresaCriteria.class);
@@ -34,6 +35,7 @@ public class EmpresaDetachedCriteria extends AbstractORMDetachedCriteria {
 		email = new StringExpression("email", this.getDetachedCriteria());
 		fono = new StringExpression("fono", this.getDetachedCriteria());
 		direccion = new StringExpression("direccion", this.getDetachedCriteria());
+		persona = new CollectionExpression("ORM_Persona", this.getDetachedCriteria());
 	}
 	
 	public EmpresaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -44,6 +46,11 @@ public class EmpresaDetachedCriteria extends AbstractORMDetachedCriteria {
 		email = new StringExpression("email", this.getDetachedCriteria());
 		fono = new StringExpression("fono", this.getDetachedCriteria());
 		direccion = new StringExpression("direccion", this.getDetachedCriteria());
+		persona = new CollectionExpression("ORM_Persona", this.getDetachedCriteria());
+	}
+	
+	public PersonaDetachedCriteria createPersonaCriteria() {
+		return new PersonaDetachedCriteria(createCriteria("ORM_Persona"));
 	}
 	
 	public Empresa uniqueEmpresa(PersistentSession session) {

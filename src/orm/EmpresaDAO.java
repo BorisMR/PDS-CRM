@@ -321,6 +321,39 @@ public class EmpresaDAO {
 		}
 	}
 	
+	public static boolean deleteAndDissociate(orm.Empresa empresa)throws PersistentException {
+		try {
+			orm.Persona[] lPersonas = empresa.persona.toArray();
+			for(int i = 0; i < lPersonas.length; i++) {
+				lPersonas[i].setEmpresaidE(null);
+			}
+			return delete(empresa);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
+	public static boolean deleteAndDissociate(orm.Empresa empresa, org.orm.PersistentSession session)throws PersistentException {
+		try {
+			orm.Persona[] lPersonas = empresa.persona.toArray();
+			for(int i = 0; i < lPersonas.length; i++) {
+				lPersonas[i].setEmpresaidE(null);
+			}
+			try {
+				session.delete(empresa);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
 	public static boolean refresh(orm.Empresa empresa) throws PersistentException {
 		try {
 			orm.PDSN1PersistentManager.instance().getSession().refresh(empresa);

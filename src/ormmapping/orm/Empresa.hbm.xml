@@ -7,8 +7,7 @@ License Type: Academic
 <hibernate-mapping>
 	<class name="orm.Empresa" table="empresa" lazy="false">
 		<id name="idE" column="idE" type="integer" unsaved-value="0">
-			<generator class="sequence">
-				<param name="sequence">seq_empresa</param>
+			<generator class="native">
 			</generator>
 		</id>
 		<property name="rut" column="rut" unique="true" type="string" length="20" not-null="true" lazy="false"/>
@@ -16,5 +15,9 @@ License Type: Academic
 		<property name="email" column="email" type="string" length="60" not-null="false" lazy="false"/>
 		<property name="fono" column="fono" type="string" length="30" not-null="false" lazy="false"/>
 		<property name="direccion" column="direccion" type="string" length="60" not-null="false" lazy="false"/>
+		<set name="ORM_Persona" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="empresaidE" not-null="true"/>
+			<one-to-many class="orm.Persona"/>
+		</set>
 	</class>
 </hibernate-mapping>

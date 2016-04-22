@@ -25,6 +25,7 @@ public class EmpresaCriteria extends AbstractORMCriteria {
 	public final StringExpression email;
 	public final StringExpression fono;
 	public final StringExpression direccion;
+	public final CollectionExpression persona;
 	
 	public EmpresaCriteria(Criteria criteria) {
 		super(criteria);
@@ -34,6 +35,7 @@ public class EmpresaCriteria extends AbstractORMCriteria {
 		email = new StringExpression("email", this);
 		fono = new StringExpression("fono", this);
 		direccion = new StringExpression("direccion", this);
+		persona = new CollectionExpression("ORM_Persona", this);
 	}
 	
 	public EmpresaCriteria(PersistentSession session) {
@@ -42,6 +44,10 @@ public class EmpresaCriteria extends AbstractORMCriteria {
 	
 	public EmpresaCriteria() throws PersistentException {
 		this(orm.PDSN1PersistentManager.instance().getSession());
+	}
+	
+	public PersonaCriteria createPersonaCriteria() {
+		return new PersonaCriteria(createCriteria("ORM_Persona"));
 	}
 	
 	public Empresa uniqueEmpresa() {

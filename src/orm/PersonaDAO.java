@@ -321,6 +321,39 @@ public class PersonaDAO {
 		}
 	}
 	
+	public static boolean deleteAndDissociate(orm.Persona persona)throws PersistentException {
+		try {
+			if (persona.getEmpresaidE() != null) {
+				persona.getEmpresaidE().persona.remove(persona);
+			}
+			
+			return delete(persona);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
+	public static boolean deleteAndDissociate(orm.Persona persona, org.orm.PersistentSession session)throws PersistentException {
+		try {
+			if (persona.getEmpresaidE() != null) {
+				persona.getEmpresaidE().persona.remove(persona);
+			}
+			
+			try {
+				session.delete(persona);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
 	public static boolean refresh(orm.Persona persona) throws PersistentException {
 		try {
 			orm.PDSN1PersistentManager.instance().getSession().refresh(persona);

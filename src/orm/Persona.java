@@ -17,6 +17,19 @@ public class Persona {
 	public Persona() {
 	}
 	
+	private void this_setOwner(Object owner, int key) {
+		if (key == orm.ORMConstants.KEY_PERSONA_EMPRESAIDE) {
+			this.empresaidE = (orm.Empresa) owner;
+		}
+	}
+	
+	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+		public void setOwner(Object owner, int key) {
+			this_setOwner(owner, key);
+		}
+		
+	};
+	
 	private int idP;
 	
 	private String run;
@@ -32,6 +45,8 @@ public class Persona {
 	private String direccion;
 	
 	private String genero;
+	
+	private orm.Empresa empresaidE;
 	
 	private void setIdP(int value) {
 		this.idP = value;
@@ -99,6 +114,30 @@ public class Persona {
 	
 	public String getGenero() {
 		return genero;
+	}
+	
+	public void setEmpresaidE(orm.Empresa value) {
+		if (empresaidE != null) {
+			empresaidE.persona.remove(this);
+		}
+		if (value != null) {
+			value.persona.add(this);
+		}
+	}
+	
+	public orm.Empresa getEmpresaidE() {
+		return empresaidE;
+	}
+	
+	/**
+	 * This method is for internal use only.
+	 */
+	public void setORM_EmpresaidE(orm.Empresa value) {
+		this.empresaidE = value;
+	}
+	
+	private orm.Empresa getORM_EmpresaidE() {
+		return empresaidE;
 	}
 	
 	public String toString() {

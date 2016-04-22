@@ -12,6 +12,6 @@ License Type: Academic
 			</generator>
 		</id>
 		<property name="usser" column="usser" unique="true" type="string" length="20" not-null="true" lazy="false"/>
-		<property name="pass" column="pass" type="string" length="20" not-null="true" lazy="false"/>
+		<property name="pass" column="pass" type="string" length="30" not-null="true" lazy="false"/>
 	</class>
 </hibernate-mapping>
