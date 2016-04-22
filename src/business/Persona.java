@@ -225,8 +225,7 @@ public class Persona {
 				+"' ",null);
 		}
 		
-		if(listaPersonas != null){
-			
+		if(listaPersonas != null){			
 			for( orm.Persona personaORM : listaPersonas){
 				
 				Empresa empresaB = new Empresa();				
@@ -257,6 +256,12 @@ public class Persona {
 		return listaPersona;
 	}
 	
+	/**
+	 * 
+	 * @param persona
+	 * @return
+	 * @throws PersistentException
+	 */
 	public List<Persona> busquedaAvanzada(Persona persona) throws PersistentException{
 		
 		String queryToSearch="";
