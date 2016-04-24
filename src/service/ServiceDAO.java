@@ -1,6 +1,17 @@
 package service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+
+import org.apache.log4j.Logger;
 import org.orm.PersistentException;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import business.*;
 
@@ -22,42 +33,16 @@ public class ServiceDAO {
 		return "No se pudo ingresar Usuario a la BD";
 	}
 	
-	public String busquedaSimpleUsuario(String cadenaBusqueda){
-		Usuario usuario = new Usuario();
-		
-		try {
-			usuario.busquedaSimpleUsuario(cadenaBusqueda);
-			return "Busqueda Existosa";
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "Error";
-	}
-	
-	public String busquedaSimplePersona(String cadenaBusqueda){
+	@WebMethod(operationName = "busquedaSimple")
+	public String busquedaSimple(@WebParam(name = "cadenaBusqueda") String cadenaBusqueda) throws PersistentException{
+		String resultado = "";		
+		List<Persona> lista = new ArrayList<Persona>();
 		Persona persona = new Persona();
+		Gson gson = new GsonBuilder().create();
 		
-		try {
-			persona.busquedaSimplePersona(cadenaBusqueda);
-			return "Busqueda Existosa";
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "Error";
+		lista = persona.busquedaSimplePersona(cadenaBusqueda);
+		resultado = gson.toJson(lista);
+		
+		return resultado;
 	}
-	
-	public String busquedaSimpleEmpresa(String cadenaBusqueda){
-		Empresa empresa = new Empresa();
-		
-		try {
-			empresa.busquedaSimpleEmpresa(cadenaBusqueda);
-			return "Busqueda Existosa";
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "Error";
-	}	
 }
