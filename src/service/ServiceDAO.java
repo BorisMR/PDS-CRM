@@ -57,6 +57,7 @@ public class ServiceDAO {
 		
 		return resultado;
 	}
+	
 	/**
 	 * Efectua una busqueda avanzada segun los parametros con datos
 	 * ingresados, no considerando aquellos que vienen vacios.
@@ -91,7 +92,7 @@ public class ServiceDAO {
 		else{
 			persona.setRun("");
 		}
-		if(nombre != null){
+		if(nombre != null ){
 			persona.setNombre(nombre);
 		}else{
 			persona.setNombre("");

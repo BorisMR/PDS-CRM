@@ -280,51 +280,51 @@ public class Persona {
 			queryToSearch += "Persona.nombre='"+persona.getNombre()+"' ";
 		}
 		
-		if((persona.getRun()!=null && !persona.getRun().equals(""))
+		if(((persona.getRun()!=null && !persona.getRun().equals(""))
 				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
-				&& (persona.getApellido()!=null && !persona.getApellido().equals(""))){
+				)&& (persona.getApellido()!=null && !persona.getApellido().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getApellido()!=null && !persona.getApellido().trim().equals("")){
 			queryToSearch += "Persona.apellido='"+persona.getApellido()+"' ";
 		}
-		if((persona.getRun()!=null && !persona.getRun().equals(""))
+		if(((persona.getRun()!=null && !persona.getRun().equals(""))
 				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
 				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
-				&& (persona.getEmail() != null && !persona.getEmail().equals(""))){
+				)&& (persona.getEmail() != null && !persona.getEmail().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getEmail() != null && !persona.getEmail().trim().equals("")){
 			queryToSearch += "Persona.email="+persona.getEmail()+ "' ";
 		}
-		if((persona.getRun()!=null && !persona.getRun().equals(""))
+		if(((persona.getRun()!=null && !persona.getRun().equals(""))
 				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
 				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
 				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
-				&& (persona.getFono() != null && !persona.getFono().equals(""))){
+				)&& (persona.getFono() != null && !persona.getFono().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getFono() != null && !persona.getFono().trim().equals("")){
 			queryToSearch += "Persona.fono="+persona.getFono()+ "' ";
 		}
-		if((persona.getRun()!=null && !persona.getRun().equals(""))
+		if(((persona.getRun()!=null && !persona.getRun().equals(""))
 				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
 				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
 				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
 				|| (persona.getFono() != null && !persona.getFono().equals(""))
-				&& (persona.getDireccion() != null && !persona.getDireccion().equals(""))){
+				)&& (persona.getDireccion() != null && !persona.getDireccion().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getDireccion() != null && !persona.getDireccion().trim().equals("")){
 			queryToSearch += "Persona.direccion="+persona.getDireccion()+ "' ";
 		}
-		if((persona.getRun()!=null && !persona.getRun().equals(""))
+		if(((persona.getRun()!=null && !persona.getRun().equals(""))
 				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
 				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
 				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
 				|| (persona.getFono() != null && !persona.getFono().equals(""))
 				|| (persona.getDireccion() != null && !persona.getDireccion().equals("")
-				&& (persona.getGenero() != null && !persona.getGenero().equals("")))){
+				) && (persona.getGenero() != null && !persona.getGenero().equals("")))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getGenero() != null && !persona.getGenero().trim().equals("")){
