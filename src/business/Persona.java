@@ -198,8 +198,7 @@ public class Persona {
 		orm.Persona[] aux;
 		aux = orm.PersonaDAO.listPersonaByQuery(null, null);
 		personas = new ArrayList<>(Arrays.asList(aux));
-		return personas;
-		
+		return personas;		
 	}
 	
 	/**
@@ -209,6 +208,7 @@ public class Persona {
 	 * @return
 	 * @throws PersistentException
 	 */
+	@SuppressWarnings("unchecked") // por simple comodidad
 	public List<Persona> busquedaSimplePersona(String cadenaBusqueda) throws PersistentException {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
@@ -257,9 +257,11 @@ public class Persona {
 	}
 	
 	/**
+	 * Efectua una busqueda avanzada segun los parametros con datos
+	 * ingresados, no considerando aquellos que vienen vacios.
 	 * 
-	 * @param persona
-	 * @return
+	 * @param Persona clase con lso datos a buscar
+	 * @return List<Persona>
 	 * @throws PersistentException
 	 */
 	public List<Persona> busquedaAvanzada(Persona persona) throws PersistentException{
@@ -267,7 +269,7 @@ public class Persona {
 		String queryToSearch="";
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
-		//armar query
+		
 		if(persona.getRun()!= null && !persona.getRun().trim().equals("")){
 			queryToSearch += "Persona.run='"+persona.getRun()+"' ";
 		}
@@ -276,7 +278,7 @@ public class Persona {
 				&& (persona.getNombre()!=null && !persona.getNombre().equals(""))){
 			queryToSearch += "AND ";
 		}
-		if(persona.getNombre()!=null && !persona.getNombre().trim().equals("")){
+		if(persona.getNombre()!=null && !persona.getNombre().equals("")){
 			queryToSearch += "Persona.nombre='"+persona.getNombre()+"' ";
 		}
 		
@@ -288,50 +290,55 @@ public class Persona {
 		if(persona.getApellido()!=null && !persona.getApellido().trim().equals("")){
 			queryToSearch += "Persona.apellido='"+persona.getApellido()+"' ";
 		}
-		if(((persona.getRun()!=null && !persona.getRun().equals(""))
-				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
-				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
-				)&& (persona.getEmail() != null && !persona.getEmail().equals(""))){
+		
+		if((persona.getRun()!=null && !persona.getRun().equals("")
+				|| persona.getNombre()!=null && !persona.getNombre().equals("")
+				|| persona.getApellido()!=null && !persona.getApellido().equals(""))
+				&& (persona.getEmail() != null && !persona.getEmail().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getEmail() != null && !persona.getEmail().trim().equals("")){
-			queryToSearch += "Persona.email="+persona.getEmail()+ "' ";
+			queryToSearch += "Persona.email='"+persona.getEmail()+"' ";
 		}
-		if(((persona.getRun()!=null && !persona.getRun().equals(""))
-				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
-				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
-				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
-				)&& (persona.getFono() != null && !persona.getFono().equals(""))){
+		
+		if((persona.getRun()!=null && !persona.getRun().equals("")
+				|| persona.getNombre()!=null && !persona.getNombre().equals("")
+				|| persona.getApellido()!=null && !persona.getApellido().equals("")
+				|| persona.getEmail() != null && !persona.getEmail().equals(""))
+				&& (persona.getFono() != null && !persona.getFono().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getFono() != null && !persona.getFono().trim().equals("")){
-			queryToSearch += "Persona.fono="+persona.getFono()+ "' ";
+			queryToSearch += "Persona.fono='"+persona.getFono()+ "' ";
 		}
-		if(((persona.getRun()!=null && !persona.getRun().equals(""))
-				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
-				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
-				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
-				|| (persona.getFono() != null && !persona.getFono().equals(""))
-				)&& (persona.getDireccion() != null && !persona.getDireccion().equals(""))){
+		
+		if((persona.getRun()!=null && !persona.getRun().equals("")
+				|| persona.getNombre()!=null && !persona.getNombre().equals("")
+				|| persona.getApellido()!=null && !persona.getApellido().equals("")
+				|| persona.getEmail() != null && !persona.getEmail().equals("")
+				|| persona.getFono() != null && !persona.getFono().equals(""))
+				&& (persona.getDireccion() != null && !persona.getDireccion().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getDireccion() != null && !persona.getDireccion().trim().equals("")){
-			queryToSearch += "Persona.direccion="+persona.getDireccion()+ "' ";
+			queryToSearch += "Persona.direccion='"+persona.getDireccion()+ "' ";
 		}
-		if(((persona.getRun()!=null && !persona.getRun().equals(""))
-				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
-				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
-				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
-				|| (persona.getFono() != null && !persona.getFono().equals(""))
-				|| (persona.getDireccion() != null && !persona.getDireccion().equals("")
-				) && (persona.getGenero() != null && !persona.getGenero().equals("")))){
+		
+		if((persona.getRun()!=null && !persona.getRun().equals("")
+				|| persona.getNombre()!=null && !persona.getNombre().equals("")
+				|| persona.getApellido()!=null && !persona.getApellido().equals("")
+				|| persona.getEmail() != null && !persona.getEmail().equals("")
+				|| persona.getFono() != null && !persona.getFono().equals("")
+				|| persona.getDireccion() != null && !persona.getDireccion().equals(""))
+				&& (persona.getGenero() != null && !persona.getGenero().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getGenero() != null && !persona.getGenero().trim().equals("")){
-			queryToSearch += "Persona.genero="+persona.getGenero()+ "' ";
+			queryToSearch += "Persona.genero='"+persona.getGenero()+ "' ";
 		}		
 		
 		listaPersonas = orm.PersonaDAO.queryPersona(queryToSearch, null);
+		
 		for( orm.Persona personaORM : listaPersonas){			
 			Empresa empresaB = new Empresa();				
 			

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.*" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="i"%>
+<%@page import="business.Persona" %>
 <!DOCTYPE html">
 <html>
 <head>
@@ -27,7 +28,7 @@
 		<th>Genero</th>
 	</tr>
 	
-	<i:forEach items="${listaPersonasJSP}" var="listaP">
+	<c:forEach items="${listaPersonas}" var="persona">
 		<tr>
 			<td>${persona.run}</td>
 			<td>${persona.nombre}</td>
@@ -40,13 +41,13 @@
 			<table>
 				<tr>
 					<td><form action="EditPersonaServlet.jsp" method="post">
-						<input type="hidden" value="${contacto.idP}" name="idP">
+						<input type="hidden" value="${persona.idP}" name="idP">
 						<input type="submit" value="Editar" class="btn btn-primary">	
 					</form>
 					</td>
 					<td>
 					<form action="DelPersonaServlet" method="post">
-						<input type="hidden" value="${contacto.idP}" name="idP">
+						<input type="hidden" value="${persona.idP}" name="idP">
 						<input type="submit" value="Eliminar" class="btn btn-danger">	
 					</form>
 					</td>
@@ -54,7 +55,7 @@
 			</table>
 			</td>
 		</tr>
-	</i:forEach>
+	</c:forEach>
 	</table>
 </body>
 </html>

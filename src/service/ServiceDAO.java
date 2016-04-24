@@ -73,7 +73,8 @@ public class ServiceDAO {
 	 * @throws PersistentException
 	 */
 	@WebMethod(operationName = "busquedaAvanzada")
-	public String busquedaAvanzada(@WebParam(name = "run") String run, 
+	public String busquedaAvanzada(
+			@WebParam(name = "run") String run, 
 			@WebParam(name = "nombre") String nombre, 
 			@WebParam(name = "apellido") String apellido,
 			@WebParam(name = "email") String email,
@@ -86,38 +87,43 @@ public class ServiceDAO {
 		business.Persona persona = new business.Persona();
 		
 		//asignaciones
-		if(run != null && !run.equals("")){
+		
+		if(run != null){
 			persona.setRun(run);
 		}			
 		else{
 			persona.setRun("");
 		}
-		if(nombre != null && !nombre.equals("")){
+		
+		if(nombre != null){
 			persona.setNombre(nombre);
 		}else{
 			persona.setNombre("");
 		}
-		if(apellido != null && !apellido.equals("")){
+		
+		if(apellido != null){
 			persona.setApellido(apellido);
 		}else{
 			persona.setApellido("");
 		}
-		if(email != null && !!email.equals("")){
+		
+		if(email != null){
 			persona.setEmail(email);
 		}else{
 			persona.setEmail("");
 		}
-		if(fono != null && !!fono.equals("")){
+		
+		if(fono != null){
 			persona.setFono(fono);
 		}else{
 			persona.setFono("");
 		}
-		if(direccion != null && !direccion.equals("")){
+		if(direccion != null){
 			persona.setDireccion(direccion);
 		}else{
 			persona.setDireccion("");
 		}
-		if(genero != null && !genero.equals("")){
+		if(genero != null){
 			persona.setGenero(genero);
 		}else{
 			persona.setGenero("");
@@ -129,14 +135,14 @@ public class ServiceDAO {
 		try{
 			listaPersonasB = persona.busquedaAvanzada(persona);
 			if(listaPersonasB.isEmpty()){
-				resultado = "No se encontraron datos";
+				return "No se encontraron datos";
 			}else{
-				resultado = gson.toJson(listaPersonasB);
+				return gson.toJson(listaPersonasB);
+				//return listaPersonasB.get(0).getNombre();
 			}			
 		}catch(PersistentException p){
-			resultado = null;
+			return "PersistentException";
 		}
 		
-		return resultado;
 	}
 }

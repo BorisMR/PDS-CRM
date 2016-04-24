@@ -52,7 +52,12 @@ public class SearchSimpleServlet extends HttpServlet {
 		
 		try {
 			List<Persona> listaBusqueda = persona.busquedaSimplePersona(busqueda);
-			
+			if(!listaBusqueda.isEmpty()){
+				request.removeAttribute("busqueda");
+				request.setAttribute("busqueda", listaBusqueda);
+				
+				request.getRequestDispatcher( "/SearchSimple.jsp").forward(request, response);
+			}
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

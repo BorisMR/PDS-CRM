@@ -52,6 +52,7 @@ public class ListPersonaServlet extends HttpServlet {
 		try{
 			business.Persona persona = new business.Persona();
 			listaP = persona.listPersonaArray();
+			System.out.println(listaP.get(0).getNombre());
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
