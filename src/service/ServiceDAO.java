@@ -31,6 +31,13 @@ public class ServiceDAO {
 		return "No se pudo ingresar Usuario a la BD";
 	}
 	
+	/**
+	 * Efectua una busqueda simple en base a una cadena de texto
+	 * 
+	 * @param cadenaBusqueda
+	 * @return
+	 * @throws PersistentException
+	 */
 	@WebMethod(operationName = "busquedaSimple")
 	public String busquedaSimple(@WebParam(name = "cadenaBusqueda") String cadenaBusqueda) throws PersistentException{
 		String resultado = "";		
@@ -43,7 +50,20 @@ public class ServiceDAO {
 		
 		return resultado;
 	}
-	
+	/**
+	 * Efectua una busqueda avanzada segun los parametros con datos
+	 * ingresados, no considerando aquellos que vienen vacios.
+	 * 
+	 * @param run
+	 * @param nombre
+	 * @param apellido
+	 * @param email
+	 * @param fono
+	 * @param direccion
+	 * @param genero
+	 * @return json 
+	 * @throws PersistentException
+	 */
 	@WebMethod(operationName = "busquedaAvanzada")
 	public String busquedaAvanzada(@WebParam(name = "run") String run, 
 			@WebParam(name = "nombre") String nombre, 
