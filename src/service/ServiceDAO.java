@@ -22,6 +22,13 @@ import business.*;
  */
 public class ServiceDAO {
 	
+	/**
+	 * Agrega un usuario al sistema
+	 * 
+	 * @param user
+	 * @param pass
+	 * @return
+	 */
 	public String addUsuario(String user, String pass){
 		
 		Usuario usuario = new Usuario();
@@ -86,8 +93,7 @@ public class ServiceDAO {
 		List<business.Persona> listaPersonasB = new ArrayList<business.Persona>();
 		business.Persona persona = new business.Persona();
 		
-		//asignaciones
-		
+		//asignaciones		
 		if(run != null){
 			persona.setRun(run);
 		}			
@@ -118,11 +124,13 @@ public class ServiceDAO {
 		}else{
 			persona.setFono("");
 		}
+		
 		if(direccion != null){
 			persona.setDireccion(direccion);
 		}else{
 			persona.setDireccion("");
 		}
+		
 		if(genero != null){
 			persona.setGenero(genero);
 		}else{
@@ -135,14 +143,13 @@ public class ServiceDAO {
 		try{
 			listaPersonasB = persona.busquedaAvanzada(persona);
 			if(listaPersonasB.isEmpty()){
-				return "No se encontraron datos";
+				resultado = "No se encontraron datos";
 			}else{
-				return gson.toJson(listaPersonasB);
-				//return listaPersonasB.get(0).getNombre();
+				resultado = gson.toJson(listaPersonasB);
 			}			
 		}catch(PersistentException p){
-			return "PersistentException";
+			resultado = p.getMessage();
 		}
-		
+		return resultado;
 	}
 }

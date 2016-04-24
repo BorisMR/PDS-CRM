@@ -215,7 +215,8 @@ public class Persona {
 		
 		if( cadenaBusqueda != null || !cadenaBusqueda.equals("") ){	
 			//cadena compuesta por OR para encontrar al el dato en al menos uno de los campos
-			listaPersonas = orm.PersonaDAO.queryPersona("Persona.run='"+cadenaBusqueda
+			listaPersonas = orm.PersonaDAO.queryPersona(
+					  "Persona.run='"+cadenaBusqueda
 				+"' OR Persona.nombre ='"+cadenaBusqueda
 				+"' OR Persona.apellido ='"+cadenaBusqueda
 				+"' OR Persona.email = '"+cadenaBusqueda
@@ -264,6 +265,7 @@ public class Persona {
 	 * @return List<Persona>
 	 * @throws PersistentException
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Persona> busquedaAvanzada(Persona persona) throws PersistentException{
 		
 		String queryToSearch="";
@@ -339,34 +341,36 @@ public class Persona {
 		
 		listaPersonas = orm.PersonaDAO.queryPersona(queryToSearch, null);
 		
-		for( orm.Persona personaORM : listaPersonas){			
-			Empresa empresaB = new Empresa();				
-			
-			orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
-			
-			empresaB.setIdE(empresaORM.getIdE());
-			empresaB.setRut(empresaORM.getRut());
-			empresaB.setNombre(empresaORM.getNombre());
-			empresaB.setEmail(empresaORM.getEmail());
-			empresaB.setFono(empresaORM.getFono());
-			empresaB.setDireccion(empresaORM.getDireccion());			
-			
-			Persona personaB = new Persona();
-			
-			personaB.setIdP(personaORM.getIdP());
-			personaB.setEmpresa(empresaB);
-			personaB.setRun(personaORM.getRun());
-			personaB.setNombre(personaORM.getNombre());
-			personaB.setApellido(personaORM.getApellido());
-			personaB.setEmail(personaORM.getEmail());
-			personaB.setFono(personaORM.getFono());
-			personaB.setDireccion(personaORM.getDireccion());
-			personaB.setGenero(personaORM.getGenero());
-			
-			personaB.setEmpresa(empresaB);
-			
-			listaPersona.add(personaB);
-		}
+		if(!listaPersonas.isEmpty()){
+			for( orm.Persona personaORM : listaPersonas){			
+				Empresa empresaB = new Empresa();				
+				
+				orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
+				
+				empresaB.setIdE(empresaORM.getIdE());
+				empresaB.setRut(empresaORM.getRut());
+				empresaB.setNombre(empresaORM.getNombre());
+				empresaB.setEmail(empresaORM.getEmail());
+				empresaB.setFono(empresaORM.getFono());
+				empresaB.setDireccion(empresaORM.getDireccion());			
+				
+				Persona personaB = new Persona();
+				
+				personaB.setIdP(personaORM.getIdP());
+				personaB.setEmpresa(empresaB);
+				personaB.setRun(personaORM.getRun());
+				personaB.setNombre(personaORM.getNombre());
+				personaB.setApellido(personaORM.getApellido());
+				personaB.setEmail(personaORM.getEmail());
+				personaB.setFono(personaORM.getFono());
+				personaB.setDireccion(personaORM.getDireccion());
+				personaB.setGenero(personaORM.getGenero());
+				
+				personaB.setEmpresa(empresaB);
+				
+				listaPersona.add(personaB);
+			}
+		}		
 		return listaPersona;
 	}
 	
