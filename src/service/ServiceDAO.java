@@ -23,33 +23,10 @@ import business.*;
 public class ServiceDAO {
 	
 	/**
-	 * Agrega un usuario al sistema
-	 * 
-	 * @param user
-	 * @param pass
-	 * @return
-	 */
-	public String addUsuario(String user, String pass){
-		
-		Usuario usuario = new Usuario();
-		
-		usuario.setUser(user);
-		usuario.setPassword(pass);
-		
-		try {
-			usuario.addUsuarioBusiness(usuario);
-			return "Usuario Ingresado a la BD";
-		} catch (PersistentException e) {
-			e.printStackTrace();
-		}
-		return "No se pudo ingresar Usuario a la BD";
-	}
-	
-	/**
 	 * Efectua una busqueda simple en base a una cadena de texto
 	 * 
 	 * @param cadenaBusqueda
-	 * @return
+	 * @return json 
 	 * @throws PersistentException
 	 */
 	@WebMethod(operationName = "busquedaSimple")
@@ -93,7 +70,7 @@ public class ServiceDAO {
 		List<business.Persona> listaPersonasB = new ArrayList<business.Persona>();
 		business.Persona persona = new business.Persona();
 		
-		//asignaciones		
+		//verificar campos nulos y efectuar asignaciones vacias en caso de.
 		if(run != null){
 			persona.setRun(run);
 		}			

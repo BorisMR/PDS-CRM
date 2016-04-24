@@ -38,6 +38,12 @@
 	  		<div class="form-group">
 	    		<label for="genero">Genero:</label>
 	    		<input type="text" class="form-control" id="genero" name="genero" required>
+	    		<!--  
+				<select class="form-control" id="genero" required>
+					<option value="m">M</option>
+					<option value="f">F</option>
+				</select>
+				-->
 	  		</div>
 	  		<button type="submit" class="btn btn-default" value="enviar">Agregar</button>
 		</form>

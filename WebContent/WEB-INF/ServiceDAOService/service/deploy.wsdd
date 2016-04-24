@@ -10,10 +10,6 @@
       <parameter name="className" value="service.ServiceDAO"/>
       <parameter name="wsdlPortType" value="ServiceDAO"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation xmlns:operNS="http://service" xmlns:retNS="http://service" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addUsuario" qname="operNS:addUsuario" returnQName="retNS:addUsuarioReturn" returnType="rtns:string" soapAction="">
-        <parameter xmlns:pns="http://service" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
-        <parameter xmlns:pns="http://service" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
-      </operation>
       <operation xmlns:operNS="http://service" xmlns:retNS="http://service" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="busquedaSimple" qname="operNS:busquedaSimple" returnQName="retNS:busquedaSimpleReturn" returnType="rtns:string" soapAction="">
         <parameter xmlns:pns="http://service" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cadenaBusqueda" type="tns:string"/>
         <fault xmlns:fns="http://service" xmlns:tns="http://orm.org" name="PersistentException" qname="fns:fault" class="org.orm.PersistentException" type="tns:PersistentException"/>
@@ -28,7 +24,7 @@
         <parameter xmlns:pns="http://service" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:genero" type="tns:string"/>
         <fault xmlns:fns="http://service" xmlns:tns="http://orm.org" name="PersistentException" qname="fns:fault" class="org.orm.PersistentException" type="tns:PersistentException"/>
       </operation>
-      <parameter name="allowedMethods" value="busquedaSimple busquedaAvanzada addUsuario"/>
+      <parameter name="allowedMethods" value="busquedaSimple busquedaAvanzada"/>
 
       <typeMapping xmlns:ns="http://orm.org" qname="ns:PersistentException" type="java:org.orm.PersistentException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
   </service>

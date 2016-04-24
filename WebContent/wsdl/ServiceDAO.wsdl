@@ -5,21 +5,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://orm.org"/>
-   <element name="addUsuario">
-    <complexType>
-     <sequence>
-      <element name="user" type="xsd:string"/>
-      <element name="pass" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="addUsuarioResponse">
-    <complexType>
-     <sequence>
-      <element name="addUsuarioReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
    <element name="busquedaSimple">
     <complexType>
      <sequence>
@@ -63,14 +48,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="addUsuarioRequest">
-
-      <wsdl:part element="impl:addUsuario" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="busquedaSimpleRequest">
 
       <wsdl:part element="impl:busquedaSimple" name="parameters">
@@ -111,27 +88,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="addUsuarioResponse">
-
-      <wsdl:part element="impl:addUsuarioResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:portType name="ServiceDAO">
-
-      <wsdl:operation name="addUsuario">
-
-         <wsdl:input message="impl:addUsuarioRequest" name="addUsuarioRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:addUsuarioResponse" name="addUsuarioResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="busquedaSimple">
 
@@ -170,24 +127,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:binding name="ServiceDAOSoapBinding" type="impl:ServiceDAO">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="addUsuario">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="addUsuarioRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="addUsuarioResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="busquedaSimple">
 
