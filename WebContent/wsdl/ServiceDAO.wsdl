@@ -1,51 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service" xmlns:intf="http://service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:definitions targetNamespace="http://service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service" xmlns:intf="http://service" xmlns:tns1="http://orm.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="busquedaSimpleUsuario">
-    <complexType>
-     <sequence>
-      <element name="cadenaBusqueda" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="busquedaSimpleUsuarioResponse">
-    <complexType>
-     <sequence>
-      <element name="busquedaSimpleUsuarioReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="busquedaSimpleEmpresa">
-    <complexType>
-     <sequence>
-      <element name="cadenaBusqueda" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="busquedaSimpleEmpresaResponse">
-    <complexType>
-     <sequence>
-      <element name="busquedaSimpleEmpresaReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="busquedaSimplePersona">
-    <complexType>
-     <sequence>
-      <element name="cadenaBusqueda" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="busquedaSimplePersonaResponse">
-    <complexType>
-     <sequence>
-      <element name="busquedaSimplePersonaReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
+   <import namespace="http://orm.org"/>
    <element name="addUsuario">
     <complexType>
      <sequence>
@@ -61,6 +20,26 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="busquedaSimple">
+    <complexType>
+     <sequence>
+      <element name="cadenaBusqueda" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="busquedaSimpleResponse">
+    <complexType>
+     <sequence>
+      <element name="busquedaSimpleReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns1:PersistentException"/>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://orm.org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="PersistentException">
+    <sequence/>
+   </complexType>
   </schema>
  </wsdl:types>
 
@@ -72,25 +51,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="busquedaSimpleEmpresaRequest">
+   <wsdl:message name="busquedaSimpleRequest">
 
-      <wsdl:part element="impl:busquedaSimpleEmpresa" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="busquedaSimpleEmpresaResponse">
-
-      <wsdl:part element="impl:busquedaSimpleEmpresaResponse" name="parameters">
+      <wsdl:part element="impl:busquedaSimple" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="busquedaSimplePersonaResponse">
+   <wsdl:message name="busquedaSimpleResponse">
 
-      <wsdl:part element="impl:busquedaSimplePersonaResponse" name="parameters">
+      <wsdl:part element="impl:busquedaSimpleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="PersistentException">
+
+      <wsdl:part element="impl:fault" name="fault">
 
       </wsdl:part>
 
@@ -104,67 +83,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="busquedaSimplePersonaRequest">
-
-      <wsdl:part element="impl:busquedaSimplePersona" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="busquedaSimpleUsuarioResponse">
-
-      <wsdl:part element="impl:busquedaSimpleUsuarioResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="busquedaSimpleUsuarioRequest">
-
-      <wsdl:part element="impl:busquedaSimpleUsuario" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:portType name="ServiceDAO">
-
-      <wsdl:operation name="busquedaSimpleUsuario">
-
-         <wsdl:input message="impl:busquedaSimpleUsuarioRequest" name="busquedaSimpleUsuarioRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:busquedaSimpleUsuarioResponse" name="busquedaSimpleUsuarioResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="busquedaSimpleEmpresa">
-
-         <wsdl:input message="impl:busquedaSimpleEmpresaRequest" name="busquedaSimpleEmpresaRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:busquedaSimpleEmpresaResponse" name="busquedaSimpleEmpresaResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="busquedaSimplePersona">
-
-         <wsdl:input message="impl:busquedaSimplePersonaRequest" name="busquedaSimplePersonaRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:busquedaSimplePersonaResponse" name="busquedaSimplePersonaResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="addUsuario">
 
@@ -178,65 +97,27 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="busquedaSimple">
+
+         <wsdl:input message="impl:busquedaSimpleRequest" name="busquedaSimpleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:busquedaSimpleResponse" name="busquedaSimpleResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:PersistentException" name="PersistentException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="ServiceDAOSoapBinding" type="impl:ServiceDAO">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-
-      <wsdl:operation name="busquedaSimpleUsuario">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="busquedaSimpleUsuarioRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="busquedaSimpleUsuarioResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="busquedaSimpleEmpresa">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="busquedaSimpleEmpresaRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="busquedaSimpleEmpresaResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="busquedaSimplePersona">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="busquedaSimplePersonaRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="busquedaSimplePersonaResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
 
       <wsdl:operation name="addUsuario">
 
@@ -253,6 +134,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
             <wsdlsoap:body use="literal"/>
 
          </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="busquedaSimple">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="busquedaSimpleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="busquedaSimpleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PersistentException">
+
+            <wsdlsoap:fault name="PersistentException" use="literal"/>
+
+         </wsdl:fault>
 
       </wsdl:operation>
 

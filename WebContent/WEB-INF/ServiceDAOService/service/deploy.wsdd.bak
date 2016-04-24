@@ -15,25 +15,28 @@
   <service name="ServiceDAO" provider="java:RPC" style="wrapped" use="literal">
       <parameter name="wsdlTargetNamespace" value="http://service"/>
       <parameter name="wsdlServiceElement" value="ServiceDAOService"/>
-      <parameter name="schemaQualified" value="http://service"/>
+      <parameter name="schemaQualified" value="http://service,http://orm.org"/>
       <parameter name="wsdlServicePort" value="ServiceDAO"/>
       <parameter name="className" value="service.ServiceDAOSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="ServiceDAO"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="busquedaSimpleUsuario" qname="operNS:busquedaSimpleUsuario" xmlns:operNS="http://service" returnQName="retNS:busquedaSimpleUsuarioReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="busquedaSimpleEmpresa" qname="operNS:busquedaSimpleEmpresa" xmlns:operNS="http://service" returnQName="retNS:busquedaSimpleEmpresaReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="busquedaSimplePersona" qname="operNS:busquedaSimplePersona" xmlns:operNS="http://service" returnQName="retNS:busquedaSimplePersonaReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
       <operation name="addUsuario" qname="operNS:addUsuario" xmlns:operNS="http://service" returnQName="retNS:addUsuarioReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:user" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:pass" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="busquedaSimpleUsuario busquedaSimplePersona busquedaSimpleEmpresa addUsuario"/>
+      <operation name="busquedaSimple" qname="operNS:busquedaSimple" xmlns:operNS="http://service" returnQName="retNS:busquedaSimpleReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="PersistentException" qname="fns:fault" xmlns:fns="http://service" class="org.orm.PersistentException" type="tns:PersistentException" xmlns:tns="http://orm.org"/>
+      </operation>
+      <parameter name="allowedMethods" value="busquedaSimple addUsuario"/>
 
+      <typeMapping
+        xmlns:ns="http://orm.org"
+        qname="ns:PersistentException"
+        type="java:org.orm.PersistentException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
   </service>
 </deployment>
