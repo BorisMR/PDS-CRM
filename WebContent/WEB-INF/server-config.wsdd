@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -41,7 +41,17 @@
    <ns1:parameter qname="ns2:cadenaBusqueda" type="xsd:string"/>
    <ns1:fault class="org.orm.PersistentException" qname="ns2:fault" type="ns3:PersistentException" xmlns:ns3="http://orm.org"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="busquedaSimple addUsuario"/>
+  <ns1:operation name="busquedaAvanzada" qname="ns4:busquedaAvanzada" returnQName="ns4:busquedaAvanzadaReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:run" type="xsd:string"/>
+   <ns1:parameter qname="ns4:nombre" type="xsd:string"/>
+   <ns1:parameter qname="ns4:apellido" type="xsd:string"/>
+   <ns1:parameter qname="ns4:email" type="xsd:string"/>
+   <ns1:parameter qname="ns4:fono" type="xsd:string"/>
+   <ns1:parameter qname="ns4:direccion" type="xsd:string"/>
+   <ns1:parameter qname="ns4:genero" type="xsd:string"/>
+   <ns1:fault class="org.orm.PersistentException" qname="ns4:fault" type="ns5:PersistentException" xmlns:ns5="http://orm.org"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="busquedaSimple busquedaAvanzada addUsuario"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="ServiceDAO"/>
   <ns1:parameter name="className" value="service.ServiceDAO"/>
@@ -49,7 +59,7 @@
   <ns1:parameter name="schemaQualified" value="http://service,http://orm.org"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
   <ns1:parameter name="wsdlServiceElement" value="ServiceDAOService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns4:PersistentException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:org.orm.PersistentException" xmlns:ns4="http://orm.org"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:PersistentException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:org.orm.PersistentException" xmlns:ns6="http://orm.org"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>

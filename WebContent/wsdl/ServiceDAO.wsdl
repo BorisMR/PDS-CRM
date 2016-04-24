@@ -35,6 +35,26 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </complexType>
    </element>
    <element name="fault" type="tns1:PersistentException"/>
+   <element name="busquedaAvanzada">
+    <complexType>
+     <sequence>
+      <element name="run" type="xsd:string"/>
+      <element name="nombre" type="xsd:string"/>
+      <element name="apellido" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="fono" type="xsd:string"/>
+      <element name="direccion" type="xsd:string"/>
+      <element name="genero" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="busquedaAvanzadaResponse">
+    <complexType>
+     <sequence>
+      <element name="busquedaAvanzadaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://orm.org" xmlns="http://www.w3.org/2001/XMLSchema">
    <complexType name="PersistentException">
@@ -67,9 +87,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="busquedaAvanzadaRequest">
+
+      <wsdl:part element="impl:busquedaAvanzada" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="PersistentException">
 
       <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="busquedaAvanzadaResponse">
+
+      <wsdl:part element="impl:busquedaAvanzadaResponse" name="parameters">
 
       </wsdl:part>
 
@@ -104,6 +140,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:busquedaSimpleResponse" name="busquedaSimpleResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:PersistentException" name="PersistentException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="busquedaAvanzada">
+
+         <wsdl:input message="impl:busquedaAvanzadaRequest" name="busquedaAvanzadaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:busquedaAvanzadaResponse" name="busquedaAvanzadaResponse">
 
        </wsdl:output>
 
@@ -148,6 +200,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="busquedaSimpleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PersistentException">
+
+            <wsdlsoap:fault name="PersistentException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="busquedaAvanzada">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="busquedaAvanzadaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="busquedaAvanzadaResponse">
 
             <wsdlsoap:body use="literal"/>
 

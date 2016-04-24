@@ -13,6 +13,13 @@ import com.google.gson.GsonBuilder;
 
 import business.*;
 
+/**
+ * Clase que utiliza el patron DAO para acceder a las funciones
+ * CRUD de las clases y facilitar al WS el manejo de la capa de negocio
+ * 
+ * @author Boris Morales Ríos
+ *
+ */
 public class ServiceDAO {
 	
 	public String addUsuario(String user, String pass){
@@ -78,47 +85,53 @@ public class ServiceDAO {
 		business.Persona persona = new business.Persona();
 		
 		//asignaciones
-		if(run != null)
+		if(run != null){
 			persona.setRun(run);
-		else
+		}			
+		else{
 			persona.setRun("");
-		
-		if(nombre != null)
+		}
+		if(nombre != null){
 			persona.setNombre(nombre);
-		else
+		}else{
 			persona.setNombre("");
-		
-		if(apellido != null)
+		}
+		if(apellido != null){
 			persona.setApellido(apellido);
-		else
+		}else{
 			persona.setApellido("");
-		
-		if(email != null)
+		}
+		if(email != null){
 			persona.setEmail(email);
-		else
+		}else{
 			persona.setEmail("");
-		
-		if(fono != null)
+		}
+		if(fono != null){
 			persona.setFono(fono);
-		else
+		}else{
 			persona.setFono("");
-		
-		if(direccion != null)
+		}
+		if(direccion != null){
 			persona.setDireccion(direccion);
-		else
+		}else{
 			persona.setDireccion("");
-		
-		if(genero != null)
+		}
+		if(genero != null){
 			persona.setGenero(genero);
-		else
+		}else{
 			persona.setGenero("");
+		}
 		// FIN asignaciones
 		
 		Gson gson = new GsonBuilder().create();
 		
 		try{
 			listaPersonasB = persona.busquedaAvanzada(persona);
-			resultado = gson.toJson(listaPersonasB);
+			if(listaPersonasB.isEmpty()){
+				resultado = "No se encontraron datos";
+			}else{
+				resultado = gson.toJson(listaPersonasB);
+			}			
 		}catch(PersistentException p){
 			resultado = null;
 		}

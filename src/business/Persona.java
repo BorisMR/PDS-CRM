@@ -268,18 +268,20 @@ public class Persona {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
 		//armar query
-		if(persona.getRun()!=null && !persona.getRun().trim().equals("")){
+		if(persona.getRun()!= null && !persona.getRun().trim().equals("")){
 			queryToSearch += "Persona.run='"+persona.getRun()+"' ";
 		}
-		if((persona.getRun()!=null && !persona.getRun().equals(""))
+		
+		if((persona.getRun()!= null && !persona.getRun().equals(""))
 				&& (persona.getNombre()!=null && !persona.getNombre().equals(""))){
 			queryToSearch += "AND ";
 		}
 		if(persona.getNombre()!=null && !persona.getNombre().trim().equals("")){
 			queryToSearch += "Persona.nombre='"+persona.getNombre()+"' ";
 		}
+		
 		if((persona.getRun()!=null && !persona.getRun().equals(""))
-				&& (persona.getNombre()!=null && !persona.getNombre().equals(""))
+				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
 				&& (persona.getApellido()!=null && !persona.getApellido().equals(""))){
 			queryToSearch += "AND ";
 		}
@@ -287,8 +289,8 @@ public class Persona {
 			queryToSearch += "Persona.apellido='"+persona.getApellido()+"' ";
 		}
 		if((persona.getRun()!=null && !persona.getRun().equals(""))
-				&& (persona.getNombre()!=null && !persona.getNombre().equals(""))
-				&& (persona.getApellido()!=null && !persona.getApellido().equals(""))
+				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
+				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
 				&& (persona.getEmail() != null && !persona.getEmail().equals(""))){
 			queryToSearch += "AND ";
 		}
@@ -296,9 +298,9 @@ public class Persona {
 			queryToSearch += "Persona.email="+persona.getEmail()+ "' ";
 		}
 		if((persona.getRun()!=null && !persona.getRun().equals(""))
-				&&(persona.getNombre()!=null && !persona.getNombre().equals(""))
-				&& (persona.getApellido()!=null && !persona.getApellido().equals(""))
-				&& (persona.getEmail() != null && !persona.getEmail().equals(""))
+				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
+				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
+				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
 				&& (persona.getFono() != null && !persona.getFono().equals(""))){
 			queryToSearch += "AND ";
 		}
@@ -306,10 +308,10 @@ public class Persona {
 			queryToSearch += "Persona.fono="+persona.getFono()+ "' ";
 		}
 		if((persona.getRun()!=null && !persona.getRun().equals(""))
-				&& (persona.getNombre()!=null && !persona.getNombre().equals(""))
-				&& (persona.getApellido()!=null && !persona.getApellido().equals(""))
-				&& (persona.getEmail() != null && !persona.getEmail().equals(""))
-				&& (persona.getFono() != null && !persona.getFono().equals(""))
+				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
+				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
+				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
+				|| (persona.getFono() != null && !persona.getFono().equals(""))
 				&& (persona.getDireccion() != null && !persona.getDireccion().equals(""))){
 			queryToSearch += "AND ";
 		}
@@ -317,11 +319,11 @@ public class Persona {
 			queryToSearch += "Persona.direccion="+persona.getDireccion()+ "' ";
 		}
 		if((persona.getRun()!=null && !persona.getRun().equals(""))
-				&& (persona.getNombre()!=null && !persona.getNombre().equals(""))
-				&& (persona.getApellido()!=null && !persona.getApellido().equals(""))
-				&& (persona.getEmail() != null && !persona.getEmail().equals(""))
-				&& (persona.getFono() != null && !persona.getFono().equals(""))
-				&& (persona.getDireccion() != null && !persona.getDireccion().equals("")
+				|| (persona.getNombre()!=null && !persona.getNombre().equals(""))
+				|| (persona.getApellido()!=null && !persona.getApellido().equals(""))
+				|| (persona.getEmail() != null && !persona.getEmail().equals(""))
+				|| (persona.getFono() != null && !persona.getFono().equals(""))
+				|| (persona.getDireccion() != null && !persona.getDireccion().equals("")
 				&& (persona.getGenero() != null && !persona.getGenero().equals("")))){
 			queryToSearch += "AND ";
 		}
@@ -329,6 +331,7 @@ public class Persona {
 			queryToSearch += "Persona.genero="+persona.getGenero()+ "' ";
 		}		
 		
+		listaPersonas = orm.PersonaDAO.queryPersona(queryToSearch, null);
 		for( orm.Persona personaORM : listaPersonas){			
 			Empresa empresaB = new Empresa();				
 			
