@@ -356,6 +356,8 @@ public class Persona {
 			personaB.setDireccion(personaORM.getDireccion());
 			personaB.setGenero(personaORM.getGenero());
 			
+			personaB.setEmpresa(empresaB);
+			
 			listaPersona.add(personaB);
 		}
 		return listaPersona;
@@ -501,8 +503,5 @@ public class Persona {
 	 */
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
-	}
-	
-	
-	
+	}	
 }

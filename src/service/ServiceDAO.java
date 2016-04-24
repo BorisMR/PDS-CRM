@@ -86,38 +86,38 @@ public class ServiceDAO {
 		business.Persona persona = new business.Persona();
 		
 		//asignaciones
-		if(run != null){
+		if(run != null && !run.equals("")){
 			persona.setRun(run);
 		}			
 		else{
 			persona.setRun("");
 		}
-		if(nombre != null ){
+		if(nombre != null && !nombre.equals("")){
 			persona.setNombre(nombre);
 		}else{
 			persona.setNombre("");
 		}
-		if(apellido != null){
+		if(apellido != null && !apellido.equals("")){
 			persona.setApellido(apellido);
 		}else{
 			persona.setApellido("");
 		}
-		if(email != null){
+		if(email != null && !!email.equals("")){
 			persona.setEmail(email);
 		}else{
 			persona.setEmail("");
 		}
-		if(fono != null){
+		if(fono != null && !!fono.equals("")){
 			persona.setFono(fono);
 		}else{
 			persona.setFono("");
 		}
-		if(direccion != null){
+		if(direccion != null && !direccion.equals("")){
 			persona.setDireccion(direccion);
 		}else{
 			persona.setDireccion("");
 		}
-		if(genero != null){
+		if(genero != null && !genero.equals("")){
 			persona.setGenero(genero);
 		}else{
 			persona.setGenero("");
