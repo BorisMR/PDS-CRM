@@ -38,7 +38,7 @@ public class ServiceDAO {
 		Gson gson = new GsonBuilder().create();	
 				
 		try{
-			listaPersonas = persona.busquedaAvanzada(persona);
+			listaPersonas = persona.busquedaSimplePersona(cadenaBusqueda);
 			if(listaPersonas.isEmpty()){
 				resultado = "No se encontraron datos";
 			}else{

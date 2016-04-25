@@ -211,11 +211,11 @@ public class Persona {
 	@SuppressWarnings("unchecked") // por simple comodidad
 	public List<Persona> busquedaSimplePersona(String cadenaBusqueda) throws PersistentException {
 		List<Persona> listaPersona = new ArrayList<Persona>();
-		List<orm.Persona> listaPersonasFromQueryFromQuery = new ArrayList<orm.Persona>();
+		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
 		
-		if( cadenaBusqueda != null && !cadenaBusqueda.trim().equals("") ){	
+		if( cadenaBusqueda != null && !cadenaBusqueda.trim().equals("")){	
 			//cadena compuesta por OR para encontrar al el dato en al menos uno de los campos
-			listaPersonasFromQueryFromQuery = orm.PersonaDAO.queryPersona(
+			listaPersonas = orm.PersonaDAO.queryPersona(
 					  "Persona.run='"+cadenaBusqueda
 				+"' OR Persona.nombre ='"+cadenaBusqueda
 				+"' OR Persona.apellido ='"+cadenaBusqueda
@@ -226,8 +226,8 @@ public class Persona {
 				+"' ",null);
 		}
 		
-		if(listaPersonasFromQueryFromQuery != null || !listaPersona.isEmpty()){			
-			for( orm.Persona personaORM : listaPersonasFromQueryFromQuery){
+		if(!listaPersonas.isEmpty()){			
+			for( orm.Persona personaORM : listaPersonas){
 				
 				Empresa empresaB = new Empresa();				
 				//obetener empresa asociada a la persona

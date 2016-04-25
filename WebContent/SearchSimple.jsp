@@ -1,21 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.*" %>
 <%@page import="business.Persona" %>
 <!DOCTYPE html">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Busquedas</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Busqueda</title>
 </head>
 <body>
 	<h2><b>Busqueda Simple</b></h2>
 	
 	<form class="form-horizontal" action="SearchSimpleServlet" method="post">
-		Buscar:<input class="form-control" type="text" name="user" required/><br/>
+		Buscar:<input class="form-control" type="text" name="busqueda" required/><br/>
 		<button type="submit" class="btn btn-default" value="buscar">buscar</button>
 	</form>
+	<h3>${SearchSimpleStatus}</h3>
 	
 	<table class="table table-bordered table-hover table-responsive">
 	<tr class="success">
@@ -27,7 +27,6 @@
 		<th>Direccion</th>
 		<th>Genero</th>
 	</tr>
-	
 	<c:forEach items="${listaPersonas}" var="persona">
 		<tr>
 			<td>${persona.run}</td>

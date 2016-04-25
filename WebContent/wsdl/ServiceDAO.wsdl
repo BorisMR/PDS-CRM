@@ -5,21 +5,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://orm.org"/>
-   <element name="busquedaSimple">
-    <complexType>
-     <sequence>
-      <element name="cadenaBusqueda" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="busquedaSimpleResponse">
-    <complexType>
-     <sequence>
-      <element name="busquedaSimpleReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="fault" type="tns1:PersistentException"/>
    <element name="busquedaAvanzada">
     <complexType>
      <sequence>
@@ -37,6 +22,21 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="busquedaAvanzadaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns1:PersistentException"/>
+   <element name="busquedaSimple">
+    <complexType>
+     <sequence>
+      <element name="cadenaBusqueda" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="busquedaSimpleResponse">
+    <complexType>
+     <sequence>
+      <element name="busquedaSimpleReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -72,14 +72,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="PersistentException">
-
-      <wsdl:part element="impl:fault" name="fault">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="busquedaAvanzadaResponse">
 
       <wsdl:part element="impl:busquedaAvanzadaResponse" name="parameters">
@@ -88,23 +80,15 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="PersistentException">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="ServiceDAO">
-
-      <wsdl:operation name="busquedaSimple">
-
-         <wsdl:input message="impl:busquedaSimpleRequest" name="busquedaSimpleRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:busquedaSimpleResponse" name="busquedaSimpleResponse">
-
-       </wsdl:output>
-
-         <wsdl:fault message="impl:PersistentException" name="PersistentException">
-
-       </wsdl:fault>
-
-      </wsdl:operation>
 
       <wsdl:operation name="busquedaAvanzada">
 
@@ -122,23 +106,39 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
+      <wsdl:operation name="busquedaSimple">
+
+         <wsdl:input message="impl:busquedaSimpleRequest" name="busquedaSimpleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:busquedaSimpleResponse" name="busquedaSimpleResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:PersistentException" name="PersistentException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
    </wsdl:portType>
 
    <wsdl:binding name="ServiceDAOSoapBinding" type="impl:ServiceDAO">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="busquedaSimple">
+      <wsdl:operation name="busquedaAvanzada">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="busquedaSimpleRequest">
+         <wsdl:input name="busquedaAvanzadaRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="busquedaSimpleResponse">
+         <wsdl:output name="busquedaAvanzadaResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -152,17 +152,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="busquedaAvanzada">
+      <wsdl:operation name="busquedaSimple">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="busquedaAvanzadaRequest">
+         <wsdl:input name="busquedaSimpleRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="busquedaAvanzadaResponse">
+         <wsdl:output name="busquedaSimpleResponse">
 
             <wsdlsoap:body use="literal"/>
 

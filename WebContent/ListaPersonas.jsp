@@ -3,9 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Registro de Personas</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<title>Registro de Personas</title>
 </head>
 <body>
 <h1>Registro de Personas</h1>
@@ -20,27 +19,27 @@
 		<th>Genero</th>		
 	</tr>
 	
-	<i:forEach items="${listaPersonasJSP}" var="listaP">
+	<c:forEach items="${listaPersonasJSP}" var="persona">
 	<tr>
-		<td>${listaP.run}</td>
-		<td>${listaP.nombre}</td>
-		<td>${listaP.apellido}</td>
-		<td>${listaP.email}</td>
-		<td>${listaP.fono}</td>
-		<td>${listaP.direccion}</td>
-		<td>${listaP.genero}</td>
+		<td>${persona.run}</td>
+		<td>${persona.nombre}</td>
+		<td>${persona.apellido}</td>
+		<td>${persona.email}</td>
+		<td>${persona.fono}</td>
+		<td>${persona.direccion}</td>
+		<td>${persona.genero}</td>
 		<td>
 			<table>
 				<tr>
 					<td>
 						<form action="EditPersonaServlet.jsp" method="post">
-							<input type="hidden" value="${listaP.idP}" name="idP">
+							<input type="hidden" value="${persona.idP}" name="idP">
 							<input type="submit" value="Editar" class="btn btn-primary">	
 						</form>
 					</td>
 					<td>
 						<form action="DelPersonaServlet" method="post">
-							<input type="hidden" value="${listaP.idP}" name="idP">
+							<input type="hidden" value="${persona.idP}" name="idP">
 							<input type="submit" value="Eliminar" class="btn btn-danger">	
 						</form>
 					</td>
@@ -48,7 +47,7 @@
 			</table>		
 		</td>	
 	</tr>
-	</i:forEach>
+	</c:forEach>
 </table>
 
 </body>
