@@ -34,11 +34,18 @@ public class ServiceDAO {
 		String resultado = "";		
 		List<Persona> lista = new ArrayList<Persona>();
 		Persona persona = new Persona();
-		Gson gson = new GsonBuilder().create();
-		
-		lista = persona.busquedaSimplePersona(cadenaBusqueda);
-		resultado = gson.toJson(lista);
-		
+		Gson gson = new GsonBuilder().create();	
+				
+		try{
+			lista = persona.busquedaAvanzada(persona);
+			if(lista.isEmpty()){
+				resultado = "No se encontraron datos";
+			}else{
+				resultado = gson.toJson(lista);
+			}			
+		}catch(PersistentException p){
+			resultado = p.getMessage();
+		}
 		return resultado;
 	}
 	
