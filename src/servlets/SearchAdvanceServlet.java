@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -46,6 +47,7 @@ public class SearchAdvanceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Persona persona = new Persona();
+		List<Persona> listaBusqueda = new ArrayList<Persona>();
 		
 		String run = request.getParameter("run");
 		String nombre = request.getParameter("nombre");
@@ -99,21 +101,24 @@ public class SearchAdvanceServlet extends HttpServlet {
 			persona.setGenero("");
 		}
 		
+
 		try {
-			List<Persona> listaBusqueda = persona.busquedaAvanzada(persona);
-			if(!listaBusqueda.isEmpty()){
-				request.removeAttribute("busqueda");
-				request.setAttribute("busqueda", listaBusqueda);				
-				request.getRequestDispatcher( "SearchAdvance.jsp").forward(request, response);
-			}else{
-				RequestDispatcher rs = request.getRequestDispatcher("SearchAdvance.jsp");
+			listaBusqueda = persona.busquedaAvanzada(persona);
+			
+			if(listaBusqueda.isEmpty()){
+				RequestDispatcher rs = request.getRequestDispatcher("/FormSearchAdvance.jsp");
 				request.setAttribute("SearchAdvanceStatus",	"No se encontraron datos asociados a la busqueda");
-				rs.forward(request, response);
+				rs.forward(request, response);				
+			}else{
+				//request.removeAttribute("busqueda");
+				request.setAttribute("SearchAdvanceStatus",	"Se encontraron los siguientes resultados");
+				request.setAttribute("listaPersonas", listaBusqueda);				
+				request.getRequestDispatcher("/FormSearchAdvance.jsp").forward(request, response);
 			}
 		} catch (PersistentException e) {
-			RequestDispatcher rs = request.getRequestDispatcher("SearchAdvance.jsp");
-			request.setAttribute("SearchAdvanceStatus",	e.getMessage());
+			RequestDispatcher rs = request.getRequestDispatcher("/FormSearchAdvance.jsp");
+			request.setAttribute("SearchAdvanceStatus","Servlet: No se pudo efectuar la busqueda ");
 			rs.forward(request, response);
-		}		
+		}	
 	}
 }

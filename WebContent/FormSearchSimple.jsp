@@ -18,6 +18,7 @@
 		<button type="submit" class="btn btn-success">buscar</button>
 	</form>
 	<h3>${SearchSimpleStatus}</h3>
+	<hr>
 	
 	<table class="table table-bordered table-hover table-responsive">
 	<tr class="info">
@@ -28,7 +29,6 @@
 		<th>Telefono</th>
 		<th>Direccion</th>
 		<th>Genero</th>
-		<th>Acciones</th>
 	</tr>
 	<i:forEach items="${listaPersonas}" var="persona">
 		<tr>
