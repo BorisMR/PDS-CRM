@@ -32,16 +32,17 @@ public class ServiceDAO {
 	@WebMethod(operationName = "busquedaSimple")
 	public String busquedaSimple(@WebParam(name = "cadenaBusqueda") String cadenaBusqueda) throws PersistentException{
 		String resultado = "";		
-		List<Persona> lista = new ArrayList<Persona>();
+		List<Persona> listaPersonas = new ArrayList<Persona>();
 		Persona persona = new Persona();
+		
 		Gson gson = new GsonBuilder().create();	
 				
 		try{
-			lista = persona.busquedaAvanzada(persona);
-			if(lista.isEmpty()){
+			listaPersonas = persona.busquedaAvanzada(persona);
+			if(listaPersonas.isEmpty()){
 				resultado = "No se encontraron datos";
 			}else{
-				resultado = gson.toJson(lista);
+				resultado = gson.toJson(listaPersonas);
 			}			
 		}catch(PersistentException p){
 			resultado = p.getMessage();

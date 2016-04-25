@@ -226,11 +226,11 @@ public class Persona {
 				+"' ",null);
 		}
 		
-		if(listaPersonas != null){			
+		if(listaPersonas != null || !listaPersona.isEmpty()){			
 			for( orm.Persona personaORM : listaPersonas){
 				
 				Empresa empresaB = new Empresa();				
-				
+				//obetener empresa asociada a la persona
 				orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
 				
 				empresaB.setIdE(empresaORM.getIdE());
@@ -243,6 +243,7 @@ public class Persona {
 				Persona personaB = new Persona();
 				
 				personaB.setEmpresa(empresaB);
+				
 				personaB.setRun(personaORM.getRun());
 				personaB.setNombre(personaORM.getNombre());
 				personaB.setApellido(personaORM.getApellido());
@@ -250,7 +251,7 @@ public class Persona {
 				personaB.setFono(personaORM.getFono());
 				personaB.setDireccion(personaORM.getDireccion());
 				personaB.setGenero(personaORM.getGenero());
-				
+								
 				listaPersona.add(personaB);
 			}
 		}
