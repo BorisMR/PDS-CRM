@@ -62,7 +62,6 @@ public class SearchSimpleServlet extends HttpServlet {
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			

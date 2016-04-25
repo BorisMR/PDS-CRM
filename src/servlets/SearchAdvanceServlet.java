@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.orm.PersistentException;
+
+import business.Persona;
 
 /**
  * Servlet implementation class SearchAdvanceServlet
@@ -40,8 +45,75 @@ public class SearchAdvanceServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		Persona persona = new Persona();
+		
+		String run = request.getParameter("run");
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		String email = request.getParameter("email");
+		String fono = request.getParameter("fono");
+		String direccion = request.getParameter("direccion");
+		String genero = request.getParameter("genero");
+		
+		//verificar campos nulos y efectuar asignaciones vacias en caso de.
+		if(run != null){
+			persona.setRun(run);
+		}			
+		else{
+			persona.setRun("");
+		}
+		
+		if(nombre != null){
+			persona.setNombre(nombre);
+		}else{
+			persona.setNombre("");
+		}
+		
+		if(apellido != null){
+			persona.setApellido(apellido);
+		}else{
+			persona.setApellido("");
+		}
+		
+		if(email != null){
+			persona.setEmail(email);
+		}else{
+			persona.setEmail("");
+		}
+		
+		if(fono != null){
+			persona.setFono(fono);
+		}else{
+			persona.setFono("");
+		}
+		
+		if(direccion != null){
+			persona.setDireccion(direccion);
+		}else{
+			persona.setDireccion("");
+		}
+		
+		if(genero != null){
+			persona.setGenero(genero);
+		}else{
+			persona.setGenero("");
+		}
+		
+		try {
+			List<Persona> listaBusqueda = persona.busquedaAvanzada(persona);
+			if(!listaBusqueda.isEmpty()){
+				request.removeAttribute("busqueda");
+				request.setAttribute("busqueda", listaBusqueda);				
+				request.getRequestDispatcher( "SearchAdvance.jsp").forward(request, response);
+			}else{
+				RequestDispatcher rs = request.getRequestDispatcher("SearchAdvance.jsp");
+				request.setAttribute("SearchAdvanceStatus",	"No se encontraron datos asociados a la busqueda");
+				rs.forward(request, response);
+			}
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}		
+		
 	}
 
 }
