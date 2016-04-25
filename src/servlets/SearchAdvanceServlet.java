@@ -111,7 +111,9 @@ public class SearchAdvanceServlet extends HttpServlet {
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
-			e.printStackTrace();
+			RequestDispatcher rs = request.getRequestDispatcher("SearchAdvance.jsp");
+			request.setAttribute("SearchAdvanceStatus",	e.getMessage());
+			rs.forward(request, response);
 		}		
 		
 	}

@@ -36,7 +36,6 @@ public class SearchSimpleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		String LoginStatus = "";
 		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
@@ -62,7 +61,9 @@ public class SearchSimpleServlet extends HttpServlet {
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
-			e.printStackTrace();
+			RequestDispatcher rs = request.getRequestDispatcher("SearchSimple.jsp");
+			request.setAttribute("SearchSimpleStatus",	e.getMessage());
+			rs.forward(request, response);
 		}
 			
 		
