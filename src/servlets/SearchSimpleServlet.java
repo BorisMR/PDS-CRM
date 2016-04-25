@@ -64,9 +64,6 @@ public class SearchSimpleServlet extends HttpServlet {
 			RequestDispatcher rs = request.getRequestDispatcher("SearchSimple.jsp");
 			request.setAttribute("SearchSimpleStatus",	e.getMessage());
 			rs.forward(request, response);
-		}
-			
-		
+		}		
 	}
-
 }

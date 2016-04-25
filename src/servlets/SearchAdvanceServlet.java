@@ -115,7 +115,5 @@ public class SearchAdvanceServlet extends HttpServlet {
 			request.setAttribute("SearchAdvanceStatus",	e.getMessage());
 			rs.forward(request, response);
 		}		
-		
 	}
-
 }
