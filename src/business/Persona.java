@@ -42,8 +42,8 @@ public class Persona {
 	public String addPersonaBusiness(Persona persona) throws PersistentException{
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction(); 
 		try{
-			orm.Empresa lormEmpresa = orm.EmpresaDAO.createEmpresa();
-			lormEmpresa.setNombre(persona.getEmpresa().getNombre());
+			
+			orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
 			orm.EmpresaDAO.save(lormEmpresa);
 			
 			orm.Persona lormPersona = orm.PersonaDAO.createPersona();
@@ -61,7 +61,7 @@ public class Persona {
 			return "Data Ingresada";
 		}catch(PersistentException e) {
 			t.rollback();
-			return "No se pudo ingresar a la Persona en la BD";			
+			return "Business PersistentException:"+e.getMessage();			
 		}		
 	}
 	

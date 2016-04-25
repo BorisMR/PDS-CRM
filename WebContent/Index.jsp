@@ -36,15 +36,14 @@
 			<table class="table table-responsive">	
 				<tr>		  				
 					<td>
-						<a href="SearchSimple.jsp" class="btn btn-primary">Busqueda Simple</a>
+						<a href="FormSearchSimple.jsp" class="btn btn-primary">Busqueda Simple</a>
 					</td>
 	  				<td>
-						<a href="SearchAdvance.jsp" class="btn btn-primary">Busqueda Avanzada</a>
+						<a href="FormSearchAdvance.jsp" class="btn btn-primary">Busqueda Avanzada</a>
 	  				</td>	  			
 	  			</tr>
 		  	</table>
 		</div>
-		
 	</div>
 </body>
 </html>

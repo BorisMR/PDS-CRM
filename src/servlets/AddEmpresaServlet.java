@@ -37,7 +37,6 @@ public class AddEmpresaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.invalidate();
-		String LoginStatus = "";
 		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
@@ -47,15 +46,13 @@ public class AddEmpresaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-PrintWriter out = response.getWriter(); // devuelve PrinWriter para obtener encode y establecer el retorno
-		
 		Empresa empresa = new Empresa();
+		String AddStatus = "";
 		
 		String rut;
 		String nombre;
 		String email;
-		String telefono;
+		String fono;
 		String direccion;
 		
 		boolean validado = true;
@@ -63,50 +60,59 @@ PrintWriter out = response.getWriter(); // devuelve PrinWriter para obtener enco
 		rut = request.getParameter("rut");
 		nombre = request.getParameter("nombre");
 		email = request.getParameter("email");
-		telefono = request.getParameter("telefono");
+		fono = request.getParameter("fono");
 		direccion = request.getParameter("direccion");
 		
 		if( rut.trim().equals("") || rut.trim().length() == 0 ){
-			 out.println("Error en el campo Run");
-			 validado = false;
+			AddStatus += "Rut ";
+			validado = false;
 		}
 		
 		if( nombre.trim().equals("") || nombre.trim().length() == 0 ){
-			 out.println("Error en el campo Nombre");
-			 validado = false;
+			AddStatus += "Nombre ";
+			validado = false;
 		}
 
 		if( email.trim().equals("") || email.trim().length() == 0 ){
-			 out.println("Error en el campo Email");
-			 validado = false;
+			AddStatus += "Email ";
+			validado = false;
 		}
 
-		if( telefono.trim().equals("") || telefono.trim().length() == 0 ){
-			 out.println("Error en el campo Telefono");
-			 validado = false;
+		if( fono.trim().equals("") || fono.trim().length() == 0 ){
+			AddStatus += "Fono ";
+			validado = false;
 		}
 
 		if( direccion.trim().equals("") || direccion.trim().length() == 0 ){
-			 out.println("Error en el campo Direccion");
-			 validado = false;
+			AddStatus += "Direccion ";
+			validado = false;
 		}
 		
 		empresa.setRut(rut);
 		empresa.setNombre(nombre);
 		empresa.setEmail(email);
-		empresa.setFono(telefono);
+		empresa.setFono(fono);
 		empresa.setDireccion(direccion);
 		
 		if(validado){
 			try {
-				out.println(empresa.addEmpresaBusiness(empresa));
+				AddStatus = empresa.addEmpresaBusiness(empresa);
+				RequestDispatcher rs = request.getRequestDispatcher("/FormAddEmpresa.jsp");
+				request.setAttribute("AddEmpresaStatus", AddStatus);
+				rs.forward(request, response);
+								
 			} catch (PersistentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				AddStatus = "PersistentException: "+e.getMessage();
+				RequestDispatcher rs = request.getRequestDispatcher("/FormAddEmpresa.jsp");
+				request.setAttribute("AddEmpresaStatus", AddStatus);
+				rs.forward(request, response);
 			}
 		}else{
-			out.println("Error en la validacion de los datos");
-		}		
+			AddStatus += "Error en la validacion de los datos";
+			RequestDispatcher rs = request.getRequestDispatcher("/FormAddEmpresa.jsp");
+			request.setAttribute("AddEmpresaStatus", AddStatus);
+			rs.forward(request, response);
+		}	
 	}
 
 }

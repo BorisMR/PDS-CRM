@@ -45,13 +45,10 @@ public class Empresa {
 			lormEmpresa.setDireccion(empresa.direccion);
 			orm.EmpresaDAO.save(lormEmpresa);
 			t.commit();
-			return "Data Ingresada";
-
-		}catch (NullPointerException e){
-			return "ERROR: No existe una Empresa con ese RUT";
-		}catch(Exception e) {
+			return "Data Ingresada en la BD";
+		}catch (PersistentException e){
 			t.rollback();
-			return "ERROR";			
+			return "Business PersistentException: "+e.getMessage();
 		}		
 	}
 	

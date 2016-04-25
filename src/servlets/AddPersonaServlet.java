@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.orm.PersistentException;
 
+import business.Empresa;
 import business.Persona;
 
 /**
@@ -34,10 +35,8 @@ public class AddPersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		session.invalidate();
-		String LoginStatus = "";
 		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
@@ -50,6 +49,7 @@ public class AddPersonaServlet extends HttpServlet {
 		
 		String AddStatus = "";
 		Persona persona = new Persona();
+		Empresa empresa = new Empresa();
 		
 		String run;
 		String nombre;
@@ -58,16 +58,20 @@ public class AddPersonaServlet extends HttpServlet {
 		String telefono;
 		String direccion;
 		String genero;
+		int empresaId;
 		
 		boolean validado = true;
 		
 		run = request.getParameter("run");
 		nombre = request.getParameter("nombre");
 		apellido = request.getParameter("apellido");
-		email = request.getParameter("mail");
-		telefono = request.getParameter("telefono");
+		email = request.getParameter("email");
+		telefono = request.getParameter("fono");
 		direccion = request.getParameter("direccion");
 		genero = request.getParameter("genero");
+		empresaId = Integer.parseInt(request.getParameter("empresaIde"));
+		
+		
 		
 		//--verifica campos vacios
 		if( run.trim().equals("") || run.trim().length() == 0 ){
@@ -98,6 +102,10 @@ public class AddPersonaServlet extends HttpServlet {
 			AddStatus += "Error en el campo Genero";
 			validado = false;
 		}
+		if( genero.trim().equals("") || genero.trim().length() == 0 ){
+			AddStatus += "Error en el campo EmpresaId";
+			validado = false;
+		}
 		//-FIN-verifica campos vacios
 		
 		persona.setRun(run);
@@ -108,22 +116,28 @@ public class AddPersonaServlet extends HttpServlet {
 		persona.setDireccion(direccion);
 		persona.setGenero(genero);
 		
+		empresa.setIdE(empresaId);
+		
+		persona.setEmpresa(empresa);
+		
 		if(validado){
 			try {
 				AddStatus = persona.addPersonaBusiness(persona);
-				RequestDispatcher rs = request.getRequestDispatcher("FormAddPersona.jsp");
-				request.setAttribute("AddStatus", AddStatus);
+				RequestDispatcher rs = request.getRequestDispatcher("/FormAddPersona.jsp");
+				request.setAttribute("AddPersonaStatus", AddStatus);
 				rs.forward(request, response);
 								
 			} catch (PersistentException e) {
-				e.printStackTrace();
+				AddStatus = "PersistentException: "+e.getMessage();
+				RequestDispatcher rs = request.getRequestDispatcher("/FormAddPersona.jsp");
+				request.setAttribute("AddPersonaStatus", AddStatus);
+				rs.forward(request, response);
 			}
 		}else{
 			AddStatus = "Error en la validacion de los datos";
-			RequestDispatcher rs = request.getRequestDispatcher("FormAddPersona.jsp");
-			request.setAttribute("AddStatus", AddStatus);
+			RequestDispatcher rs = request.getRequestDispatcher("/FormAddPersona.jsp");
+			request.setAttribute("AddPersonaStatus", AddStatus);
 			rs.forward(request, response);
-		}				
+		}
 	}
-
 }
