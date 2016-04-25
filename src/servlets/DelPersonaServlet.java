@@ -36,7 +36,6 @@ public class DelPersonaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		String LoginStatus = "";
 		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
@@ -46,33 +45,33 @@ public class DelPersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-		
-		String idP;
-		boolean validado = true;
-				
-		idP = request.getParameter("idP");
-		
+		String idP = request.getParameter("idP");
+		String runP = request.getParameter("run");
 		Persona persona = new Persona();
 		
-		persona.setIdP(Integer.parseInt(idP));
 		
-		if( idP.trim().equals("") || idP.trim().length() == 0 ){
-			 out.println("Error en el campo ID");
-			 validado = false;
-		}
-		
-		if(validado){
+		if(!idP.trim().equals("")){
+			persona.setIdP(Integer.parseInt(idP));
 			try {
-				out.println(persona.delPersonaBusiness(persona));
+				persona.delPersonaBusinessIdP(persona);
+				RequestDispatcher rs = request.getRequestDispatcher("/FormSearchSimple.jsp");
+				request.setAttribute("SearchSimpleStatus", "Datos Eliminados");
+				rs.forward(request, response);
 			} catch (PersistentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else{
-			out.print("Error en la validacion de los datos");
+			persona.setRun(runP);
+			try {
+				persona.delPersonaBusinessRun(persona);
+				RequestDispatcher rs = request.getRequestDispatcher("/FormSearchSimple.jsp");
+				request.setAttribute("SearchSimpleStatus", "Datos Eliminados");
+				rs.forward(request, response);
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
-
 }

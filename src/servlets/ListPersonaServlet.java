@@ -3,7 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.persistence.PersistenceException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.orm.PersistentException;
 
-import orm.Persona;
+import business.Persona;
 
 /**
  * Servlet implementation class ListPersonaServlet
@@ -37,7 +37,6 @@ public class ListPersonaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		String LoginStatus = "";
 		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
@@ -47,18 +46,29 @@ public class ListPersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ArrayList<orm.Persona> listaP = null;
-		try{
-			business.Persona persona = new business.Persona();
-			listaP = persona.listPersonaArray();
-			System.out.println(listaP.get(0).getNombre());
+		ArrayList<orm.Persona> listaPersonas = null;
+		Persona persona = new Persona();
+		
+		try {
+			listaPersonas = persona.listPersonaArray();
+			
+			if(listaPersonas.isEmpty()){
+				RequestDispatcher rs = request.getRequestDispatcher("/ListPersona.jsp");
+				request.setAttribute("ListPersonaStatus", "No hay datos en la BD");
+				rs.forward(request, response);				
+			}else{
+				request.removeAttribute("busqueda");
+				request.setAttribute("ListPersonaStatus", "Listado de Personas");
+				request.setAttribute("listaPersonas", listaPersonas);				
+				request.getRequestDispatcher("/ListPersona.jsp").forward(request, response);
+			}
 		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			RequestDispatcher rs = request.getRequestDispatcher("/ListPersona.jsp");
+			request.setAttribute("ListPersonaStatus","Servlet: No se pudo efectuar la busqueda de elementos ");
+			rs.forward(request, response);
 		}
-		request.setAttribute("ListaPersonasJSP", listaP);
-		request.getRequestDispatcher("/ListaPersonas.jsp").forward(request, response);
 	}
-
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
 }

@@ -70,12 +70,8 @@ public class Empresa {
 			return "Data Eliminada";
 		}
 
-		catch (NullPointerException e){
-			return "ERROR: No existe una Empresa con ese RUT";
-		}
-		catch (Exception e) {
-			t.rollback();
-			return "ERROR: No existe una Persona con ese RUT";
+		catch (PersistentException e){
+			return "Business PersistentException: "+e.getMessage();
 		}
 	}
 
@@ -109,80 +105,37 @@ public class Empresa {
 				return "ERROR: no se edito la data ";
 			}
 		} catch (PersistentException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			return "Business PersistentException: "+e1.getMessage();
 		}
-		return "NONE";
 	}
 
 	/**
-	  * Metodo que genera una tabla con las Empresa de la Base de datos
+	  * Metodo que genera una Lista con las Empresa de la Base de datos
 	  * 
-	  * @return String Contiene la tabla generada con los datos en html
+	  * @return List<Empresa> Contiene la lista
 	  */
-	public String listEmpresaBusiness() throws PersistentException{
-		final int ROW_COUNT = 100;
-		orm.Empresa[] ormEmpresas;
-		String salida = "";
-		int i = 0;
-		
-		try {
-			ormEmpresas = orm.EmpresaDAO.listEmpresaByQuery(null, null);
-			int length = Math.min(ormEmpresas.length, ROW_COUNT);
-			
-			List<orm.Empresa> lista = new ArrayList<orm.Empresa>();
-			
-			//crea lista con todas las personas
-			for (i = 0; i < length; i++) {
-				lista.add(ormEmpresas[i]);
-				
-			}
-			//insertar bootstrap y div a salida
-			salida += "<table>";
-			salida += "<tr><th>Rut</th><th>Nombre</th><th>Email</th><th>Fono</th><th>Direccion</th></tr>";
-			
-			if(ormEmpresas.length > 0){
-				for (i = 0; i < ormEmpresas.length; i++) {
-					salida += "<tr>";
-					salida += ("<td>"+ormEmpresas[i].getRut())+"</td>";
-					salida += ("<td>"+ormEmpresas[i].getNombre())+"</td>";
-					salida += ("<td>"+ormEmpresas[i].getEmail()+"</td>");
-					salida += ("<td>"+ormEmpresas[i].getFono()+"</td>");
-					salida += ("<td>"+ormEmpresas[i].getDireccion()+"</td>");
-					salida += "</tr>";
-				}
-				salida += "</table>";
-			}else{
-				salida += "</table>";
-			}			
-			return salida;
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return salida;
-		}
-	}
-	
-	/**
-	 * Efectua una busqueda simple utilizando una cadena de texto comun
-	 * 
-	 * @param busqueda
-	 * @return
-	 * @throws PersistentException
-	 */
-	public List<Empresa> busquedaSimpleEmpresa(String busqueda) throws PersistentException {
+	@SuppressWarnings("unchecked")
+	public List<Empresa> listEmpresaBusiness() throws PersistentException{
 		List<Empresa> listaEmpresa = new ArrayList<Empresa>();
-		List<orm.Empresa> listaEmpresas = new ArrayList<orm.Empresa>();
+		List<orm.Empresa> listaEmpresasBD = new ArrayList<orm.Empresa>();
 		
-			
-			listaEmpresas = orm.EmpresaDAO.queryEmpresa("Empresa.rut='"+busqueda
-					+"' or Empresa.nombre='"+busqueda
-					+"' or Empresa.email='"+busqueda
-					+"' or Empresa.fono='"+busqueda
-					+"' or Empresa.direccion='"+busqueda
-					+"' ",null);
+		listaEmpresasBD = orm.EmpresaDAO.queryEmpresa("Empresa.rut='*' ",null);
 		
+		if(!listaEmpresasBD.isEmpty()){			
+			for( orm.Empresa empresaORM : listaEmpresasBD){
 				
+				Empresa empresaB = new Empresa();
+				
+				empresaB.setIdE(empresaORM.getIdE());
+				empresaB.setNombre(empresaORM.getNombre());
+				empresaB.setEmail(empresaORM.getEmail());
+				empresaB.setFono(empresaORM.getFono());
+				empresaB.setDireccion(empresaORM.getDireccion());
+				empresaB.setRut(empresaORM.getRut());
+								
+				listaEmpresa.add(empresaB);
+			}
+		}				
 		return listaEmpresa;
 	}
 		

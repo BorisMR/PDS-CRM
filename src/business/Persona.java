@@ -67,21 +67,50 @@ public class Persona {
 	
 	/**
 	  * Metodo que elimina una persona de la Base de datos
-	  * usando el rut de la Persona recibida
+	  * usando el id de la Persona recibida
+	  *
+	  * @param Persona Objeto del que se extrae el id para eliminar
+	  * @return String Mensaje que indica si se ralizo la transaccion
+	  * @throws PersistentException
+	  */
+	public String delPersonaBusinessIdP(Persona persona) throws PersistentException {
+		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
+		try {
+			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByORMID(persona.getIdP());
+			orm.PersonaDAO.delete(lormPersona);
+			//borra empresa al borrar persona
+			//orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
+			//orm.EmpresaDAO.delete(lormEmpresa);
+			t.commit();
+			return "Data Eliminada";
+		}
+
+		catch (NullPointerException e){
+			return "ERROR: No existe una Persona con el ID:"+persona.getIdP();
+		}
+		catch (Exception e) {
+			t.rollback();
+			return "ERROR: No existe una Persona con el ID:"+persona.getIdP();
+		}
+	}
+	
+	/**
+	  * Metodo que elimina una persona de la Base de datos
+	  * usando el run de la Persona recibida
 	  *
 	  * @param Persona Objeto del que se extrae el run para eliminar
 	  * @return String Mensaje que indica si se ralizo la transaccion
 	  * @throws PersistentException
 	  */
-	public String delPersonaBusiness(Persona persona) throws PersistentException {
+	public String delPersonaBusinessRun(Persona persona) throws PersistentException {
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		try {
-			//orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run = '"+persona.run+"'", null);
-			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByORMID(persona.getIdP());
+			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run = '"+persona.run+"'", null);
+			//orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByORMID(persona.getIdP());
 			orm.PersonaDAO.delete(lormPersona);
-			//borra empresa al borrar persona
-			orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
-			orm.EmpresaDAO.delete(lormEmpresa);
+			
+			//orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
+			//orm.EmpresaDAO.delete(lormEmpresa);
 			
 			t.commit();
 			return "Data Eliminada";
@@ -135,58 +164,6 @@ public class Persona {
 		}
 		return "NONE";
 	}
-	
-	/**
-	  * Metodo que genera una tabla con las Personas de la Base de datos
-	  * 
-	  * @return String Contiene la tabla generada con los datos en html
-	  */
-	public String listPersonaBusiness() throws PersistentException{
-		final int ROW_COUNT = 100;
-		orm.Persona[] ormPersonas;
-		String salida = "";
-		int i = 0;
-		
-		try {
-			ormPersonas = orm.PersonaDAO.listPersonaByQuery(null, null);
-			int length = Math.min(ormPersonas.length, ROW_COUNT);
-			
-			List<orm.Persona> lista = new ArrayList<orm.Persona>();
-			
-			//crea lista con todas las personas
-			for (i = 0; i < length; i++) {
-				lista.add(ormPersonas[i]);
-				
-			}
-			//insertar bootstrap y div a salida
-			salida += "<table>";
-			salida += "<tr><th>Run</th><th>Nombre</th><th>Apellido</th><th>eMail</th><th>Telefono</th>"
-					+ "<th>Direccion</th><th>Genero</th></tr>";
-			
-			if(ormPersonas.length > 0){
-				for (i = 0; i < ormPersonas.length; i++) {
-					salida += "<tr>";
-					salida += ("<td>"+ormPersonas[i].getRun())+"</td>";
-					salida += ("<td>"+ormPersonas[i].getNombre())+"</td>";
-					salida += ("<td>"+ormPersonas[i].getApellido()+"</td>");
-					salida += ("<td>"+ormPersonas[i].getEmail()+"</td>");
-					salida += ("<td>"+ormPersonas[i].getFono()+"</td>");
-					salida += ("<td>"+ormPersonas[i].getDireccion()+"</td>");
-					salida += ("<td>"+ormPersonas[i].getGenero()+"</td>");
-					salida += "</tr>";
-				}
-				salida += "</table>";
-			}else{
-				salida += "</table>";
-			}			
-			return salida;
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return salida;
-		}
-	}
-	
 	/**
 	 * metodo que retorna un ArrayList con las personas agregadas
 	 * 
