@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.*" %>
-<%@page import="business.Persona" %>
+<%@ page import="java.util.*" %>
+<%@ page import="business.Persona" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="i" %>
 <!DOCTYPE html">
 <html>
 <head>
@@ -13,8 +14,8 @@
 	<h2><b>Busqueda Simple</b></h2>
 	
 	<form class="form-horizontal" action="SearchSimpleServlet" method="post">
-		Buscar:<input class="form-control" type="text" name="busqueda" required/><br/>
-		<button type="submit" class="btn btn-default" value="buscar">buscar</button>
+		Buscar:<input class="form-control" type="text" name="busqueda"/><br/>
+		<button type="submit" class="btn btn-success">buscar</button>
 	</form>
 	<h3>${SearchSimpleStatus}</h3>
 	
@@ -27,6 +28,7 @@
 		<th>Telefono</th>
 		<th>Direccion</th>
 		<th>Genero</th>
+		<th>Acciones</th>
 	</tr>
 	<i:forEach items="${listaPersonas}" var="persona">
 		<tr>
@@ -38,23 +40,22 @@
 			<td>${persona.direccion}</td>
 			<td>${persona.genero}</td>
 			<td>
-			<!-- 
-			<table>
-				<tr>
-					<td><form action="EditPersonaServlet.jsp" method="post">
-						<input type="hidden" value="${persona.idP}" name="idP">
-						<input type="submit" value="Editar" class="btn btn-primary">	
-					</form>
-					</td>
-					<td>
-					<form action="DelPersonaServlet" method="post">
-						<input type="hidden" value="${persona.idP}" name="idP">
-						<input type="submit" value="Eliminar" class="btn btn-danger">	
-					</form>
-					</td>
-				</tr>
-			</table>
-			 -->
+				<table>
+					<tr>
+						<td>
+							<form action="FormEditPersona.jsp" method="post">
+								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="submit" value="Editar" class="btn btn-warning">	
+							</form>
+						</td>
+						<td>
+							<form action="DelPersonaServlet" method="post">
+								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="submit" value="Eliminar" class="btn btn-danger">	
+							</form>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 	</i:forEach>

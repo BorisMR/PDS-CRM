@@ -36,14 +36,10 @@
 			<table class="table table-responsive">	
 				<tr>		  				
 					<td>
-						<form action="SearchSimpleServlet" method="post">
-							<input type="submit" value="Busqueda Simple" class="btn btn-primary">
-						</form>
-	  				</td>
+						<a href="SearchSimple.jsp" class="btn btn-primary">Busqueda Simple</a>
+					</td>
 	  				<td>
-						<form action="SearchAdvanceServlet" method="post">
-							<input type="submit" value="Busqueda Avanzada" class="btn btn-primary">
-						</form>
+						<a href="SearchAdvance.jsp" class="btn btn-primary">Busqueda Avanzada</a>
 	  				</td>	  			
 	  			</tr>
 		  	</table>

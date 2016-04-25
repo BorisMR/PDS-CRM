@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -45,25 +46,32 @@ public class SearchSimpleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String busqueda = request.getParameter("busqueda");
-		
+		String busqueda="";
 		Persona persona = new Persona();
+		List<Persona> listaBusqueda = new ArrayList<Persona>();
 		
 		try {
-			List<Persona> listaBusqueda = persona.busquedaSimplePersona(busqueda);
-			if(!listaBusqueda.isEmpty()){
-				System.out.println(listaBusqueda.toString());
-				request.removeAttribute("busqueda");
-				request.setAttribute("busqueda", listaBusqueda);				
-				request.getRequestDispatcher( "SearchSimple.jsp").forward(request, response);
-			}else{
-				RequestDispatcher rs = request.getRequestDispatcher("SearchSimple.jsp");
+			busqueda = request.getParameter("busqueda");
+		} catch (Exception e1) {
+			busqueda="";
+		}		
+		
+		try {
+			listaBusqueda = persona.busquedaSimple(busqueda);
+			
+			if(listaBusqueda.isEmpty()){
+				RequestDispatcher rs = request.getRequestDispatcher("/SearchSimple.jsp");
 				request.setAttribute("SearchSimpleStatus",	"No se encontraron datos asociados a la busqueda");
-				rs.forward(request, response);
+				rs.forward(request, response);				
+			}else{
+				request.removeAttribute("busqueda");
+				request.setAttribute("SearchSimpleStatus",	"Se encontraron los siguientes resultados");
+				request.setAttribute("listaPersonas", listaBusqueda);				
+				request.getRequestDispatcher("/SearchSimple.jsp").forward(request, response);
 			}
 		} catch (PersistentException e) {
-			RequestDispatcher rs = request.getRequestDispatcher("SearchSimple.jsp");
-			request.setAttribute("SearchSimpleStatus",	e.getMessage());
+			RequestDispatcher rs = request.getRequestDispatcher("/SearchSimple.jsp");
+			request.setAttribute("SearchSimpleStatus","Servlet: "+e.getMessage());
 			rs.forward(request, response);
 		}		
 	}

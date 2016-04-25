@@ -209,7 +209,7 @@ public class Persona {
 	 * @throws PersistentException
 	 */
 	@SuppressWarnings("unchecked") // por simple comodidad
-	public List<Persona> busquedaSimplePersona(String cadenaBusqueda) throws PersistentException {
+	public List<Persona> busquedaSimple(String cadenaBusqueda) throws PersistentException {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonasBD = new ArrayList<orm.Persona>();
 		
