@@ -15,7 +15,7 @@ import business.*;
 
 /**
  * Clase que utiliza el patron DAO para acceder a las funciones
- * CRUD de las clases y facilitar al WS el manejo de la capa de negocio
+ * de busqueda 
  * 
  * @author Boris Morales Ríos
  *

@@ -9,15 +9,6 @@ Codigo de ORM generado a traves de MDD usando VP 13.0 (lic:UFRO)
 - Tomcat: 8.0.33
 - BD: postgreSQL 9.5
 
-***Lista Tareas***
-- [x] Commit inicial changes
-- [x] Packages
-- [ ] Jsps
-- [ ] Servlet Handlers
-- [ ] Validar Jsps y Servlets
-
-
-
 Como bien dijo **Nathaniel Borenstein:**
 
 > La mayoría de los expertos están de acuerdo en que la forma más probable en que el mundo sea destruido es por accidente. Y ahí es donde entramos en juego; nosotros somos informáticos. Nosotros causamos accidentes

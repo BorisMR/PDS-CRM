@@ -5,7 +5,8 @@
 <!DOCTYPE html">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<title>Busqueda</title>
 </head>
 <body>
@@ -18,7 +19,7 @@
 	<h3>${SearchSimpleStatus}</h3>
 	
 	<table class="table table-bordered table-hover table-responsive">
-	<tr class="success">
+	<tr class="info">
 		<th>Run</th>
 		<th>Nombre</th>
 		<th>Apellido</th>
@@ -27,7 +28,7 @@
 		<th>Direccion</th>
 		<th>Genero</th>
 	</tr>
-	<c:forEach items="${listaPersonas}" var="persona">
+	<i:forEach items="${listaPersonas}" var="persona">
 		<tr>
 			<td>${persona.run}</td>
 			<td>${persona.nombre}</td>
@@ -37,6 +38,7 @@
 			<td>${persona.direccion}</td>
 			<td>${persona.genero}</td>
 			<td>
+			<!-- 
 			<table>
 				<tr>
 					<td><form action="EditPersonaServlet.jsp" method="post">
@@ -52,9 +54,10 @@
 					</td>
 				</tr>
 			</table>
+			 -->
 			</td>
 		</tr>
-	</c:forEach>
+	</i:forEach>
 	</table>
 </body>
 </html>
