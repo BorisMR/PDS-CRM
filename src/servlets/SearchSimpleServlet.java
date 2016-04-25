@@ -54,9 +54,12 @@ public class SearchSimpleServlet extends HttpServlet {
 			List<Persona> listaBusqueda = persona.busquedaSimplePersona(busqueda);
 			if(!listaBusqueda.isEmpty()){
 				request.removeAttribute("busqueda");
-				request.setAttribute("busqueda", listaBusqueda);
-				
-				request.getRequestDispatcher( "/SearchSimple.jsp").forward(request, response);
+				request.setAttribute("busqueda", listaBusqueda);				
+				request.getRequestDispatcher( "SearchSimple.jsp").forward(request, response);
+			}else{
+				RequestDispatcher rs = request.getRequestDispatcher("SearchSimple.jsp");
+				request.setAttribute("SearchSimpleStatus",	"No se encontraron datos asociados a la busqueda");
+				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block

@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,7 +35,6 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		String LoginStatus = "";
 		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
@@ -64,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 				rs.forward(request, response);
 			}else{				
 				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
-				request.setAttribute("LoginStatus",	"El usuario Ingresado no existe");
+				request.setAttribute("LoginStatus",	"No existe un usuario con la password ingresada");
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {

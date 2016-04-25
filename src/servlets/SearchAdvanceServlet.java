@@ -31,7 +31,6 @@ public class SearchAdvanceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		String LoginStatus = "";
 		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);

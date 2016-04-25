@@ -14,10 +14,8 @@
 			User ID:<input class="form-control" type="text" name="user" placeholder="Ingrese su Usuario" required/><br/>
 			Password:<input class="form-control" type="password" name="pass" placeholder="Ingrese su password" required/><br/>
 			<button type="submit" class="btn btn-success" value="login">Entrar</button>
-		</form>
-		
-		<h3>${LoginStatus}</h3>	
-		
+		</form>		
+		<h3>${LoginStatus}</h3>		
 	</div>
 </body>
 </html>

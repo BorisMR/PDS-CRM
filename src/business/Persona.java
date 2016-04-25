@@ -211,11 +211,11 @@ public class Persona {
 	@SuppressWarnings("unchecked") // por simple comodidad
 	public List<Persona> busquedaSimplePersona(String cadenaBusqueda) throws PersistentException {
 		List<Persona> listaPersona = new ArrayList<Persona>();
-		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
+		List<orm.Persona> listaPersonasFromQueryFromQuery = new ArrayList<orm.Persona>();
 		
-		if( cadenaBusqueda != null || !cadenaBusqueda.equals("") ){	
+		if( cadenaBusqueda != null && !cadenaBusqueda.trim().equals("") ){	
 			//cadena compuesta por OR para encontrar al el dato en al menos uno de los campos
-			listaPersonas = orm.PersonaDAO.queryPersona(
+			listaPersonasFromQueryFromQuery = orm.PersonaDAO.queryPersona(
 					  "Persona.run='"+cadenaBusqueda
 				+"' OR Persona.nombre ='"+cadenaBusqueda
 				+"' OR Persona.apellido ='"+cadenaBusqueda
@@ -226,8 +226,8 @@ public class Persona {
 				+"' ",null);
 		}
 		
-		if(listaPersonas != null || !listaPersona.isEmpty()){			
-			for( orm.Persona personaORM : listaPersonas){
+		if(listaPersonasFromQueryFromQuery != null || !listaPersona.isEmpty()){			
+			for( orm.Persona personaORM : listaPersonasFromQueryFromQuery){
 				
 				Empresa empresaB = new Empresa();				
 				//obetener empresa asociada a la persona
@@ -269,10 +269,15 @@ public class Persona {
 	@SuppressWarnings("unchecked")
 	public List<Persona> busquedaAvanzada(Persona persona) throws PersistentException{
 		
-		String queryToSearch="";
-		List<Persona> listaPersona = new ArrayList<Persona>();
-		List<orm.Persona> listaPersonas = new ArrayList<orm.Persona>();
+		String queryToSearch="";		
+		List<orm.Persona> listaPersonasFromQuery = new ArrayList<orm.Persona>();
+		List<Persona> listaPersonaBD = new ArrayList<Persona>();
 		
+		/*	
+		 * verificar si el parametro x de la persona viene con datos
+		 * en caso de que venga con datos adjuntar el parametro a la query de busqueda
+		 * mediante el AND y posteriormente el parametro a concatenar
+		*/		
 		if(persona.getRun()!= null && !persona.getRun().trim().equals("")){
 			queryToSearch += "Persona.run='"+persona.getRun()+"' ";
 		}
@@ -340,10 +345,10 @@ public class Persona {
 			queryToSearch += "Persona.genero='"+persona.getGenero()+ "' ";
 		}		
 		
-		listaPersonas = orm.PersonaDAO.queryPersona(queryToSearch, null);
+		listaPersonasFromQuery = orm.PersonaDAO.queryPersona(queryToSearch, null);
 		
-		if(!listaPersonas.isEmpty()){
-			for( orm.Persona personaORM : listaPersonas){			
+		if(!listaPersonasFromQuery.isEmpty()){
+			for( orm.Persona personaORM : listaPersonasFromQuery){			
 				Empresa empresaB = new Empresa();				
 				
 				orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
@@ -369,10 +374,10 @@ public class Persona {
 				
 				personaB.setEmpresa(empresaB);
 				
-				listaPersona.add(personaB);
+				listaPersonaBD.add(personaB);
 			}
 		}		
-		return listaPersona;
+		return listaPersonaBD;
 	}
 	
 	/**
