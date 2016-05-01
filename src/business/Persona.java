@@ -251,11 +251,89 @@ public class Persona {
 		List<orm.Persona> listaPersonasFromQuery = new ArrayList<orm.Persona>();
 		List<Persona> listaPersonaBD = new ArrayList<Persona>();
 		
+		//String usados para disminuir cantidad de gets en validaciones
+		String gRun = persona.getRun();
+		String gNombre = persona.getNombre();
+		String gApellido = persona.getApellido();
+		String gEmail = persona.getEmail();
+		String gFono = persona.getFono();
+		String gDireccion = persona.getDireccion();
+		String gGenero = persona.getGenero();		
+		//
+		
+		
 		/*	
 		 * verificar si el parametro x de la persona viene con datos
 		 * en caso de que venga con datos adjuntar el parametro a la query de busqueda
 		 * mediante el AND y posteriormente el parametro a concatenar
-		*/		
+		*/
+		if(gRun!= null && !gRun.trim().equals("")){
+			queryToSearch += "Persona.run='"+gRun+"' ";
+		}
+		
+		if((gRun!= null && !gRun.equals(""))
+				&& (gNombre!=null && !gNombre.equals(""))){
+			queryToSearch += "AND ";
+		}
+		if(gNombre!=null && !gNombre.equals("")){
+			queryToSearch += "Persona.nombre='"+gNombre+"' ";
+		}
+		
+		if(((gRun!=null && !gRun.equals(""))
+				|| (gNombre!=null && !gNombre.equals(""))
+				)&& (gApellido!=null && !gApellido.equals(""))){
+			queryToSearch += "AND ";
+		}
+		if(gApellido!=null && !gApellido.trim().equals("")){
+			queryToSearch += "Persona.apellido='"+gApellido+"' ";
+		}
+		
+		if((gRun!=null && !gRun.equals("")
+				|| gNombre!=null && !gNombre.equals("")
+				|| gApellido!=null && !gApellido.equals(""))
+				&& (gEmail != null && !gEmail.equals(""))){
+			queryToSearch += "AND ";
+		}
+		if(gEmail != null && !gEmail.trim().equals("")){
+			queryToSearch += "Persona.email='"+gEmail+"' ";
+		}
+		
+		if((gRun!=null && !gRun.equals("")
+				|| gNombre!=null && !gNombre.equals("")
+				|| gApellido!=null && !gApellido.equals("")
+				|| gEmail != null && !gEmail.equals(""))
+				&& (gFono != null && !gFono.equals(""))){
+			queryToSearch += "AND ";
+		}
+		if(gFono != null && !gFono.trim().equals("")){
+			queryToSearch += "Persona.fono='"+gFono+ "' ";
+		}
+		
+		if((gRun!=null && !gRun.equals("")
+				|| gNombre!=null && !gNombre.equals("")
+				|| gApellido!=null && !gApellido.equals("")
+				|| gEmail != null && !gEmail.equals("")
+				|| gFono != null && !gFono.equals(""))
+				&& (gDireccion != null && !gDireccion.equals(""))){
+			queryToSearch += "AND ";
+		}
+		if(gDireccion != null && !gDireccion.trim().equals("")){
+			queryToSearch += "Persona.direccion='"+gDireccion+ "' ";
+		}
+		
+		if((gRun!=null && !gRun.equals("")
+				|| gNombre!=null && !gNombre.equals("")
+				|| gApellido!=null && !gApellido.equals("")
+				|| gEmail != null && !gEmail.equals("")
+				|| gFono != null && !gFono.equals("")
+				|| gDireccion != null && !gDireccion.equals(""))
+				&& (gGenero != null && !gGenero.equals(""))){
+			queryToSearch += "AND ";
+		}
+		if(gGenero != null && !gGenero.trim().equals("")){
+			queryToSearch += "Persona.genero='"+gGenero+ "' ";
+		}
+		/*
 		if(persona.getRun()!= null && !persona.getRun().trim().equals("")){
 			queryToSearch += "Persona.run='"+persona.getRun()+"' ";
 		}
@@ -322,7 +400,7 @@ public class Persona {
 		if(persona.getGenero() != null && !persona.getGenero().trim().equals("")){
 			queryToSearch += "Persona.genero='"+persona.getGenero()+ "' ";
 		}		
-		
+		*/
 		listaPersonasFromQuery = orm.PersonaDAO.queryPersona(queryToSearch, null);
 		
 		if(!listaPersonasFromQuery.isEmpty()){
