@@ -28,12 +28,15 @@ public class Persona {
 	private String genero;
 	private Empresa empresa;
 	
+	/**
+	 * Constructor vacio.
+	 */
 	public Persona(){
 		
 	}
 	
 	/**
-	 * Metodo que añade una Persona a la Base de datos
+	 * Añade una Persona a la Base de datos
 	 *
 	 * @param Persona Objeto que contiene la data a ingresar
 	 * @return String Mensaje que indica si se ralizo la transaccion
@@ -41,12 +44,13 @@ public class Persona {
 	 */
 	public String addPersonaBusiness(Persona persona) throws PersistentException{
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction(); 
-		try{
-			
+		
+		try{			
 			orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
+			orm.Persona lormPersona = orm.PersonaDAO.createPersona();
+			
 			orm.EmpresaDAO.save(lormEmpresa);
 			
-			orm.Persona lormPersona = orm.PersonaDAO.createPersona();
 			lormPersona.setRun(persona.run);
 			lormPersona.setNombre(persona.nombre);
 			lormPersona.setApellido(persona.apellido);
@@ -54,6 +58,7 @@ public class Persona {
 			lormPersona.setFono(persona.fono);
 			lormPersona.setDireccion(persona.direccion);
 			lormPersona.setGenero(persona.genero);
+			
 			orm.PersonaDAO.save(lormPersona);
 			orm.PersonaDAO.refresh(lormPersona);
 			t.commit();
@@ -117,11 +122,11 @@ public class Persona {
 		}
 
 		catch (NullPointerException e){
-			return "ERROR: No existe una Persona con el ID:"+persona.getIdP();
+			return "ERROR: No existe una Persona con el Run:"+persona.getRun();
 		}
 		catch (Exception e) {
 			t.rollback();
-			return "ERROR: No existe una Persona con el ID:"+persona.getIdP();
+			return "ERROR: No existe una Persona con el Run:"+persona.getRun();
 		}
 	}
 	
@@ -131,39 +136,35 @@ public class Persona {
 	  *
 	  * @param Persona Objeto del que se extrae el ID a editar
 	  * @return String Mensaje que indica si se ralizo la transaccion
+	 * @throws PersistentException 
 	  */
-	public String editPersonaBusiness(Persona persona){
-		PersistentTransaction t;
+	public String editPersonaBusiness(Persona persona) throws PersistentException{
+		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
+		
 		try {
-			t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
-			try {
-				orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
-				lormEmpresa.setNombre(persona.getEmpresa().getNombre());
-				orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run = '"+persona.run+"'", null);
-				// Update the properties of the persistent object
-				lormPersona.setRun(persona.run);
-				lormPersona.setNombre(persona.nombre);
-				lormPersona.setApellido(persona.apellido);
-				lormPersona.setEmail(persona.email);
-				lormPersona.setFono(persona.fono);
-				lormPersona.setDireccion(persona.direccion);
-				lormPersona.setGenero(persona.genero);
-								
-				orm.PersonaDAO.save(lormPersona);
-				//orm.PersonaDAO.refresh(lormPersona);
-				t.commit();
-				return "Data Editada";
-			}
-			catch (Exception e) {
-				t.rollback();
-				return "ERROR: no se edito la data ";
-			}
-		} catch (PersistentException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
+			lormEmpresa.setNombre(persona.getEmpresa().getNombre());
+			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run='"+persona.run+"'", null);
+			
+			//Actualiza las propiedades del objeto persistente
+			lormPersona.setRun(persona.run);
+			lormPersona.setNombre(persona.nombre);
+			lormPersona.setApellido(persona.apellido);
+			lormPersona.setEmail(persona.email);
+			lormPersona.setFono(persona.fono);
+			lormPersona.setDireccion(persona.direccion);
+			lormPersona.setGenero(persona.genero);
+							
+			orm.PersonaDAO.save(lormPersona);
+			orm.PersonaDAO.refresh(lormPersona);
+			t.commit();
+			return "Data Editada";
+		}catch (Exception e) {
+			t.rollback();
+			return "ERROR: no se edito la data ";
 		}
-		return "NONE";
 	}
+	
 	/**
 	 * metodo que retorna un ArrayList con las personas agregadas
 	 * 
