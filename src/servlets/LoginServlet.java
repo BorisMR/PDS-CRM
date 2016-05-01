@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
-		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
+		request.setAttribute("LoginStatus",	"Se ha cerrado la session correctamente");
 		rs.forward(request, response);
 	}
 
@@ -63,7 +63,6 @@ public class LoginServlet extends HttpServlet {
 			}else{				
 				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 				request.setAttribute("LoginStatus",	"Error en los datos ingresados");
-				//request.setAttribute("LoginStatus",	"Error en los datos ingresados");
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
