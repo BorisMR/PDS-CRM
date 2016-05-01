@@ -105,71 +105,26 @@ public class Usuario {
 		return "NONE";
 	}
 	
-	/**
-	  * Metodo que genera una tabla con los Usuario de la Base de datos
-	  * 
-	  * @return String Contiene la tabla generada con los datos
-	  */
-	public String listarUsuarioBusiness() throws PersistentException{
-		final int ROW_COUNT = 100;
-		orm.Usuario[] ormUsuario;
-		String salida = "";
-		int i = 0;
-		
-		try {
-			ormUsuario = orm.UsuarioDAO.listUsuarioByQuery(null, null);
-			int length = Math.min(ormUsuario.length, ROW_COUNT);
-			
-			List<orm.Usuario> lista = new ArrayList<orm.Usuario>();
-			
-			//crea lista con todos los usuarios
-			for (i = 0; i < length; i++) {
-				lista.add(ormUsuario[i]);
-				
-			}
-			//insertar bootstrap y div a salida
-			salida += "<table>";
-			salida += "<tr><th>Usuario</th><th>Password</th></tr>";
-			if(ormUsuario.length > 0){
-				
-				for (i = 0; i < ormUsuario.length; i++) {
-					salida += "<tr>";
-					salida += ("<td>"+ormUsuario[i].getUsser()+"</td>");
-					salida += ("<td>"+ormUsuario[i].getPass()+"</td>");
-					salida += "</tr>";
-				}
-				salida += "</table>";
-			}else{
-				salida += "</table>";
-			}
-			
-			
-			return salida;
-		} catch (PersistentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return salida;
-			
-		}
-
-	}
 	
 	/**
+	 * valida si el usuario y su pass, existen en la BD
 	 * 
 	 * @param Usuario
-	 * @return Verdadero solo si el usuario existe en la BD
+	 * @return boolean Validacion
 	 * @throws PersistentException
 	 */
 	public boolean validarUsuarioBusiness(Usuario usuario) throws PersistentException{
 		orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
+		boolean validador = false;
 		
 		orm.Usuario[] usuarioQ; 
 		usuarioQ = orm.UsuarioDAO.listUsuarioByQuery("Usuario.usser = '"+usuario.usser+"' AND Usuario.pass = '"+usuario.pass+"'", null);
 		
 		if(usuarioQ.length > 0){
-			return true;
+			validador = true;
+			return validador;
 		}else{
-			return false;
+			return validador;
 		}
 	}
 	
@@ -180,6 +135,7 @@ public class Usuario {
 	 * @return
 	 * @throws PersistentException
 	 */
+	@SuppressWarnings("unchecked")
 	public List<Usuario> busquedaSimpleUsuario(String busqueda) throws PersistentException {
 		List<Usuario> listaUsuario = new ArrayList<Usuario>();
 		List<orm.Usuario> listaUsuarios = new ArrayList<orm.Usuario>();
@@ -187,7 +143,16 @@ public class Usuario {
 		listaUsuarios = orm.UsuarioDAO.queryUsuario("Usuario.usser='"+busqueda
 				//+"' OR Usuario.pass='"+busqueda
 				+"' ",null);
+		if(!listaUsuarios.isEmpty()){
+			for (orm.Usuario usuarioORM : listaUsuarios) {
+				Usuario usuario = new Usuario();
 				
+				usuario.setUser(usuarioORM.getPass());
+				usuario.setPassword(usuarioORM.getPass());
+				
+				listaUsuario.add(usuario);
+			}
+		}		
 		return listaUsuario;
 	}
 	
