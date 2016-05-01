@@ -23,6 +23,9 @@ public class Empresa {
 	private String fono;
 	private String direccion;
 	
+	/**
+	 * Constructor vacio de Empresa
+	 */
 	public Empresa(){
 		
 	}
