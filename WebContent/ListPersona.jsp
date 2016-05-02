@@ -12,10 +12,10 @@
 </head>
 <body>
 	<h2><b>Lista de Personas</b><br></h2>
-	
-	<h3>${ListPersonaStatus}</h3>
 	<hr>
-	
+		<h3>${ListPersonaStatus}</h3>
+		<h3>${ListPersonaStatus}</h3>
+	<hr>	
 	<table class="table table-bordered table-hover table-responsive">
 	<tr class="info">
 		<th>Run</th>

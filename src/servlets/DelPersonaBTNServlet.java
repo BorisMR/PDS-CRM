@@ -10,17 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.orm.PersistentException;
+
+import business.Empresa;
+import business.Persona;
+
 /**
- * Servlet implementation class EditEmpresaServlet
+ * Servlet implementation class DelPersonaBTNServlet
  */
-@WebServlet("/EditEmpresaServlet")
-public class EditEmpresaServlet extends HttpServlet {
+@WebServlet("/DelPersonaBTNServlet")
+public class DelPersonaBTNServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditEmpresaServlet() {
+    public DelPersonaBTNServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,8 +45,23 @@ public class EditEmpresaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String idP = request.getParameter("idP");
+		Persona persona = new Persona();
+		
+		
+		if(!idP.trim().equals("")){
+			persona.setIdP(Integer.parseInt(idP));
+			try {
+				persona.delPersonaBusinessIdP(persona);
+				RequestDispatcher rs = request.getRequestDispatcher("/ListPersona.jsp");
+				request.setAttribute("DelPersonaStatus", "Persona Eliminada");
+				rs.forward(request, response);
+			} catch (PersistentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			
+		}
 	}
-
 }
