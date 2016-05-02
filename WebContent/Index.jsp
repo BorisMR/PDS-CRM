@@ -31,6 +31,28 @@
 		  	</table>
 		</div>
 		<hr>
+		<h2>Empresa</h2>
+		<div class="panel">
+			<table class="table table-responsive">	
+				<tr>
+					<td>
+			  			<a href="FormAddEmpresa.jsp" class="btn btn-success">Agregar Empresa</a>
+	  				</td>
+	  				<td>
+			  			<a href="FormEditEmpresa.jsp" class="btn btn-warning">Editar Empresa</a>
+	  				</td>
+	  				<td>
+			  			<a href="FormDelEmpresa.jsp" class="btn btn-danger">Eliminar Empresa</a>
+	  				</td>			  				
+					<td>
+						<form action="ListEmpresaServlet" method="post">
+							<input type="submit" value="Lista de Empresa" class="btn btn-info">
+						</form>
+	  				</td>	  			
+	  			</tr>
+		  	</table>
+		</div>
+		<hr>
 		<h2>Buscadores</h2>
 		<div class="panel">
 			<table class="table table-responsive">	

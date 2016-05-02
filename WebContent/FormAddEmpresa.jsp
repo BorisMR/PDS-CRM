@@ -14,6 +14,9 @@
 	<h2><b>Agregar Empresa</b></h2>
 	<div class="container">
 		<h3>Ingresar Datos Empresa</h3>
+		<hr>
+		<h3>${AddEmpresaStatus}</h3>
+		<hr>
 		<form class="form-horizontal" action="AddEmpresaServlet" method="post">
 	  		<div class="form-group">
 	    		<label for="rut">Rut:</label>
@@ -32,13 +35,12 @@
 	    		<input type="text" class="form-control" id="fono" name="fono" required>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="direccion">Direccion:</label>
+	    		<label for="direccion">Dirección:</label>
 	    		<input type="text" class="form-control" id="direccion" name="direccion" required>
 	  		</div>
 	  		<button type="submit" class="btn btn-success" value="Agregar">Agregar</button>
 		</form>
-		<hr>
-		<h3>${AddEmpresaStatus}</h3>
+		
 	</div>
 </body>
 </html>

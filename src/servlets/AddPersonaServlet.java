@@ -102,10 +102,12 @@ public class AddPersonaServlet extends HttpServlet {
 			AddStatus += "Error en el campo Genero";
 			validado = false;
 		}
+		
 		if( genero.trim().equals("") || genero.trim().length() == 0 ){
 			AddStatus += "Error en el campo EmpresaId";
 			validado = false;
 		}
+		
 		//-FIN-verifica campos vacios
 		
 		persona.setRun(run);

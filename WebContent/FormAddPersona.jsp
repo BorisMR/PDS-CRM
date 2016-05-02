@@ -14,6 +14,9 @@
 	<h2><b>Agregar Persona</b></h2>
 	<div class="container">
 		<h3>Ingresar Datos Persona</h3>
+		<hr>
+			<h3>${AddPersonaStatus}</h3>
+		<hr>
 		<form class="form-horizontal" action="AddPersonaServlet" method="post">
 	  		<div class="form-group">
 	    		<label for="run">Run:</label>
@@ -33,32 +36,33 @@
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="telefono">Telefono:</label>
-	    		<input type="text" class="form-control" id="fono" name="fono" required>
+	    		<input type="number" class="form-control" id="fono" name="fono" required>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="direccion">Direccion:</label>
+	    		<label for="direccion">Dirección:</label>
 	    		<input type="text" class="form-control" id="direccion" name="direccion" required>
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="genero">Genero:</label>
 	    		<input type="text" class="form-control" id="genero" name="genero" required>
-	    		<!--  
-				<select class="form-control" id="genero" required>
-					<option value="m">M</option>
-					<option value="f">F</option>
-				</select>
-				-->
 	  		</div>
-	  		
+	  		<!--  
+	  		<div class="form-group">
+				<label class="col-lg-3 control-label">Seleccione Genero</label>
+				<div class="col-lg-3">
+		    	<select name="genero">
+		 		 	<option value=m>M</option>
+	 		 	 	<option value=f>F</option>
+			 	</select>
+		    	</div>
+			</div>
+				-->	   		
 	  		<div class="form-group">
 	    		<label for="id">Empresa ID:</label>
 	    		<input type="text" class="form-control" id="empresaIde" name="empresaIde" required>
-	  		</div>
-	  		
+	  		</div>	  		 		
 	  		<button type="submit" class="btn btn-success" value="Agregar">Agregar</button>
 		</form>
-		<hr>
-		<h3>${AddPersonaStatus}</h3>
 	</div>
 </body>
 </html>
