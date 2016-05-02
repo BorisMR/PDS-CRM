@@ -68,6 +68,7 @@ public class ListPersonaServlet extends HttpServlet {
 			rs.forward(request, response);
 		}
 	}
+	 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

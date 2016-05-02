@@ -1,6 +1,7 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.orm.PersistentException;
@@ -140,6 +141,20 @@ public class Empresa {
 			}
 		}				
 		return listaEmpresa;
+	}
+	
+	/**
+	 * metodo que retorna un ArrayList con las empresas agregadas
+	 * 
+	 * @return ArrayList<orm.Empresa>
+	 * @throws PersistentException
+	 */
+	public ArrayList<orm.Empresa> listEmpresaArray()throws PersistentException{
+		ArrayList<orm.Empresa> empresas = null;
+		orm.Empresa[] aux;
+		aux = orm.EmpresaDAO.listEmpresaByQuery(null, null);
+		empresas = new ArrayList<>(Arrays.asList(aux));
+		return empresas;		
 	}
 		
 
