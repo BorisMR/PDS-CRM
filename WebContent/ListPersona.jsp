@@ -38,11 +38,11 @@
 			<td>
 				<table>
 					<tr>
-						<!-- 
+						 
 						<td>
 							<form action="FormEditPersona.jsp" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
-								<input type="submit" value="Editar" class="btn btn-warning">	
+								<input type="submit" value="Editar" class="btn btn-warning" disabled>	
 							</form>
 						</td>
 						<td>
@@ -51,7 +51,6 @@
 								<input type="submit" value="Eliminar" class="btn btn-danger">	
 							</form>
 						</td>
-						-->
 					</tr>
 				</table>
 			</td>

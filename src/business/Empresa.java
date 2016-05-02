@@ -64,6 +64,29 @@ public class Empresa {
 	  * @return String Mensaje que indica si se ralizo la transaccion
 	  * @throws PersistentException
 	  */
+	public String delEmpresaBusinessIdE(Empresa empresa) throws PersistentException {
+		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
+		try {
+			orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByQuery("Empresa.idE = '"+empresa.idE+"'", null);
+			// Delete the persistent object
+			orm.EmpresaDAO.delete(lormEmpresa);
+			t.commit();
+			return "Data Eliminada";
+		}
+
+		catch (PersistentException e){
+			return "Business PersistentException: "+e.getMessage();
+		}
+	}
+	
+	/**
+	  * Metodo que elimina una empresa de la Base de datos
+	  * usando el id de la Empresa recibida
+	  *
+	  * @param Empresa Objeto del que se extrae el id para eliminar
+	  * @return String Mensaje que indica si se ralizo la transaccion
+	  * @throws PersistentException
+	  */
 	public String delEmpresaBusiness(Empresa empresa) throws PersistentException {
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		try {

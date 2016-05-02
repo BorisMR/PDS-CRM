@@ -12,8 +12,9 @@
 </head>
 <body>
 	<h2><b>Lista de Empresas</b><br></h2>
-	
+	<hr>
 	<h3>${ListEmpresaStatus}</h3>
+	<h3>${DelEmpresaStatus}</h3>
 	<hr>
 	
 	<table class="table table-bordered table-hover table-responsive">
@@ -34,21 +35,18 @@
 			<td>
 				<table>
 					<tr>
-						<!-- 
 						<td>
 							<form action="FormEditEmpresa.jsp" method="post">
 								<input type="hidden" value="${empresa.idE}" name="idE">
-								<input type="submit" value="Editar" class="btn btn-warning">	
+								<input type="submit" value="Editar" class="btn btn-warning" disabled>	
 							</form>
 						</td>
-						-->
 						<td>
-							<form action="DelEmpresaServlet" method="post">
+							<form action="DelEmpresaBTNServlet" method="post">
 								<input type="hidden" value="${empresa.idE}" name="idE">
 								<input type="submit" value="Eliminar" class="btn btn-danger">	
 							</form>
-						</td>
-						
+						</td>						
 					</tr>
 				</table>
 			</td>
