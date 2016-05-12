@@ -110,7 +110,7 @@
       <Type>9</Type>
       <Length>0</Length>
       <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
+      <IDGenerator>sequence</IDGenerator>
       <Unique>true</Unique>
       <Index>false</Index>
       <UserTypes/>

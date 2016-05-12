@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Licensee: Universidad de La Frontera
-License Type: Academic
+Licensee: 
+License Type: Evaluation
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="orm.Empresa" table="empresa" lazy="false">
 		<id name="idE" column="idE" type="integer" unsaved-value="0">
-			<generator class="native">
+			<generator class="sequence">
+				<param name="sequence">seq_empresa</param>
 			</generator>
 		</id>
 		<property name="rut" column="rut" unique="true" type="string" length="20" not-null="true" lazy="false"/>

@@ -36,7 +36,7 @@ public class Persona {
 	}
 	
 	/**
-	 * Añade una Persona a la Base de datos
+	 * Aï¿½ade una Persona a la Base de datos
 	 *
 	 * @param Persona Objeto que contiene la data a ingresar
 	 * @return String Mensaje que indica si se ralizo la transaccion
@@ -58,9 +58,10 @@ public class Persona {
 			lormPersona.setFono(persona.fono);
 			lormPersona.setDireccion(persona.direccion);
 			lormPersona.setGenero(persona.genero);
+			lormPersona.setEmpresaidE(lormEmpresa);
 			
 			orm.PersonaDAO.save(lormPersona);
-			orm.PersonaDAO.refresh(lormPersona);
+			//orm.PersonaDAO.refresh(lormPersona);
 			t.commit();
 			//return = lormPersona.getUidP(); // para metodo int
 			return "Data Ingresada";
