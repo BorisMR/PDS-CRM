@@ -8,8 +8,8 @@
  */
 
 /**
- * Licensee: 
- * License Type: Evaluation
+ * Licensee: Universidad de La Frontera
+ * License Type: Academic
  */
 package orm;
 
@@ -45,6 +45,8 @@ public class Persona {
 	private String direccion;
 	
 	private String genero;
+	
+	private String foto_e64;
 	
 	private orm.Empresa empresaidE;
 	
@@ -114,6 +116,14 @@ public class Persona {
 	
 	public String getGenero() {
 		return genero;
+	}
+	
+	public void setFoto_e64(String value) {
+		this.foto_e64 = value;
+	}
+	
+	public String getFoto_e64() {
+		return foto_e64;
 	}
 	
 	public void setEmpresaidE(orm.Empresa value) {

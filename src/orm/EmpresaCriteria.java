@@ -8,8 +8,8 @@
  */
 
 /**
- * Licensee: 
- * License Type: Evaluation
+ * Licensee: Universidad de La Frontera
+ * License Type: Academic
  */
 package orm;
 
@@ -22,9 +22,6 @@ public class EmpresaCriteria extends AbstractORMCriteria {
 	public final IntegerExpression idE;
 	public final StringExpression rut;
 	public final StringExpression nombre;
-	public final StringExpression email;
-	public final StringExpression fono;
-	public final StringExpression direccion;
 	public final CollectionExpression persona;
 	
 	public EmpresaCriteria(Criteria criteria) {
@@ -32,9 +29,6 @@ public class EmpresaCriteria extends AbstractORMCriteria {
 		idE = new IntegerExpression("idE", this);
 		rut = new StringExpression("rut", this);
 		nombre = new StringExpression("nombre", this);
-		email = new StringExpression("email", this);
-		fono = new StringExpression("fono", this);
-		direccion = new StringExpression("direccion", this);
 		persona = new CollectionExpression("ORM_Persona", this);
 	}
 	

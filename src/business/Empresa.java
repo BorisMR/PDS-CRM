@@ -20,9 +20,6 @@ public class Empresa {
 	private int idE;
 	private String rut;
 	private String nombre;
-	private String email;
-	private String fono;
-	private String direccion;
 	
 	/**
 	 * Constructor vacio de Empresa
@@ -44,9 +41,6 @@ public class Empresa {
 			orm.Empresa lormEmpresa = orm.EmpresaDAO.createEmpresa();
 			lormEmpresa.setRut(empresa.rut);
 			lormEmpresa.setNombre(empresa.nombre);
-			lormEmpresa.setEmail(empresa.email);
-			lormEmpresa.setFono(empresa.fono);
-			lormEmpresa.setDireccion(empresa.direccion);
 			orm.EmpresaDAO.save(lormEmpresa);
 			t.commit();
 			return "Data Ingresada en la BD";
@@ -119,9 +113,6 @@ public class Empresa {
 				// Update the properties of the persistent object
 				lormEmpresa.setRut(empresa.rut);
 				lormEmpresa.setNombre(empresa.nombre);
-				lormEmpresa.setEmail(empresa.email);
-				lormEmpresa.setEmail(empresa.fono);
-				lormEmpresa.setFono(empresa.direccion);
 								
 				orm.EmpresaDAO.save(lormEmpresa);
 				t.commit();
@@ -154,11 +145,8 @@ public class Empresa {
 				Empresa empresaB = new Empresa();
 				
 				empresaB.setIdE(empresaORM.getIdE());
-				empresaB.setNombre(empresaORM.getNombre());
-				empresaB.setEmail(empresaORM.getEmail());
-				empresaB.setFono(empresaORM.getFono());
-				empresaB.setDireccion(empresaORM.getDireccion());
 				empresaB.setRut(empresaORM.getRut());
+				empresaB.setNombre(empresaORM.getNombre());				
 								
 				listaEmpresa.add(empresaB);
 			}
@@ -221,48 +209,6 @@ public class Empresa {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	/**
-	 * @return String el email
-	 */
-	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * @param email El email a asignar
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	/**
-	 * @return String el telefono
-	 */
-	public String getFono() {
-		return fono;
-	}
-
-	/**
-	 * @param fono el telefono a asignar
-	 */
-	public void setFono(String fono) {
-		this.fono = fono;
-	}
-
-	/**
-	 * @return String la direccion
-	 */
-	public String getDireccion() {
-		return direccion;
-	}
-
-	/**
-	 * @param direccion la direccion a asignar
-	 */
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
 	}
 	
 }

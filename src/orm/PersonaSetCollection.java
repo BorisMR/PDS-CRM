@@ -8,8 +8,8 @@
  */
 
 /**
- * Licensee: 
- * License Type: Evaluation
+ * Licensee: Universidad de La Frontera
+ * License Type: Academic
  */
 package orm;
 
@@ -78,6 +78,7 @@ public class PersonaSetCollection extends org.orm.util.ORMSet {
 	 * <li>fono</li>
 	 * <li>direccion</li>
 	 * <li>genero</li>
+	 * <li>foto_e64</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
 	 */
@@ -96,6 +97,7 @@ public class PersonaSetCollection extends org.orm.util.ORMSet {
 	 * <li>fono</li>
 	 * <li>direccion</li>
 	 * <li>genero</li>
+	 * <li>foto_e64</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
 	 * @return The persistent objects sorted array

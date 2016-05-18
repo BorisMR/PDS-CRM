@@ -8,8 +8,8 @@
  */
 
 /**
- * Licensee: 
- * License Type: Evaluation
+ * Licensee: Universidad de La Frontera
+ * License Type: Academic
  */
 package orm;
 
@@ -37,12 +37,6 @@ public class Empresa {
 	private String rut;
 	
 	private String nombre;
-	
-	private String email;
-	
-	private String fono;
-	
-	private String direccion;
 	
 	private java.util.Set ORM_persona = new java.util.HashSet();
 	
@@ -72,30 +66,6 @@ public class Empresa {
 	
 	public String getNombre() {
 		return nombre;
-	}
-	
-	public void setEmail(String value) {
-		this.email = value;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setFono(String value) {
-		this.fono = value;
-	}
-	
-	public String getFono() {
-		return fono;
-	}
-	
-	public void setDireccion(String value) {
-		this.direccion = value;
-	}
-	
-	public String getDireccion() {
-		return direccion;
 	}
 	
 	private void setORM_Persona(java.util.Set value) {

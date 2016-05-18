@@ -17,7 +17,7 @@ import business.*;
  * Clase que utiliza el patron DAO para acceder a las funciones
  * de busqueda, utilizada para funciones de WebServlet
  * 
- * @author Boris Morales Ríos
+ * @author Boris Morales Rï¿½os
  *
  */
 public class ServiceDAO {

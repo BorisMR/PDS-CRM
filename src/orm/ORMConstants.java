@@ -8,8 +8,8 @@
  */
 
 /**
- * Licensee: 
- * License Type: Evaluation
+ * Licensee: Universidad de La Frontera
+ * License Type: Academic
  */
 package orm;
 

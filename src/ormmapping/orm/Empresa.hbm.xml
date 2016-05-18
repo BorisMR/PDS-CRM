@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--
-Licensee: 
-License Type: Evaluation
+Licensee: Universidad de La Frontera
+License Type: Academic
 -->
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
@@ -13,9 +13,6 @@ License Type: Evaluation
 		</id>
 		<property name="rut" column="rut" unique="true" type="string" length="20" not-null="true" lazy="false"/>
 		<property name="nombre" column="nombre" type="string" length="60" not-null="true" lazy="false"/>
-		<property name="email" column="email" type="string" length="60" not-null="false" lazy="false"/>
-		<property name="fono" column="fono" type="string" length="30" not-null="false" lazy="false"/>
-		<property name="direccion" column="direccion" type="string" length="60" not-null="false" lazy="false"/>
 		<set name="ORM_Persona" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="empresaidE" not-null="true"/>
 			<one-to-many class="orm.Persona"/>

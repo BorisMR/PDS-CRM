@@ -8,8 +8,8 @@
  */
 
 /**
- * Licensee: 
- * License Type: Evaluation
+ * Licensee: Universidad de La Frontera
+ * License Type: Academic
  */
 package orm;
 
@@ -27,6 +27,7 @@ public class PersonaCriteria extends AbstractORMCriteria {
 	public final StringExpression fono;
 	public final StringExpression direccion;
 	public final StringExpression genero;
+	public final StringExpression foto_e64;
 	public final IntegerExpression empresaidEId;
 	public final AssociationExpression empresaidE;
 	
@@ -40,6 +41,7 @@ public class PersonaCriteria extends AbstractORMCriteria {
 		fono = new StringExpression("fono", this);
 		direccion = new StringExpression("direccion", this);
 		genero = new StringExpression("genero", this);
+		foto_e64 = new StringExpression("foto_e64", this);
 		empresaidEId = new IntegerExpression("empresaidE.idE", this);
 		empresaidE = new AssociationExpression("empresaidE", this);
 	}

@@ -50,17 +50,11 @@ public class AddEmpresaServlet extends HttpServlet {
 		
 		String rut;
 		String nombre;
-		String email;
-		String fono;
-		String direccion;
 		
 		boolean validado = true;
 		
 		rut = request.getParameter("rut");
 		nombre = request.getParameter("nombre");
-		email = request.getParameter("email");
-		fono = request.getParameter("fono");
-		direccion = request.getParameter("direccion");
 		
 		if( rut.trim().equals("") || rut.trim().length() == 0 ){
 			AddStatus += "Rut ";
@@ -71,27 +65,9 @@ public class AddEmpresaServlet extends HttpServlet {
 			AddStatus += "Nombre ";
 			validado = false;
 		}
-
-		if( email.trim().equals("") || email.trim().length() == 0 ){
-			AddStatus += "Email ";
-			validado = false;
-		}
-
-		if( fono.trim().equals("") || fono.trim().length() == 0 ){
-			AddStatus += "Fono ";
-			validado = false;
-		}
-
-		if( direccion.trim().equals("") || direccion.trim().length() == 0 ){
-			AddStatus += "Direccion ";
-			validado = false;
-		}
 		
 		empresa.setRut(rut);
 		empresa.setNombre(nombre);
-		empresa.setEmail(email);
-		empresa.setFono(fono);
-		empresa.setDireccion(direccion);
 		
 		if(validado){
 			try {

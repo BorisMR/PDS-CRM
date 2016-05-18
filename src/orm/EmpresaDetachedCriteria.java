@@ -8,8 +8,8 @@
  */
 
 /**
- * Licensee: 
- * License Type: Evaluation
+ * Licensee: Universidad de La Frontera
+ * License Type: Academic
  */
 package orm;
 
@@ -22,9 +22,6 @@ public class EmpresaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression idE;
 	public final StringExpression rut;
 	public final StringExpression nombre;
-	public final StringExpression email;
-	public final StringExpression fono;
-	public final StringExpression direccion;
 	public final CollectionExpression persona;
 	
 	public EmpresaDetachedCriteria() {
@@ -32,9 +29,6 @@ public class EmpresaDetachedCriteria extends AbstractORMDetachedCriteria {
 		idE = new IntegerExpression("idE", this.getDetachedCriteria());
 		rut = new StringExpression("rut", this.getDetachedCriteria());
 		nombre = new StringExpression("nombre", this.getDetachedCriteria());
-		email = new StringExpression("email", this.getDetachedCriteria());
-		fono = new StringExpression("fono", this.getDetachedCriteria());
-		direccion = new StringExpression("direccion", this.getDetachedCriteria());
 		persona = new CollectionExpression("ORM_Persona", this.getDetachedCriteria());
 	}
 	
@@ -43,9 +37,6 @@ public class EmpresaDetachedCriteria extends AbstractORMDetachedCriteria {
 		idE = new IntegerExpression("idE", this.getDetachedCriteria());
 		rut = new StringExpression("rut", this.getDetachedCriteria());
 		nombre = new StringExpression("nombre", this.getDetachedCriteria());
-		email = new StringExpression("email", this.getDetachedCriteria());
-		fono = new StringExpression("fono", this.getDetachedCriteria());
-		direccion = new StringExpression("direccion", this.getDetachedCriteria());
 		persona = new CollectionExpression("ORM_Persona", this.getDetachedCriteria());
 	}
 	

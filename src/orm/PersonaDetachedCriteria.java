@@ -8,8 +8,8 @@
  */
 
 /**
- * Licensee: 
- * License Type: Evaluation
+ * Licensee: Universidad de La Frontera
+ * License Type: Academic
  */
 package orm;
 
@@ -27,6 +27,7 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression fono;
 	public final StringExpression direccion;
 	public final StringExpression genero;
+	public final StringExpression foto_e64;
 	public final IntegerExpression empresaidEId;
 	public final AssociationExpression empresaidE;
 	
@@ -40,6 +41,7 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 		fono = new StringExpression("fono", this.getDetachedCriteria());
 		direccion = new StringExpression("direccion", this.getDetachedCriteria());
 		genero = new StringExpression("genero", this.getDetachedCriteria());
+		foto_e64 = new StringExpression("foto_e64", this.getDetachedCriteria());
 		empresaidEId = new IntegerExpression("empresaidE.idE", this.getDetachedCriteria());
 		empresaidE = new AssociationExpression("empresaidE", this.getDetachedCriteria());
 	}
@@ -54,6 +56,7 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 		fono = new StringExpression("fono", this.getDetachedCriteria());
 		direccion = new StringExpression("direccion", this.getDetachedCriteria());
 		genero = new StringExpression("genero", this.getDetachedCriteria());
+		foto_e64 = new StringExpression("foto_e64", this.getDetachedCriteria());
 		empresaidEId = new IntegerExpression("empresaidE.idE", this.getDetachedCriteria());
 		empresaidE = new AssociationExpression("empresaidE", this.getDetachedCriteria());
 	}
