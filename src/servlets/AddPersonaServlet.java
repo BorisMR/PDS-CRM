@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,16 +33,7 @@ public class AddPersonaServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
-		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
-		rs.forward(request, response);
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -142,6 +135,37 @@ public class AddPersonaServlet extends HttpServlet {
 			AddStatus = "Error en la validacion de los datos";
 			RequestDispatcher rs = request.getRequestDispatcher("/FormAddPersona.jsp");
 			request.setAttribute("AddPersonaStatus", AddStatus);
+			rs.forward(request, response);
+		}
+	}
+	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		HttpSession session = request.getSession();
+		session.invalidate();
+		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
+		rs.forward(request, response);
+		*/
+		
+		ArrayList<orm.Empresa> listaEmpresas = null;
+		Empresa empresa = new Empresa();
+		
+		try {
+			listaEmpresas = empresa.listEmpresaArray();
+			
+			if(listaEmpresas.isEmpty()){
+				RequestDispatcher rs = request.getRequestDispatcher("/FormAddPersona.jsp");
+				rs.forward(request, response);			
+			}else{
+				request.setAttribute("listaEmpresas", listaEmpresas);				
+				request.getRequestDispatcher("/FormAddPersona.jsp").forward(request, response);
+			}
+		} catch (PersistentException e) {
+			RequestDispatcher rs = request.getRequestDispatcher("/FormAddPersona.jsp");
 			rs.forward(request, response);
 		}
 	}

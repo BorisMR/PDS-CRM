@@ -16,7 +16,8 @@
 	<h3>${ListEmpresaStatus}</h3>
 	<h3>${DelEmpresaStatus}</h3>
 	<hr>
-	
+	<a href="Index.jsp" class="btn btn-primary">Volver</a>
+	<hr>
 	<table class="table table-bordered table-hover table-responsive">
 	<tr class="info">
 		<th>Rut</th>

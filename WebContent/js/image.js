@@ -1,10 +1,10 @@
-function encodeImageFileAsURL(){
+function encodeImage(){
     
-    var filesSelected = document.getElementById("inputImageToLoad").files;
+    var archivoSeleccionado = document.getElementById("inputImagen").files;
     
-    if (filesSelected.length > 0)
+    if (archivoSeleccionado.length > 0)
     {
-        var fileToLoad = filesSelected[0];
+        var fileToLoad = archivoSeleccionado[0];
 
         var fileReader = new FileReader();// para leer el contenido de fileToLoad
 

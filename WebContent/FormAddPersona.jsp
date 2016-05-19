@@ -8,8 +8,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	 <script src="js/image.js"></script> 
-	<script type='text/javascript'></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/validator.js"></script>
+	<script type="text/javascript" src="js/image.js"></script>
 	<title>Agregar Contacto</title>
 </head>
 <body>
@@ -45,24 +46,45 @@
 	    		<input type="text" class="form-control" id="direccion" name="direccion" required>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="genero">Genero:</label>
-	    		<input type="text" class="form-control" id="genero" name="genero" required>
-	  		</div>
-	  		<div>
-	  		<label for="foto">Foto Contacto:</label>
-	  			<input id="inputImageToLoad" name="inputImageToLoad" type="image" onchange="encodeImageFileAsURL();" />
+		  		<label for="genero">Genero:</label>
+		  		<div class="radio">		  			
+		  			<label>
+						<input type="radio" name="genero" id="m" value="m" checked>
+					  	Masculino
+					</label>
+		  		</div>
+		  		<div class="radio">
+		  			<label>
+						<input type="radio" name="genero" id="f" value="f" checked>
+					  	Femenino
+					</label>
+		  		</div>
 	  		</div>
 	  		<div class="form-group">
-            	<textarea id="textArea" name="textArea" class="form-control textbox" hidden></textarea>
+	  			<label for="foto">Foto Contacto:</label>
+	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" />	  			
+	  		</div>
+	  		<div class="form-group">
+            	<textarea id="textArea" name="textArea" class="form-control textbox" style="display:none;"></textarea>
         	</div>
-        	
-        	<div id="imgContainer"></div>
-        		   		
+       
+        	<div class="form-group" id="imgContainer"></div>
+        	<!--	   		
 	  		<div class="form-group">
 	    		<label for="id">Empresa ID:</label>
 	    		<input type="text" class="form-control" id="empresaIde" name="empresaIde" required>
-	  		</div>	  		 		
-	  		<button type="submit" class="btn btn-success" value="Agregar">Agregar</button>
+	  		</div>
+	  		-->
+	  		<div class="form-group">	
+		  		<select multiple class="form-control" name="empresaIde">  
+		  		<i:forEach items="${listaEmpresas}" var="empresa">				
+					<option value="${empresa.idE}">${empresa.nombre}</option>
+				</i:forEach>
+				</select>
+	  		</div>
+	  		<div class="form-group">
+		  		<button type="submit" class="btn btn-success" value="Agregar">Agregar</button>
+		  	</div>
 		</form>
 		<hr>
 		<a href="Index.jsp" class="btn btn-primary">Volver</a>

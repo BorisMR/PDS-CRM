@@ -40,7 +40,7 @@
 			<td>${persona.fono}</td>
 			<td>${persona.direccion}</td>
 			<td>${persona.genero}</td>
-			<td><img src="${persona.foto_b64}"></img></td>
+			<td><img src="${persona.foto_b64}" class="img-responsive"></img></td>
 			<td>
 				<table>
 					<tr>

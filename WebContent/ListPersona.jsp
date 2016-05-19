@@ -14,8 +14,9 @@
 	<h2><b>Lista de Personas</b><br></h2>
 	<hr>
 		<h3>${ListPersonaStatus}</h3>
-		<h3>${ListPersonaStatus}</h3>
 	<hr>	
+	<a href="Index.jsp" class="btn btn-primary">Volver</a>
+	<hr>
 	<table class="table table-bordered table-hover table-responsive">
 	<tr class="info">
 		<th>Run</th>

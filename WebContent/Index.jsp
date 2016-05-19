@@ -28,7 +28,13 @@
 			<table class="table table-responsive">	
 				<tr>
 					<td>
+					  
+						<form action="AddPersonaServlet" method="get">
+							<input type="submit" value="Agregar Persona" class="btn btn-success">
+						</form>
+					<!--
 			  			<a href="FormAddPersona.jsp" class="btn btn-success">Agregar Persona</a>
+			  			-->
 	  				</td>
 	  				<!-- 
 	  				<td>
