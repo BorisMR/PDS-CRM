@@ -1,8 +1,9 @@
 # PDS-CRM
 **Autor:** Boris Morales Ríos
 
-Aplicación de prueba para comprender uso de Java EE
-Codigo de ORM generado a traves de MDD usando VP 13.0 (lic:UFRO)
+Aplicación de prueba en Java EE, es un gestor de contactos simple.
+
+El codigo de ORM generado a traves de MDD usando VP 13.0 (licencia:UFRO)
 
 - Driver: postgresql-9.4.1208.jre6.jar
 - Entorno: Eclipse Java EE Mars 2. (4.5.2)

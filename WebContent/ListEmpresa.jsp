@@ -21,17 +21,11 @@
 	<tr class="info">
 		<th>Rut</th>
 		<th>Nombre</th>
-		<th>E-mail</th>
-		<th>Telefono</th>
-		<th>Dirección</th>
 	</tr>
 	<i:forEach items="${listaEmpresas}" var="empresa">
 		<tr>
 			<td>${empresa.rut}</td>
 			<td>${empresa.nombre}</td>
-			<td>${empresa.email}</td>
-			<td>${empresa.fono}</td>
-			<td>${empresa.direccion}</td>
 			<td>
 				<table>
 					<tr>

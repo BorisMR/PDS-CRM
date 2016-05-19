@@ -58,6 +58,8 @@ public class AddPersonaServlet extends HttpServlet {
 		String telefono;
 		String direccion;
 		String genero;
+		String fotoB64;
+		
 		int empresaId;
 		
 		boolean validado = true;
@@ -69,10 +71,10 @@ public class AddPersonaServlet extends HttpServlet {
 		telefono = request.getParameter("fono");
 		direccion = request.getParameter("direccion");
 		genero = request.getParameter("genero");
+		fotoB64 = request.getParameter("textArea");
+		
 		empresaId = Integer.parseInt(request.getParameter("empresaIde"));
-		
-		
-		
+				
 		//--verifica campos vacios
 		if( run.trim().equals("") || run.trim().length() == 0 ){
 			AddStatus += "Run ";
@@ -117,6 +119,7 @@ public class AddPersonaServlet extends HttpServlet {
 		persona.setFono(telefono);
 		persona.setDireccion(direccion);
 		persona.setGenero(genero);
+		persona.setFoto_b64(fotoB64);
 		
 		empresa.setIdE(empresaId);
 		

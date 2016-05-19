@@ -17,10 +17,43 @@ import business.*;
  * Clase que utiliza el patron DAO para acceder a las funciones
  * de busqueda, utilizada para funciones de WebServlet
  * 
- * @author Boris Morales R�os
+ * @author Boris Morales Rios
  *
  */
 public class ServiceDAO {
+	
+	/**
+	 * Verifica que los datos de para iniciar sesion sean  correctos
+	 * @param user
+	 * @param pass
+	 * @return String "v" si es valido y "f" si es invalido.
+	 */
+	@WebMethod(operationName = "verificarUsuario")
+	public String verificarUsuario(
+			@WebParam(name = "user") String usser,
+			@WebParam(name = "pass") String pass) throws PersistentException{
+		
+		Usuario usuario = new Usuario();
+		String valido = "f";
+		
+		if(usser != null){
+			usuario.setUser(usser);
+		}			
+		else{
+			usuario.setUser("");
+		}
+		
+		if(pass != null){
+			usuario.setPassword(pass);
+		}			
+		else{
+			usuario.setPassword("");
+		}
+		
+		valido = usuario.validarUsuarioBusiness(usuario) ? "v" : "f";
+		
+		return valido;
+	}
 	
 	/**
 	 * Efectua una busqueda simple en base a una cadena de texto

@@ -15,7 +15,7 @@
 	<div class="container">
 		<h3>Ingresar Datos Empresa</h3>
 		<hr>
-		<h3>${AddEmpresaStatus}</h3>
+		<h4>${AddEmpresaStatus}</h4>
 		<hr>
 		<form class="form-horizontal" action="AddEmpresaServlet" method="post">
 	  		<div class="form-group">
@@ -26,21 +26,10 @@
 	    		<label for="nombre">Nombre:</label>
 	    		<input type="text" class="form-control" id="nombre" name="nombre" required>
 	  		</div>
-	  		<div class="form-group">
-	    		<label for="email">eMail:</label>
-	    		<input type="email" class="form-control" id="email" name="email" required>
-	  		</div>
-	  		<div class="form-group">
-	    		<label for="telefono">Telefono:</label>
-	    		<input type="text" class="form-control" id="fono" name="fono" required>
-	  		</div>
-	  		<div class="form-group">
-	    		<label for="direccion">Dirección:</label>
-	    		<input type="text" class="form-control" id="direccion" name="direccion" required>
-	  		</div>
 	  		<button type="submit" class="btn btn-success" value="Agregar">Agregar</button>
 		</form>
-		
+		<hr>
+		<a href="Index.jsp" class="btn btn-primary">Volver</a>
 	</div>
 </body>
 </html>

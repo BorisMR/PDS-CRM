@@ -26,7 +26,7 @@ public class Persona {
 	private String fono;
 	private String direccion;
 	private String genero;
-	private String foto_e64;
+	private String foto_b64;
 	private Empresa empresa;
 	
 	/**
@@ -59,7 +59,7 @@ public class Persona {
 			lormPersona.setFono(persona.fono);
 			lormPersona.setDireccion(persona.direccion);
 			lormPersona.setGenero(persona.genero);
-			lormPersona.setFoto_e64(persona.foto_e64);
+			lormPersona.setFoto_e64(persona.foto_b64);
 			lormPersona.setEmpresaidE(lormEmpresa);
 			
 			orm.PersonaDAO.save(lormPersona);
@@ -157,7 +157,7 @@ public class Persona {
 			lormPersona.setFono(persona.fono);
 			lormPersona.setDireccion(persona.direccion);
 			lormPersona.setGenero(persona.genero);
-			lormPersona.setFoto_e64(persona.foto_e64);
+			lormPersona.setFoto_e64(persona.foto_b64);
 							
 			orm.PersonaDAO.save(lormPersona);
 			orm.PersonaDAO.refresh(lormPersona);
@@ -230,7 +230,7 @@ public class Persona {
 				personaB.setFono(personaORM.getFono());
 				personaB.setDireccion(personaORM.getDireccion());
 				personaB.setGenero(personaORM.getGenero());
-				personaB.setFoto_e64(personaORM.getFoto_e64());
+				personaB.setFoto_b64(personaORM.getFoto_e64());
 								
 				listaPersona.add(personaB);
 			}
@@ -359,6 +359,7 @@ public class Persona {
 				personaB.setFono(personaORM.getFono());
 				personaB.setDireccion(personaORM.getDireccion());
 				personaB.setGenero(personaORM.getGenero());
+				personaB.setFoto_b64(personaORM.getFoto_e64());
 				
 				personaB.setEmpresa(empresaB);
 				
@@ -496,12 +497,12 @@ public class Persona {
 		this.genero = genero;
 	}
 
-	public String getFoto_e64() {
-		return foto_e64;
+	public String getFoto_b64() {
+		return foto_b64;
 	}
 
-	public void setFoto_e64(String foto_e64) {
-		this.foto_e64 = foto_e64;
+	public void setFoto_b64(String foto_e64) {
+		this.foto_b64 = foto_e64;
 	}
 	
 	/**
