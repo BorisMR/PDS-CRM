@@ -184,6 +184,42 @@
       <UserTypes/>
     </Column>
   </Entity>
+  <Entity name="bitacora" PKClustered="0">
+    <Column name="idB">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>sequence</IDGenerator>
+      <Unique>true</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="entrada">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>34</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="personaidP">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>persona.idP</ReferencedColumn>
+      <Type>9</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
   <ForeignKey name="FKpersona97364">
     <ReferenceTable>persona</ReferenceTable>
     <ReferencedTable>empresa</ReferencedTable>
@@ -192,6 +228,16 @@
     </Columns>
     <RefColumns>
       <Column>idE</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKbitacora671054">
+    <ReferenceTable>bitacora</ReferenceTable>
+    <ReferencedTable>persona</ReferencedTable>
+    <Columns>
+      <Column>personaidP</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idP</Column>
     </RefColumns>
   </ForeignKey>
 </Model>

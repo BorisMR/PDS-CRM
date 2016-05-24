@@ -30,6 +30,7 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression foto_e64;
 	public final IntegerExpression empresaidEId;
 	public final AssociationExpression empresaidE;
+	public final CollectionExpression bitacora;
 	
 	public PersonaDetachedCriteria() {
 		super(orm.Persona.class, orm.PersonaCriteria.class);
@@ -44,6 +45,7 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 		foto_e64 = new StringExpression("foto_e64", this.getDetachedCriteria());
 		empresaidEId = new IntegerExpression("empresaidE.idE", this.getDetachedCriteria());
 		empresaidE = new AssociationExpression("empresaidE", this.getDetachedCriteria());
+		bitacora = new CollectionExpression("ORM_Bitacora", this.getDetachedCriteria());
 	}
 	
 	public PersonaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -59,10 +61,15 @@ public class PersonaDetachedCriteria extends AbstractORMDetachedCriteria {
 		foto_e64 = new StringExpression("foto_e64", this.getDetachedCriteria());
 		empresaidEId = new IntegerExpression("empresaidE.idE", this.getDetachedCriteria());
 		empresaidE = new AssociationExpression("empresaidE", this.getDetachedCriteria());
+		bitacora = new CollectionExpression("ORM_Bitacora", this.getDetachedCriteria());
 	}
 	
 	public EmpresaDetachedCriteria createEmpresaidECriteria() {
 		return new EmpresaDetachedCriteria(createCriteria("empresaidE"));
+	}
+	
+	public BitacoraDetachedCriteria createBitacoraCriteria() {
+		return new BitacoraDetachedCriteria(createCriteria("ORM_Bitacora"));
 	}
 	
 	public Persona uniquePersona(PersistentSession session) {

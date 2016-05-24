@@ -30,6 +30,7 @@ public class PersonaCriteria extends AbstractORMCriteria {
 	public final StringExpression foto_e64;
 	public final IntegerExpression empresaidEId;
 	public final AssociationExpression empresaidE;
+	public final CollectionExpression bitacora;
 	
 	public PersonaCriteria(Criteria criteria) {
 		super(criteria);
@@ -44,6 +45,7 @@ public class PersonaCriteria extends AbstractORMCriteria {
 		foto_e64 = new StringExpression("foto_e64", this);
 		empresaidEId = new IntegerExpression("empresaidE.idE", this);
 		empresaidE = new AssociationExpression("empresaidE", this);
+		bitacora = new CollectionExpression("ORM_Bitacora", this);
 	}
 	
 	public PersonaCriteria(PersistentSession session) {
@@ -56,6 +58,10 @@ public class PersonaCriteria extends AbstractORMCriteria {
 	
 	public EmpresaCriteria createEmpresaidECriteria() {
 		return new EmpresaCriteria(createCriteria("empresaidE"));
+	}
+	
+	public BitacoraCriteria createBitacoraCriteria() {
+		return new BitacoraCriteria(createCriteria("ORM_Bitacora"));
 	}
 	
 	public Persona uniquePersona() {

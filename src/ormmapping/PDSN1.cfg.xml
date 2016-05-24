@@ -23,6 +23,7 @@ License Type: Academic
 		<property name="show_sql">false</property>
 		<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 		<!-- mapping files -->
+		<mapping resource="ormmapping/orm/Bitacora.hbm.xml" />
 		<mapping resource="ormmapping/orm/Empresa.hbm.xml" />
 		<mapping resource="ormmapping/orm/Persona.hbm.xml" />
 		<mapping resource="ormmapping/orm/Usuario.hbm.xml" />

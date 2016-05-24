@@ -21,5 +21,9 @@ License Type: Academic
 		<property name="foto_e64" column="foto_e64" type="text" not-null="false" lazy="false"/>
 		<many-to-one name="empresaidE" cascade="lock" column="empresaidE" class="orm.Empresa" not-null="true" lazy="no-proxy" access="field">
 		</many-to-one>
+		<set name="ORM_Bitacora" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="personaidP" not-null="true"/>
+			<one-to-many class="orm.Bitacora"/>
+		</set>
 	</class>
 </hibernate-mapping>

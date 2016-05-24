@@ -5,6 +5,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://orm.org"/>
+   <element name="verificarUsuario">
+    <complexType>
+     <sequence>
+      <element name="usser" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="verificarUsuarioResponse">
+    <complexType>
+     <sequence>
+      <element name="verificarUsuarioReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns1:PersistentException"/>
    <element name="busquedaSimple">
     <complexType>
      <sequence>
@@ -19,7 +35,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="fault" type="tns1:PersistentException"/>
    <element name="busquedaAvanzada">
     <complexType>
      <sequence>
@@ -64,6 +79,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="verificarUsuarioRequest">
+
+      <wsdl:part element="impl:verificarUsuario" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="busquedaAvanzadaRequest">
 
       <wsdl:part element="impl:busquedaAvanzada" name="parameters">
@@ -88,7 +111,31 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="verificarUsuarioResponse">
+
+      <wsdl:part element="impl:verificarUsuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="ServiceDAO">
+
+      <wsdl:operation name="verificarUsuario">
+
+         <wsdl:input message="impl:verificarUsuarioRequest" name="verificarUsuarioRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:verificarUsuarioResponse" name="verificarUsuarioResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:PersistentException" name="PersistentException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
 
       <wsdl:operation name="busquedaSimple">
 
@@ -127,6 +174,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:binding name="ServiceDAOSoapBinding" type="impl:ServiceDAO">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="verificarUsuario">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="verificarUsuarioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="verificarUsuarioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PersistentException">
+
+            <wsdlsoap:fault name="PersistentException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
 
       <wsdl:operation name="busquedaSimple">
 

@@ -2,7 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -46,11 +46,12 @@ public class ListPersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<orm.Persona> listaPersonas = null;
+		//ArrayList<orm.Persona> listaPersonas = null;
 		Persona persona = new Persona();
+		List<Persona> listaPersonas = new ArrayList<Persona>();
 		
 		try {
-			listaPersonas = persona.listPersonaArray();
+			listaPersonas = persona.busquedaSimple("");
 			
 			if(listaPersonas.isEmpty()){
 				RequestDispatcher rs = request.getRequestDispatcher("/ListPersona.jsp");
@@ -67,9 +68,5 @@ public class ListPersonaServlet extends HttpServlet {
 			request.setAttribute("ListPersonaStatus","Servlet: No se pudo efectuar la busqueda de elementos ");
 			rs.forward(request, response);
 		}
-	}
-	 
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 	}
 }

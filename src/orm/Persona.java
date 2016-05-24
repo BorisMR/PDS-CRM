@@ -17,6 +17,14 @@ public class Persona {
 	public Persona() {
 	}
 	
+	private java.util.Set this_getSet (int key) {
+		if (key == orm.ORMConstants.KEY_PERSONA_BITACORA) {
+			return ORM_bitacora;
+		}
+		
+		return null;
+	}
+	
 	private void this_setOwner(Object owner, int key) {
 		if (key == orm.ORMConstants.KEY_PERSONA_EMPRESAIDE) {
 			this.empresaidE = (orm.Empresa) owner;
@@ -24,6 +32,10 @@ public class Persona {
 	}
 	
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+		public java.util.Set getSet(int key) {
+			return this_getSet(key);
+		}
+		
 		public void setOwner(Object owner, int key) {
 			this_setOwner(owner, key);
 		}
@@ -49,6 +61,8 @@ public class Persona {
 	private String foto_e64;
 	
 	private orm.Empresa empresaidE;
+	
+	private java.util.Set ORM_bitacora = new java.util.HashSet();
 	
 	private void setIdP(int value) {
 		this.idP = value;
@@ -149,6 +163,16 @@ public class Persona {
 	private orm.Empresa getORM_EmpresaidE() {
 		return empresaidE;
 	}
+	
+	private void setORM_Bitacora(java.util.Set value) {
+		this.ORM_bitacora = value;
+	}
+	
+	private java.util.Set getORM_Bitacora() {
+		return ORM_bitacora;
+	}
+	
+	public final orm.BitacoraSetCollection bitacora = new orm.BitacoraSetCollection(this, _ormAdapter, orm.ORMConstants.KEY_PERSONA_BITACORA, orm.ORMConstants.KEY_BITACORA_PERSONAIDP, orm.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getIdP());

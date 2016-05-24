@@ -26,6 +26,7 @@
 		<th>Telefono</th>
 		<th>Direccion</th>
 		<th>Genero</th>
+		<th>Foto</th>
 	</tr>
 	<i:forEach items="${listaPersonas}" var="persona">
 		<tr>
@@ -36,6 +37,7 @@
 			<td>${persona.fono}</td>
 			<td>${persona.direccion}</td>
 			<td>${persona.genero}</td>
+			<td><img src="${persona.foto_b64}" class="img-responsive"></img></td>
 			<td>
 				<table>
 					<tr>

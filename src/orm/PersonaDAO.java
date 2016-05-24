@@ -327,6 +327,10 @@ public class PersonaDAO {
 				persona.getEmpresaidE().persona.remove(persona);
 			}
 			
+			orm.Bitacora[] lBitacoras = persona.bitacora.toArray();
+			for(int i = 0; i < lBitacoras.length; i++) {
+				lBitacoras[i].setPersonaidP(null);
+			}
 			return delete(persona);
 		}
 		catch(Exception e) {
@@ -341,6 +345,10 @@ public class PersonaDAO {
 				persona.getEmpresaidE().persona.remove(persona);
 			}
 			
+			orm.Bitacora[] lBitacoras = persona.bitacora.toArray();
+			for(int i = 0; i < lBitacoras.length; i++) {
+				lBitacoras[i].setPersonaidP(null);
+			}
 			try {
 				session.delete(persona);
 				return true;
