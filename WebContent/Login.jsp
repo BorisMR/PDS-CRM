@@ -11,7 +11,7 @@
 		<hr>	
 		<form class="form-inline" action="LoginServlet" method="post" role="form">
 			<div class="form-group">
-				 <label class="sr-only" for="user">Usuario</label>
+				 <label class="sr-only" for="usser">Usuario</label>
 				 <input class="form-control" type="text" id="user" name="user" placeholder="Introduce tu Usuario" required>
 			</div>
 			<div class="form-group">

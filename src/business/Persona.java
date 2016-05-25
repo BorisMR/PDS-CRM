@@ -2,10 +2,17 @@ package business;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
+
+import orm.PersonaCriteria;
 
 
 /**
@@ -135,6 +142,32 @@ public class Persona {
 	}
 	
 	/**
+	 * Obtener perfil por rut
+	 * 
+	 * @param persona
+	 * @return persona
+	 */
+	public Persona getPersonaBusiness(Persona persona) throws PersistentException {
+		//PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
+		try{
+			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run = '"+persona.run+"'", null);
+			persona.setIdP(lormPersona.getIdP());
+			persona.setRun(lormPersona.getRun());
+			persona.setNombre(lormPersona.getNombre());
+			persona.setApellido(lormPersona.getApellido());
+			persona.setEmail(lormPersona.getEmail());
+			persona.setFono(lormPersona.getFono());
+			persona.setDireccion(lormPersona.getDireccion());
+			persona.setGenero(lormPersona.getGenero());
+			persona.setFoto_b64(lormPersona.getFoto_e64());
+			
+			return persona;
+		}catch(PersistentException e){
+			return null;
+		}
+	}
+	
+	/**
 	  * Metodo que edita una persona de la Base de datos
 	  * usando el run de la Persona recibida
 	  *
@@ -191,23 +224,26 @@ public class Persona {
 	 * @return
 	 * @throws PersistentException
 	 */
-	@SuppressWarnings("unchecked") // por simple comodidad
 	public List<Persona> busquedaSimple(String cadenaBusqueda) throws PersistentException {
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonasBD = new ArrayList<orm.Persona>();
 		
-		if( cadenaBusqueda != null && !cadenaBusqueda.trim().equals("")){	
-			//cadena compuesta por OR para encontrar al el dato en al menos uno de los campos
-			listaPersonasBD = orm.PersonaDAO.queryPersona(
-					  "Persona.run='"+cadenaBusqueda
-				+"' OR Persona.nombre ='"+cadenaBusqueda
-				+"' OR Persona.apellido ='"+cadenaBusqueda
-				+"' OR Persona.email = '"+cadenaBusqueda
-				+"' OR Persona.fono = '"+cadenaBusqueda
-				+"' OR Persona.direccion ='"+cadenaBusqueda
-				+"' OR Persona.genero ='"+cadenaBusqueda
-				+"' ",null);
-		}
+		PersonaCriteria ccr= new PersonaCriteria();
+		
+		Criterion run = Restrictions.ilike("run", cadenaBusqueda.toLowerCase());
+		Criterion nombre = Restrictions.ilike("nombre", cadenaBusqueda.toLowerCase());
+		Criterion apellido = Restrictions.ilike("apellido", cadenaBusqueda.toLowerCase());
+		Criterion email = Restrictions.ilike("email", cadenaBusqueda.toLowerCase());
+		Criterion fono = Restrictions.ilike("fono", cadenaBusqueda.toLowerCase());
+		Criterion direccion = Restrictions.ilike("direccion", cadenaBusqueda.toLowerCase());
+		Criterion genero = Restrictions.ilike("genero", cadenaBusqueda.toLowerCase());
+		
+		Disjunction or = Restrictions.or(run, nombre, apellido, email, fono, direccion, genero);
+		
+		ccr.add(or); //se ignora para los and
+		
+		listaPersonasBD = Arrays.asList(orm.PersonaDAO.listPersonaByCriteria(ccr));
+		
 		
 		if(!listaPersonasBD.isEmpty()){			
 			for( orm.Persona personaORM : listaPersonasBD){
@@ -255,15 +291,15 @@ public class Persona {
 		List<Persona> listaPersonaBD = new ArrayList<Persona>();
 		
 		//String usados para disminuir cantidad de gets en validaciones
-		String gRun = persona.getRun();
-		String gNombre = persona.getNombre();
-		String gApellido = persona.getApellido();
-		String gEmail = persona.getEmail();
-		String gFono = persona.getFono();
-		String gDireccion = persona.getDireccion();
-		String gGenero = persona.getGenero();		
-		//
+		String gRun = persona.getRun().toLowerCase();
+		String gNombre = persona.getNombre().toLowerCase();
+		String gApellido = persona.getApellido().toLowerCase();
+		String gEmail = persona.getEmail().toLowerCase();
+		String gFono = persona.getFono().toLowerCase();
+		String gDireccion = persona.getDireccion().toLowerCase();
+		String gGenero = persona.getGenero().toLowerCase();		
 		
+		PersonaCriteria ccr= new PersonaCriteria();
 		
 		/*	
 		 * verificar si el parametro x de la persona viene con datos
@@ -271,47 +307,52 @@ public class Persona {
 		 * mediante el AND y posteriormente el parametro a concatenar
 		*/
 		if(gRun!= null && !gRun.trim().equals("")){
-			queryToSearch += "Persona.run='"+gRun+"' ";
+			ccr.add(Restrictions.ilike("run", gRun));
+			//queryToSearch += "Persona.run='"+gRun+"' ";
 		}
-		
+		/*
 		if((gRun!= null && !gRun.equals(""))
 				&& (gNombre!=null && !gNombre.equals(""))){
 			queryToSearch += "AND ";
-		}
+		}*/
 		if(gNombre!=null && !gNombre.equals("")){
-			queryToSearch += "Persona.nombre='"+gNombre+"' ";
+			ccr.add(Restrictions.ilike("nombre", gNombre));
+			//queryToSearch += "Persona.nombre='"+gNombre+"' ";
 		}
-		
+		/*
 		if(((gRun!=null && !gRun.equals(""))
 				|| (gNombre!=null && !gNombre.equals(""))
 				)&& (gApellido!=null && !gApellido.equals(""))){
 			queryToSearch += "AND ";
-		}
+		}*/
 		if(gApellido!=null && !gApellido.trim().equals("")){
-			queryToSearch += "Persona.apellido='"+gApellido+"' ";
+			ccr.add(Restrictions.ilike("apellido", gApellido));
+			//queryToSearch += "Persona.apellido='"+gApellido+"' ";
 		}
-		
+		/*
 		if((gRun!=null && !gRun.equals("")
 				|| gNombre!=null && !gNombre.equals("")
 				|| gApellido!=null && !gApellido.equals(""))
 				&& (gEmail != null && !gEmail.equals(""))){
 			queryToSearch += "AND ";
-		}
+		}*/
 		if(gEmail != null && !gEmail.trim().equals("")){
-			queryToSearch += "Persona.email='"+gEmail+"' ";
+			ccr.add(Restrictions.ilike("email", gEmail));
+			//queryToSearch += "Persona.email='"+gEmail+"' ";
 		}
-		
+		/*
 		if((gRun!=null && !gRun.equals("")
 				|| gNombre!=null && !gNombre.equals("")
 				|| gApellido!=null && !gApellido.equals("")
 				|| gEmail != null && !gEmail.equals(""))
 				&& (gFono != null && !gFono.equals(""))){
 			queryToSearch += "AND ";
-		}
+		}*/
 		if(gFono != null && !gFono.trim().equals("")){
-			queryToSearch += "Persona.fono='"+gFono+ "' ";
+			ccr.add(Restrictions.ilike("fono", gFono));
+			//queryToSearch += "Persona.fono='"+gFono+ "' ";
 		}
-		
+		/*
 		if((gRun!=null && !gRun.equals("")
 				|| gNombre!=null && !gNombre.equals("")
 				|| gApellido!=null && !gApellido.equals("")
@@ -319,11 +360,12 @@ public class Persona {
 				|| gFono != null && !gFono.equals(""))
 				&& (gDireccion != null && !gDireccion.equals(""))){
 			queryToSearch += "AND ";
-		}
+		}*/
 		if(gDireccion != null && !gDireccion.trim().equals("")){
-			queryToSearch += "Persona.direccion='"+gDireccion+ "' ";
+			ccr.add(Restrictions.ilike("direccion", gDireccion));
+			//queryToSearch += "Persona.direccion='"+gDireccion+ "' ";
 		}
-		
+		/*
 		if((gRun!=null && !gRun.equals("")
 				|| gNombre!=null && !gNombre.equals("")
 				|| gApellido!=null && !gApellido.equals("")
@@ -332,12 +374,14 @@ public class Persona {
 				|| gDireccion != null && !gDireccion.equals(""))
 				&& (gGenero != null && !gGenero.equals(""))){
 			queryToSearch += "AND ";
-		}
+		}*/
 		if(gGenero != null && !gGenero.trim().equals("")){
-			queryToSearch += "Persona.genero='"+gGenero+ "' ";
+			ccr.add(Restrictions.ilike("genero", gGenero));
+			//queryToSearch += "Persona.genero='"+gGenero+ "' ";
 		}
 		
-		listaPersonasFromQuery = orm.PersonaDAO.queryPersona(queryToSearch, null);
+		listaPersonasFromQuery = Arrays.asList(orm.PersonaDAO.listPersonaByCriteria(ccr));
+		//listaPersonasFromQuery = orm.PersonaDAO.queryPersona(queryToSearch, null);
 		
 		if(!listaPersonasFromQuery.isEmpty()){
 			for( orm.Persona personaORM : listaPersonasFromQuery){			
@@ -527,5 +571,7 @@ public class Persona {
 	public void addBitacora(Bitacora bit){
 		this.bitacora.add(bit);
 	}
+
+	
 
 }

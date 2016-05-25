@@ -53,8 +53,6 @@ public class LoginServlet extends HttpServlet {
 		usuarioAVerificar.setUser(user);
 		usuarioAVerificar.setPassword(pass);
 		
-		//String LoginStatus = "";
-		
 		try {
 			if(usuarioAVerificar.validarUsuarioBusiness(usuarioAVerificar)){
 				RequestDispatcher rs = request.getRequestDispatcher("Index.jsp");

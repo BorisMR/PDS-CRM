@@ -24,13 +24,13 @@ public class ServiceDAO {
 	
 	/**
 	 * Verifica que los datos de para iniciar sesion sean  correctos
-	 * @param user
+	 * @param usser
 	 * @param pass
 	 * @return String "v" si es valido y "f" si es invalido.
 	 */
 	@WebMethod(operationName = "verificarUsuario")
 	public String verificarUsuario(
-			@WebParam(name = "user") String usser,
+			@WebParam(name = "usser") String usser,
 			@WebParam(name = "pass") String pass) throws PersistentException{
 		
 		Usuario usuario = new Usuario();
@@ -50,14 +50,15 @@ public class ServiceDAO {
 			usuario.setPassword("");
 		}
 		
-		//valido = usuario.validarUsuarioBusiness(usuario) ? "v" : "f";
+		valido = usuario.validarUsuarioBusiness(usuario) ? "s" : "n"; //con ternario
 		
+		/*
 		if(usuario.validarUsuarioBusiness(usuario)){
-			valido = "S";
+			valido = "s";
 		}else{
-			valido = "N";
+			valido = "n";
 		}
-		
+		*/
 		return valido;
 	}
 	
@@ -173,6 +174,36 @@ public class ServiceDAO {
 			}			
 		}catch(PersistentException p){
 			resultado = p.getMessage();
+		}
+		return resultado;
+	}
+	
+	/**
+	 * Entrega los datos de un perfil mediante su rut
+	 * 
+	 * @param cadenaBusqueda
+	 * @return json 
+	 * @throws PersistentException
+	 */
+	@WebMethod(operationName = "verPerfil")
+	public String verPerfil(@WebParam(name = "run") String run) throws PersistentException{
+		String resultado = "";		
+		Persona persona = new Persona();
+		persona.setRun(run);
+		
+		Gson gson = new GsonBuilder().create();	
+				
+		try{
+			
+			resultado = gson.toJson(persona = persona.getPersonaBusiness(persona));
+			/*
+					if(listaPersonas.isEmpty()){
+				resultado = "No se encontraron datos";
+			}else{
+				resultado = gson.toJson(listaPersonas);
+			}*/			
+		}catch(PersistentException p){
+			resultado = null;
 		}
 		return resultado;
 	}
