@@ -28,6 +28,7 @@ public class Persona {
 	private String genero;
 	private String foto_b64;
 	private Empresa empresa;
+	private ArrayList<Bitacora> bitacora = new ArrayList<>();
 	
 	/**
 	 * Constructor vacio.
@@ -518,4 +519,13 @@ public class Persona {
 	public void setEmpresa(Empresa empresa) {
 		this.empresa = empresa;
 	}
+	
+	/**
+	 * Agrega un registro de bitacora a la Persona
+	 * @param bit
+	 */
+	public void addBitacora(Bitacora bit){
+		this.bitacora.add(bit);
+	}
+
 }
