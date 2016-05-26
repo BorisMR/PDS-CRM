@@ -24,7 +24,7 @@ public class Usuario {
 	}
 	
 	/**
-	  * Metodo que añade un usuario a la Base de datos
+	  * Metodo que agrega un usuario a la Base de datos
 	  *
 	  * @param Usuario Objeto que contiene la data a ingresar
 	  * @return String Mensaje que indica si se realizo la transaccion

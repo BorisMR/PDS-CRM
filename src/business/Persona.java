@@ -2,10 +2,8 @@ package business;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
@@ -283,14 +281,11 @@ public class Persona {
 	 * @return List<Persona>
 	 * @throws PersistentException
 	 */
-	@SuppressWarnings("unchecked")
 	public List<Persona> busquedaAvanzada(Persona persona) throws PersistentException{
 		
-		String queryToSearch="";		
 		List<orm.Persona> listaPersonasFromQuery = new ArrayList<orm.Persona>();
 		List<Persona> listaPersonaBD = new ArrayList<Persona>();
 		
-		//String usados para disminuir cantidad de gets en validaciones
 		String gRun = persona.getRun().toLowerCase();
 		String gNombre = persona.getNombre().toLowerCase();
 		String gApellido = persona.getApellido().toLowerCase();
@@ -301,87 +296,36 @@ public class Persona {
 		
 		PersonaCriteria ccr= new PersonaCriteria();
 		
-		/*	
-		 * verificar si el parametro x de la persona viene con datos
-		 * en caso de que venga con datos adjuntar el parametro a la query de busqueda
-		 * mediante el AND y posteriormente el parametro a concatenar
-		*/
 		if(gRun!= null && !gRun.trim().equals("")){
 			ccr.add(Restrictions.ilike("run", gRun));
-			//queryToSearch += "Persona.run='"+gRun+"' ";
 		}
-		/*
-		if((gRun!= null && !gRun.equals(""))
-				&& (gNombre!=null && !gNombre.equals(""))){
-			queryToSearch += "AND ";
-		}*/
+		
 		if(gNombre!=null && !gNombre.equals("")){
-			ccr.add(Restrictions.ilike("nombre", gNombre));
-			//queryToSearch += "Persona.nombre='"+gNombre+"' ";
+			ccr.add(Restrictions.ilike("nombre", gNombre));			
 		}
-		/*
-		if(((gRun!=null && !gRun.equals(""))
-				|| (gNombre!=null && !gNombre.equals(""))
-				)&& (gApellido!=null && !gApellido.equals(""))){
-			queryToSearch += "AND ";
-		}*/
+		
 		if(gApellido!=null && !gApellido.trim().equals("")){
 			ccr.add(Restrictions.ilike("apellido", gApellido));
-			//queryToSearch += "Persona.apellido='"+gApellido+"' ";
 		}
-		/*
-		if((gRun!=null && !gRun.equals("")
-				|| gNombre!=null && !gNombre.equals("")
-				|| gApellido!=null && !gApellido.equals(""))
-				&& (gEmail != null && !gEmail.equals(""))){
-			queryToSearch += "AND ";
-		}*/
+		
 		if(gEmail != null && !gEmail.trim().equals("")){
-			ccr.add(Restrictions.ilike("email", gEmail));
-			//queryToSearch += "Persona.email='"+gEmail+"' ";
+			ccr.add(Restrictions.ilike("email", gEmail));			
 		}
-		/*
-		if((gRun!=null && !gRun.equals("")
-				|| gNombre!=null && !gNombre.equals("")
-				|| gApellido!=null && !gApellido.equals("")
-				|| gEmail != null && !gEmail.equals(""))
-				&& (gFono != null && !gFono.equals(""))){
-			queryToSearch += "AND ";
-		}*/
+		
 		if(gFono != null && !gFono.trim().equals("")){
 			ccr.add(Restrictions.ilike("fono", gFono));
-			//queryToSearch += "Persona.fono='"+gFono+ "' ";
 		}
-		/*
-		if((gRun!=null && !gRun.equals("")
-				|| gNombre!=null && !gNombre.equals("")
-				|| gApellido!=null && !gApellido.equals("")
-				|| gEmail != null && !gEmail.equals("")
-				|| gFono != null && !gFono.equals(""))
-				&& (gDireccion != null && !gDireccion.equals(""))){
-			queryToSearch += "AND ";
-		}*/
+		
 		if(gDireccion != null && !gDireccion.trim().equals("")){
 			ccr.add(Restrictions.ilike("direccion", gDireccion));
-			//queryToSearch += "Persona.direccion='"+gDireccion+ "' ";
 		}
-		/*
-		if((gRun!=null && !gRun.equals("")
-				|| gNombre!=null && !gNombre.equals("")
-				|| gApellido!=null && !gApellido.equals("")
-				|| gEmail != null && !gEmail.equals("")
-				|| gFono != null && !gFono.equals("")
-				|| gDireccion != null && !gDireccion.equals(""))
-				&& (gGenero != null && !gGenero.equals(""))){
-			queryToSearch += "AND ";
-		}*/
+		
 		if(gGenero != null && !gGenero.trim().equals("")){
 			ccr.add(Restrictions.ilike("genero", gGenero));
-			//queryToSearch += "Persona.genero='"+gGenero+ "' ";
 		}
 		
 		listaPersonasFromQuery = Arrays.asList(orm.PersonaDAO.listPersonaByCriteria(ccr));
-		//listaPersonasFromQuery = orm.PersonaDAO.queryPersona(queryToSearch, null);
+		
 		
 		if(!listaPersonasFromQuery.isEmpty()){
 			for( orm.Persona personaORM : listaPersonasFromQuery){			
