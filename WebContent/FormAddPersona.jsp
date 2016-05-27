@@ -74,12 +74,7 @@
         	</div>
        
         	<div class="form-group" id="imgContainer"></div>
-        	<!--	   		
-	  		<div class="form-group">
-	    		<label for="id">Empresa ID:</label>
-	    		<input type="text" class="form-control" id="empresaIde" name="empresaIde" required>
-	  		</div>
-	  		-->
+        	
 	  		<div class="form-group">	
 		  		<select multiple class="form-control" name="empresaIde">  
 		  		<i:forEach items="${listaEmpresas}" var="empresa">				

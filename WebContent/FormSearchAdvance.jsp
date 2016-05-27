@@ -72,6 +72,8 @@
 		<th>Telefono</th>
 		<th>Direccion</th>
 		<th>Genero</th>
+		<th>Empresa</th>
+		<th>Foto</th>
 	</tr>
 	<i:forEach items="${listaPersonas}" var="persona">
 		<tr>
@@ -82,12 +84,23 @@
 			<td>${persona.fono}</td>
 			<td>${persona.direccion}</td>
 			<td>${persona.genero}</td>
+			<td>${persona.empresa.nombre}</td>
+			<td><img src="${persona.foto_b64}" class="img-responsive"></img></td>
 			<td>
 				<table>
 					<tr>
 						<td>
-							<form action="FormEditPersona.jsp" method="post">
+							<form action="EditPersonaMiddleServlet" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="hidden" value="${persona.run}" name="run">
+								<input type="hidden" value="${persona.nombre}" name="nombre">
+								<input type="hidden" value="${persona.apellido}" name="apellido">
+								<input type="hidden" value="${persona.email}" name="email">
+								<input type="hidden" value="${persona.fono}" name="fono">
+								<input type="hidden" value="${persona.direccion}" name="direccion">
+								<input type="hidden" value="${persona.genero}" name="genero">
+								<input type="hidden" value="${persona.empresa.nombre}" name="empresanombre">
+								<input type="hidden" value="${persona.foto_b64}" name="foto_b64">
 								<input type="submit" value="Editar" class="btn btn-warning">	
 							</form>
 						</td>
