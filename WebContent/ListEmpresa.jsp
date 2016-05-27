@@ -31,9 +31,11 @@
 				<table>
 					<tr>
 						<td>
-							<form action="FormEditEmpresa.jsp" method="post">
+							<form action="EditEmpresaMiddleServlet" method="post">
 								<input type="hidden" value="${empresa.idE}" name="idE">
-								<input type="submit" value="Editar" class="btn btn-warning" disabled>	
+								<input type="hidden" value="${empresa.rut}" name="rut">
+								<input type="hidden" value="${empresa.nombre}" name="nombre">
+								<input type="submit" value="Editar" class="btn btn-warning">	
 							</form>
 						</td>
 						<td>

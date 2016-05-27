@@ -98,7 +98,7 @@ public class Empresa {
 
 	/**
 	  * Metodo que edita una empresa de la Base de datos
-	  * usando el rut de la Empresa recibida
+	  * usando el ID de la Empresa recibida
 	  *
 	  * @param Empresa Objeto del que se extrae el rut para editar
 	  * @return String Mensaje que indica si se ralizo la transaccion
@@ -109,7 +109,7 @@ public class Empresa {
 			t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 			try {
 				
-				orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByQuery("Empresa.rut = '"+empresa.rut+"'", null);
+				orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByQuery("Empresa.idE = '"+empresa.idE+"'", null);
 				// Update the properties of the persistent object
 				lormEmpresa.setRut(empresa.rut);
 				lormEmpresa.setNombre(empresa.nombre);

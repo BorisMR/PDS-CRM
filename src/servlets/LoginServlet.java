@@ -64,7 +64,9 @@ public class LoginServlet extends HttpServlet {
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
-			e.printStackTrace();
+			RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+			request.setAttribute("LoginStatus",	e.toString() );
+			
 		}
 	}
 }

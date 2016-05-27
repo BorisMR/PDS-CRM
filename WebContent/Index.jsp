@@ -4,7 +4,15 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"></link>
+	
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+    <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>    
+    <script type="text/javascript" src="js/validator.js"></script>
+	
 	<title>Index CRM</title>
 </head>
 <body>
@@ -32,18 +40,7 @@
 						<form action="AddPersonaServlet" method="get">
 							<input type="submit" value="Agregar Persona" class="btn btn-success">
 						</form>
-					<!--
-			  			<a href="FormAddPersona.jsp" class="btn btn-success">Agregar Persona</a>
-			  			-->
-	  				</td>
-	  				<!-- 
-	  				<td>
-			  			<a href="FormEditPersona.jsp" class="btn btn-warning">Editar Persona</a>
-	  				</td>
-	  				<td>
-			  			<a href="FormDelPersona.jsp" class="btn btn-danger">Eliminar Persona</a>
-	  				</td>
-	  				 -->			  				
+	  				</td>			  				
 					<td>
 						<form action="ListPersonaServlet" method="post">
 							<input type="submit" value="Lista de Personas" class="btn btn-info">
@@ -60,15 +57,7 @@
 					<td>
 			  			<a href="FormAddEmpresa.jsp" class="btn btn-success">Agregar Empresa</a>
 	  				</td>
-	  				<!--  
 	  				<td>
-			  			<a href="FormEditEmpresa.jsp" class="btn btn-warning">Editar Empresa</a>
-	  				</td>
-	  				<td>
-			  			<a href="FormDelEmpresa.jsp" class="btn btn-danger">Eliminar Empresa</a>
-	  				</td>
-	  				-->			  				
-					<td>
 						<form action="ListEmpresaServlet" method="post">
 							<input type="submit" value="Lista de Empresa" class="btn btn-info">
 						</form>

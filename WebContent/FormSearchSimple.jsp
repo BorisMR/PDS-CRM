@@ -7,13 +7,21 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<title>Busqueda</title>
+	<link rel="stylesheet" href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"></link>
+	
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+    <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>    
+    <script type="text/javascript" src="js/validator.js"></script>
+    
+	<title>Busqueda Simple</title>
 </head>
 <body>
-	<h2><b>Busqueda Simple</b></h2>
+	<h2><b>Busqueda Simple de Contacto</b></h2>
 	
-	<form class="form-horizontal" action="SearchSimpleServlet" method="post">
+	<form class="form-horizontal" action="SearchSimpleServlet" method="post" id="FormSearchSimple">
 		Buscar:<input class="form-control" type="text" name="busqueda"/><br/>
 		<button type="submit" class="btn btn-success">buscar</button>
 	</form>

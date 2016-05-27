@@ -7,8 +7,16 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<title>Agregar</title>
+	<link rel="stylesheet" href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"></link>
+	
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+    <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>    
+    <script type="text/javascript" src="js/validator.js"></script>
+
+	<title>Formulario</title>
 </head>
 <body>
 	<h2><b>Agregar Empresa</b></h2>
@@ -17,7 +25,7 @@
 		<hr>
 		<h4>${AddEmpresaStatus}</h4>
 		<hr>
-		<form class="form-horizontal" action="AddEmpresaServlet" method="post">
+		<form class="form-horizontal" action="AddEmpresaServlet" method="post" id="FormAddEmpresa">
 	  		<div class="form-group">
 	    		<label for="rut">Rut:</label>
 	    		<input type="text" class="form-control" id="rut" name="rut" required>
