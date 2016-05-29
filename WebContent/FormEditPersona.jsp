@@ -63,17 +63,8 @@
 	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" />
 	  		</div>
 	  		<textarea id="textArea" name="textArea" class="form-control textbox" value="${foto_b64}" hidden></textarea> 
-	  		<!--        		   		
-	  		<div class="form-group">	
-		  		<select multiple class="form-control" name="empresaIde">  
-		  		<i:forEach items="${listaEmpresas}" var="empresa">
-					<option value="${empresa.idE}">${empresa.nombre}</option>
-				</i:forEach>
-				</select>
-	  		</div>
-	  		 -->
-	  		 ${empresanombre}
-	  		 ${LISTA}  		 		
+	  		<!-- Select viene desde servlet -->
+	  		${LISTA} 
 	  		<button type="submit" class="btn btn-warning" value="Editar">Editar</button>
 		</form>
 		<hr>

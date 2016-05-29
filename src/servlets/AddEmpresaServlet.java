@@ -36,7 +36,7 @@ public class AddEmpresaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.invalidate();
-		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+		RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
 	}

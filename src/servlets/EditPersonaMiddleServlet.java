@@ -45,18 +45,7 @@ public class EditPersonaMiddleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		<input type="hidden" value="${persona.idP}" name="idP">
-		<input type="hidden" value="${persona.run}" name="run">
-		<input type="hidden" value="${persona.nombre}" name="nombre">
-		<input type="hidden" value="${persona.apellido}" name="apellido">
-		<input type="hidden" value="${persona.email}" name="email">
-		<input type="hidden" value="${persona.fono}" name="fono">
-		<input type="hidden" value="${persona.direccion}" name="direccion">
-		<input type="hidden" value="${persona.genero}" name="genero">
-		<input type="hidden" value="${persona.empresa.nombre}" name="empresanombre">
-		<input type="hidden" value="${persona.foto_b64}" name="foto_b64">
-		*/
+		
 		String idP = request.getParameter("idP");
 		String run = request.getParameter("run");
 		String nombre = request.getParameter("nombre");
@@ -92,14 +81,12 @@ public class EditPersonaMiddleServlet extends HttpServlet {
 			}else{
 				request.setAttribute("listaEmpresas", listaEmpresas);
 				
-				String outList = "'<div class='form-group'><select multiple class='form-control' name='empresaIde'>'";
+				String outList = "<div class='form-group'><select multiple class='form-control' name='empresaIde'>'";
 				for (orm.Empresa empresaL : listaEmpresas) {
 					if(empresaL.getNombre().equals(empresanombre)){
-						outList += "<option value='"+empresaL.getIdE()+"' selected>"
-								+ ""+empresaL.getNombre()+"</option>";
+						outList += "<option value='"+empresaL.getIdE()+"' selected>"+empresaL.getNombre()+"</option>";
 					}else{
-						outList += "<option value='"+empresaL.getIdE()+"'>"
-								+ ""+empresaL.getNombre()+"</option>";
+						outList += "<option value='"+empresaL.getIdE()+"'>"+empresaL.getNombre()+"</option>";
 					}
 				}
 				outList += "</select></div>";

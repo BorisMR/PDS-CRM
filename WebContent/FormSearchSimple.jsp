@@ -18,15 +18,20 @@
 	<title>Busqueda Simple</title>
 </head>
 <body>
-	<h2><b>Busqueda Simple de Contacto</b></h2>
+<div class="container">
+	<h3><b>Busqueda Simple de Contacto</b></h3>
 	
 	<form class="form-horizontal" action="SearchSimpleServlet" method="post" id="FormSearchSimple">
-		Buscar:<input class="form-control" type="text" name="busqueda"/><br/>
-		<button type="submit" class="btn btn-success">buscar</button>
+		<div class="form-group">
+    		<label for="run">Ingrese el dato a buscar:</label>
+    		<input type="text" class="form-control" id="busqueda" name="busqueda" required>
+	    </div>
+		<button type="submit" class="btn btn-success">Buscar</button>
 	</form>
 	<h3>${SearchSimpleStatus}</h3>
+	<hr>	
+	<a href="Index.jsp" class="btn btn-primary">Volver</a>
 	<hr>
-	
 	<table class="table table-bordered table-hover table-responsive">
 	<tr class="info">
 		<th>Run</th>
@@ -36,6 +41,7 @@
 		<th>Telefono</th>
 		<th>Direccion</th>
 		<th>Genero</th>
+		<th>Empresa</th>
 		<th>Foto</th>
 	</tr>
 	<i:forEach items="${listaPersonas}" var="persona">
@@ -47,6 +53,7 @@
 			<td>${persona.fono}</td>
 			<td>${persona.direccion}</td>
 			<td>${persona.genero}</td>
+			<td>${persona.empresa.nombre}</td>
 			<td><img src="${persona.foto_b64}" class="img-responsive"></img></td>
 			<td>
 				<table>
@@ -65,12 +72,16 @@
 								<input type="hidden" value="${persona.foto_b64}" name="foto_b64">
 								<input type="submit" value="Editar" class="btn btn-warning">	
 							</form>
+							<br>
 						</td>
+					</tr>
+					<tr>
 						<td>
 							<form action="DelPersonaServlet" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
 								<input type="submit" value="Eliminar" class="btn btn-danger">	
 							</form>
+							<br>
 						</td>
 					</tr>
 				</table>
@@ -78,5 +89,6 @@
 		</tr>
 	</i:forEach>
 	</table>
+</div>
 </body>
 </html>

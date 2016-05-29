@@ -28,7 +28,6 @@ public class SearchSimpleServlet extends HttpServlet {
      */
     public SearchSimpleServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -37,7 +36,7 @@ public class SearchSimpleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+		RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
 	}
@@ -52,21 +51,21 @@ public class SearchSimpleServlet extends HttpServlet {
 		
 		busqueda = request.getParameter("busqueda");
 		
+		RequestDispatcher rs = request.getRequestDispatcher("/FormSearchSimple.jsp");
+		
 		try {
 			listaBusqueda = persona.busquedaSimple(busqueda);
 			
-			if(listaBusqueda.isEmpty()){
-				RequestDispatcher rs = request.getRequestDispatcher("/FormSearchSimple.jsp");
+			if(listaBusqueda.isEmpty()){				
 				request.setAttribute("SearchSimpleStatus",	"No se encontraron datos asociados a la busqueda");
 				rs.forward(request, response);				
 			}else{
-				request.removeAttribute("busqueda");
+				//request.removeAttribute("busqueda");
 				request.setAttribute("SearchSimpleStatus",	"Se encontraron los siguientes resultados");
 				request.setAttribute("listaPersonas", listaBusqueda);				
-				request.getRequestDispatcher("/FormSearchSimple.jsp").forward(request, response);
+				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
-			RequestDispatcher rs = request.getRequestDispatcher("/FormSearchSimple.jsp");
 			request.setAttribute("SearchSimpleStatus","Servlet: No se pudo efectuar la busqueda ");
 			rs.forward(request, response);
 		}		

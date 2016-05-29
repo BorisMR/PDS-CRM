@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=iso-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*" %>
 <%@ page import="business.Persona" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="i" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"></link>
@@ -19,10 +18,11 @@
 	<title>Busqueda</title>
 </head>
 <body>
-	<h2><b>Busqueda Avanzada</b></h2>
+<div class="container">
+	<h3><b>Busqueda Avanzada</b></h3>
 	
 	<div class="container">
-		<h3>Ingresar Datos Persona</h3>
+		<h4>Datos de Contacto a buscar</h4>
 		<form class="form-horizontal" action="SearchAdvanceServlet" method="post" id="FormSearchAdvance">
 	  		<div class="form-group">
 	    		<label for="run">Run:</label>
@@ -52,18 +52,18 @@
 		  		<label for="genero">Genero:</label>
 		  		<div class="radio">		  			
 		  			<label>
-						<input type="radio" name="genero" id="m" value="m" checked>
+						<input type="radio" name="genero" id="m" value="m">
 					  	Masculino
 					</label>
 		  		</div>
 		  		<div class="radio">
 		  			<label>
-						<input type="radio" name="genero" id="f" value="f" checked>
+						<input type="radio" name="genero" id="f" value="f">
 					  	Femenino
 					</label>
 		  		</div>
 	  		</div>
-	  		<button type="submit" class="btn btn-success" value="Buscar">Buscar</button>
+	  		<button type="submit" class="btn btn-success">Buscar</button>
 		</form>
 		<h3>${SearchAdvanceStatus}</h3>
 	</div>	
@@ -108,12 +108,16 @@
 								<input type="hidden" value="${persona.foto_b64}" name="foto_b64">
 								<input type="submit" value="Editar" class="btn btn-warning">	
 							</form>
+							<br>
 						</td>
+					</tr>
+					<tr>
 						<td>
 							<form action="DelPersonaServlet" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
 								<input type="submit" value="Eliminar" class="btn btn-danger">	
 							</form>
+							<br>
 						</td>
 					</tr>
 				</table>
@@ -121,5 +125,6 @@
 		</tr>
 	</i:forEach>
 	</table>
+</div>
 </body>
 </html>
