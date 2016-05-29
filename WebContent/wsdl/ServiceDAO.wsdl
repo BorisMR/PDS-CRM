@@ -40,6 +40,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
+   <element name="verPerfil">
+    <complexType>
+     <sequence>
+      <element name="run" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="verPerfilResponse">
+    <complexType>
+     <sequence>
+      <element name="verPerfilReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="verificarUsuario">
     <complexType>
      <sequence>
@@ -111,9 +125,25 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="verPerfilRequest">
+
+      <wsdl:part element="impl:verPerfil" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="verificarUsuarioResponse">
 
       <wsdl:part element="impl:verificarUsuarioResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="verPerfilResponse">
+
+      <wsdl:part element="impl:verPerfilResponse" name="parameters">
 
       </wsdl:part>
 
@@ -144,6 +174,22 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:busquedaAvanzadaResponse" name="busquedaAvanzadaResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:PersistentException" name="PersistentException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPerfil">
+
+         <wsdl:input message="impl:verPerfilRequest" name="verPerfilRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:verPerfilResponse" name="verPerfilResponse">
 
        </wsdl:output>
 
@@ -210,6 +256,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="busquedaAvanzadaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PersistentException">
+
+            <wsdlsoap:fault name="PersistentException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verPerfil">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="verPerfilRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="verPerfilResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -69,9 +69,8 @@ public class Persona {
 			lormPersona.setEmpresaidE(lormEmpresa);
 			
 			orm.PersonaDAO.save(lormPersona);
-			//orm.PersonaDAO.refresh(lormPersona);
+			
 			t.commit();
-			//return = lormPersona.getUidP(); // para metodo int
 			return "Data Ingresada";
 		}catch(PersistentException e) {
 			t.rollback();
@@ -181,7 +180,6 @@ public class Persona {
 			lormEmpresa.setNombre(persona.getEmpresa().getNombre());
 			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run='"+persona.run+"'", null);
 			
-			//Actualiza las propiedades del objeto persistente
 			lormPersona.setRun(persona.run);
 			lormPersona.setNombre(persona.nombre);
 			lormPersona.setApellido(persona.apellido);
@@ -197,7 +195,7 @@ public class Persona {
 			return "Data Editada";
 		}catch (Exception e) {
 			t.rollback();
-			return "ERROR: no se edito la data ";
+			return "No se pudo editar la data ";
 		}
 	}
 	
@@ -216,7 +214,7 @@ public class Persona {
 	}
 	
 	/**
-	 * Efectua una busqueda simple utilizando una cadena de texto comun
+	 * Efectua una busqueda simple utilizando una cadena de texto simple
 	 * 
 	 * @param busqueda
 	 * @return
@@ -238,16 +236,15 @@ public class Persona {
 		
 		Disjunction or = Restrictions.or(run, nombre, apellido, email, fono, direccion, genero);
 		
-		ccr.add(or); //se ignora para los and
+		ccr.add(or); //No agregar para considerar como AND
 		
-		listaPersonasBD = Arrays.asList(orm.PersonaDAO.listPersonaByCriteria(ccr));
-		
+		listaPersonasBD = Arrays.asList(orm.PersonaDAO.listPersonaByCriteria(ccr));		
 		
 		if(!listaPersonasBD.isEmpty()){			
 			for( orm.Persona personaORM : listaPersonasBD){
 				
-				Empresa empresaB = new Empresa();				
-				//obetener empresa asociada a la persona
+				Empresa empresaB = new Empresa();
+
 				orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
 				
 				empresaB.setIdE(empresaORM.getIdE());				
@@ -266,8 +263,6 @@ public class Persona {
 				personaB.setDireccion(personaORM.getDireccion());
 				personaB.setGenero(personaORM.getGenero());
 				personaB.setFoto_b64(personaORM.getFoto_e64());
-								
-				listaPersona.add(personaB);
 			}
 		}
 		return listaPersona;

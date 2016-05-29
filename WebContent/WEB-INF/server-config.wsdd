@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -47,12 +47,16 @@
    <ns1:parameter qname="ns3:genero" type="xsd:string"/>
    <ns1:fault class="org.orm.PersistentException" qname="ns3:fault" type="ns4:PersistentException" xmlns:ns4="http://orm.org"/>
   </ns1:operation>
-  <ns1:operation name="verificarUsuario" qname="ns5:verificarUsuario" returnQName="ns5:verificarUsuarioReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns5:usser" type="xsd:string"/>
-   <ns1:parameter qname="ns5:pass" type="xsd:string"/>
+  <ns1:operation name="verPerfil" qname="ns5:verPerfil" returnQName="ns5:verPerfilReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:run" type="xsd:string"/>
    <ns1:fault class="org.orm.PersistentException" qname="ns5:fault" type="ns6:PersistentException" xmlns:ns6="http://orm.org"/>
   </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="busquedaSimple busquedaAvanzada verificarUsuario"/>
+  <ns1:operation name="verificarUsuario" qname="ns7:verificarUsuario" returnQName="ns7:verificarUsuarioReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:usser" type="xsd:string"/>
+   <ns1:parameter qname="ns7:pass" type="xsd:string"/>
+   <ns1:fault class="org.orm.PersistentException" qname="ns7:fault" type="ns8:PersistentException" xmlns:ns8="http://orm.org"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="busquedaSimple busquedaAvanzada verPerfil verificarUsuario"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="ServiceDAO"/>
   <ns1:parameter name="className" value="service.ServiceDAO"/>
@@ -60,7 +64,7 @@
   <ns1:parameter name="schemaQualified" value="http://service,http://orm.org"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://service"/>
   <ns1:parameter name="wsdlServiceElement" value="ServiceDAOService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:PersistentException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:org.orm.PersistentException" xmlns:ns7="http://orm.org"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:PersistentException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:org.orm.PersistentException" xmlns:ns9="http://orm.org"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
