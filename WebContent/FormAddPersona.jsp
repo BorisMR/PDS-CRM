@@ -14,6 +14,7 @@
     <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
     <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>    
     <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/image.js"></script>
     
 	<title>Agregar Contacto</title>
 </head>
@@ -53,13 +54,13 @@
 		  		<label for="genero">Genero:</label>
 		  		<div class="radio">		  			
 		  			<label>
-						<input type="radio" name="genero" id="m" value="m" checked>
+						<input type="radio" name="genero" id="m" value="m">
 					  	Masculino
 					</label>
 		  		</div>
 		  		<div class="radio">
 		  			<label>
-						<input type="radio" name="genero" id="f" value="f" checked>
+						<input type="radio" name="genero" id="f" value="f">
 					  	Femenino
 					</label>
 		  		</div>
@@ -70,7 +71,8 @@
 	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" />
 	  			<textarea id="textArea" name="textArea" class="form-control textbox" style="display:none;"></textarea>	  			
 	  		</div>  
-	  		<div class="form-group">	
+	  		<div class="form-group">
+	  			<label for="foto">Empresa:</label>	
 		  		<select multiple class="form-control" name="empresaIde">  
 		  		<i:forEach items="${listaEmpresas}" var="empresa">				
 					<option value="${empresa.idE}">${empresa.nombre}</option>

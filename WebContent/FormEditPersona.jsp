@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=iso-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*" %>
 <%@ page import="business.Persona" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="i" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"></link>
@@ -14,6 +14,7 @@
     <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
     <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>    
     <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/image.js"></script>
 
 	<title>Editar Contacto</title>
 </head>
@@ -50,7 +51,7 @@
 	    		<input type="number" class="form-control" id="fono" name="fono" value="${fono}" required>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="direccion">DirecciÃ³n:</label>
+	    		<label for="direccion">Dirección:</label>
 	    		<input type="text" class="form-control" id="direccion" name="direccion" value="${direccion}" required>
 	  		</div>
 	  		<div class="form-group">
@@ -62,7 +63,7 @@
 	  			<div class="form-group" id="imgContainer"></div>
 	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" />
 	  		</div>
-	  		<textarea id="textArea" name="textArea" class="form-control textbox" value="${foto_b64}" hidden></textarea> 
+	  		<textarea id="textArea" name="textArea" class="form-control textbox" value="${foto_b64}" style="display:none;"></textarea> 
 	  		<!-- Select viene desde servlet -->
 	  		${LISTA} 
 	  		<button type="submit" class="btn btn-warning" value="Editar">Editar</button>

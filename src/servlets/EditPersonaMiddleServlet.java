@@ -82,7 +82,7 @@ public class EditPersonaMiddleServlet extends HttpServlet {
 				request.setAttribute("listaEmpresas", listaEmpresas);
 				
 				String outList = "<div class='form-group'>"
-						+ "<label>Ingrese el dato a buscar:</label>"
+						+ "<label>Empresa:</label>"
 						+ "<select multiple class='form-control' name='empresaIde'>'";
 				for (orm.Empresa empresaL : listaEmpresas) {
 					if(empresaL.getNombre().equals(empresanombre)){

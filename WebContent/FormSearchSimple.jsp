@@ -59,6 +59,15 @@
 				<table>
 					<tr>
 						<td>
+							<form action="AddBitacoraServlet" method="post">
+								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="submit" value="Bitacora" class="btn btn-info">	
+							</form>
+							<br>
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<form action="EditPersonaMiddleServlet" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
 								<input type="hidden" value="${persona.run}" name="run">
@@ -83,7 +92,7 @@
 							</form>
 							<br>
 						</td>
-					</tr>
+					</tr>					
 				</table>
 			</td>
 		</tr>
