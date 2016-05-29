@@ -79,7 +79,7 @@ public class EditPersonaMiddleServlet extends HttpServlet {
 		request.setAttribute("direccion", direccion);
 		request.setAttribute("genero", genero);
 		request.setAttribute("foto_b64", foto_b64);
-		//request.setAttribute("idE", empresanombre);
+		request.setAttribute("empresanombre", empresanombre);
 		
 		ArrayList<orm.Empresa> listaEmpresas = null;
 		Empresa empresa = new Empresa();
@@ -90,16 +90,27 @@ public class EditPersonaMiddleServlet extends HttpServlet {
 			if(listaEmpresas.isEmpty()){
 				rs.forward(request, response);			
 			}else{
-				request.setAttribute("listaEmpresas", listaEmpresas);				
+				request.setAttribute("listaEmpresas", listaEmpresas);
+				
+				String outList = "'<div class='form-group'><select multiple class='form-control' name='empresaIde'>'";
+				for (orm.Empresa empresaL : listaEmpresas) {
+					if(empresaL.getNombre().equals(empresanombre)){
+						outList += "<option value='"+empresaL.getIdE()+"' selected>"
+								+ ""+empresaL.getNombre()+"</option>";
+					}else{
+						outList += "<option value='"+empresaL.getIdE()+"'>"
+								+ ""+empresaL.getNombre()+"</option>";
+					}
+				}
+				outList += "</select></div>";
+				
+				request.setAttribute("LISTA", outList);
 				request.getRequestDispatcher("/FormEditPersona.jsp").forward(request, response);
 			}
 		} catch (PersistentException e) {
 			rs.forward(request, response);
 		}
-		
-		
-		
-		
+				
 		rs.forward(request, response);
 	}
 

@@ -58,22 +58,22 @@
 	    		<input type="text" class="form-control" id="genero" name="genero" value="${genero}" required>
 	  		</div>
 	  		<div>
-	  		<label for="foto">Foto Contacto:</label>
+	  			<label for="foto">Foto Contacto:</label>
+	  			<div class="form-group" id="imgContainer"></div>
 	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" />
 	  		</div>
-	  		<div class="form-group">
-            	<textarea id="textArea" name="textArea" class="form-control textbox" value="${foto_b64}" hidden></textarea>
-        	</div>
-        	
-        	<div id="imgContainer"></div>
-        		   		
+	  		<textarea id="textArea" name="textArea" class="form-control textbox" value="${foto_b64}" hidden></textarea> 
+	  		<!--        		   		
 	  		<div class="form-group">	
 		  		<select multiple class="form-control" name="empresaIde">  
-		  		<i:forEach items="${listaEmpresas}" var="empresa">				
+		  		<i:forEach items="${listaEmpresas}" var="empresa">
 					<option value="${empresa.idE}">${empresa.nombre}</option>
 				</i:forEach>
 				</select>
-	  		</div>  		 		
+	  		</div>
+	  		 -->
+	  		 ${empresanombre}
+	  		 ${LISTA}  		 		
 	  		<button type="submit" class="btn btn-warning" value="Editar">Editar</button>
 		</form>
 		<hr>

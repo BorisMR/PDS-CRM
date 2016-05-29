@@ -49,14 +49,19 @@
 	    		<input type="text" class="form-control" id="direccion" name="direccion">
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="genero">Genero:</label>
-	    		<input type="text" class="form-control" id="genero" name="genero">
-	    		<!--  
-				<select class="form-control" id="genero" required>
-					<option value="m">M</option>
-					<option value="f">F</option>
-				</select>
-				-->
+		  		<label for="genero">Genero:</label>
+		  		<div class="radio">		  			
+		  			<label>
+						<input type="radio" name="genero" id="m" value="m" checked>
+					  	Masculino
+					</label>
+		  		</div>
+		  		<div class="radio">
+		  			<label>
+						<input type="radio" name="genero" id="f" value="f" checked>
+					  	Femenino
+					</label>
+		  		</div>
 	  		</div>
 	  		<button type="submit" class="btn btn-success" value="Buscar">Buscar</button>
 		</form>

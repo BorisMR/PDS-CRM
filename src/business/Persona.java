@@ -221,10 +221,9 @@ public class Persona {
 	 * @throws PersistentException
 	 */
 	public List<Persona> busquedaSimple(String cadenaBusqueda) throws PersistentException {
+		
 		List<Persona> listaPersona = new ArrayList<Persona>();
 		List<orm.Persona> listaPersonasBD = new ArrayList<orm.Persona>();
-		
-		PersonaCriteria ccr= new PersonaCriteria();
 		
 		Criterion run = Restrictions.ilike("run", cadenaBusqueda.toLowerCase());
 		Criterion nombre = Restrictions.ilike("nombre", cadenaBusqueda.toLowerCase());
@@ -234,9 +233,10 @@ public class Persona {
 		Criterion direccion = Restrictions.ilike("direccion", cadenaBusqueda.toLowerCase());
 		Criterion genero = Restrictions.ilike("genero", cadenaBusqueda.toLowerCase());
 		
-		Disjunction or = Restrictions.or(run, nombre, apellido, email, fono, direccion, genero);
+		PersonaCriteria ccr= new PersonaCriteria();
+		Disjunction dis = Restrictions.or(run, nombre, apellido, email, fono, direccion, genero);
 		
-		ccr.add(or); //No agregar para considerar como AND
+		ccr.add(dis); //No agregar para considerar como AND
 		
 		listaPersonasBD = Arrays.asList(orm.PersonaDAO.listPersonaByCriteria(ccr));		
 		
@@ -253,8 +253,6 @@ public class Persona {
 				
 				Persona personaB = new Persona();
 				
-				personaB.setEmpresa(empresaB);
-				
 				personaB.setRun(personaORM.getRun());
 				personaB.setNombre(personaORM.getNombre());
 				personaB.setApellido(personaORM.getApellido());
@@ -263,6 +261,10 @@ public class Persona {
 				personaB.setDireccion(personaORM.getDireccion());
 				personaB.setGenero(personaORM.getGenero());
 				personaB.setFoto_b64(personaORM.getFoto_e64());
+				
+				personaB.setEmpresa(empresaB);
+				
+				listaPersona.add(personaB);
 			}
 		}
 		return listaPersona;

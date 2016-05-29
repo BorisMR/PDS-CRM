@@ -67,14 +67,10 @@
 	  		</div>
 	  		<div class="form-group">
 	  			<label for="foto">Foto Contacto:</label>
-	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" />	  			
-	  		</div>
-	  		<div class="form-group">
-            	<textarea id="textArea" name="textArea" class="form-control textbox" style="display:none;"></textarea>
-        	</div>
-       
-        	<div class="form-group" id="imgContainer"></div>
-        	
+	  			<div class="form-group" id="imgContainer"></div>
+	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" />
+	  			<textarea id="textArea" name="textArea" class="form-control textbox" style="display:none;"></textarea>	  			
+	  		</div>  
 	  		<div class="form-group">	
 		  		<select multiple class="form-control" name="empresaIde">  
 		  		<i:forEach items="${listaEmpresas}" var="empresa">				

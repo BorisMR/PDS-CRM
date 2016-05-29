@@ -31,7 +31,7 @@ public class Bitacora {
 	 * @return String Mensaje que indica si se almaceno el registro correctamente
 	 * @throws PersistentException
 	 */
-	public String addBitacoraToBD(Bitacora bit) throws PersistentException{
+	public String addBitacoraBusiness(Bitacora bit) throws PersistentException{
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction(); 
 		
 		try{

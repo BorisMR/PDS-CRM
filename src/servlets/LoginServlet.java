@@ -26,7 +26,6 @@ public class LoginServlet extends HttpServlet {
      */
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -35,8 +34,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
-		request.setAttribute("LoginStatus",	"Se ha cerrado la session correctamente");
+		RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
+		request.setAttribute("LoginStatus",	"Inicie Sesión");
 		rs.forward(request, response);
 	}
 
@@ -55,18 +54,18 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			if(usuarioAVerificar.validarUsuarioBusiness(usuarioAVerificar)){
-				RequestDispatcher rs = request.getRequestDispatcher("Index.jsp");
+				RequestDispatcher rs = request.getRequestDispatcher("/Index.jsp");
 				session.setAttribute("user", usuarioAVerificar);
 				rs.forward(request, response);
 			}else{				
-				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+				RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
 				request.setAttribute("LoginStatus",	"Error en los datos ingresados");
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
-			RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
-			request.setAttribute("LoginStatus",	e.toString() );
-			
+			RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
+			request.setAttribute("LoginStatus",	e.toString());
+			rs.forward(request, response);			
 		}
 	}
 }

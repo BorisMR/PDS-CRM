@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=iso-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"></link>
@@ -20,7 +19,7 @@
 		<h2>Buscadores</h2>
 		<div class="panel">
 			<table class="table table-responsive">	
-				<tr>		  				
+				<tr>						  				
 					<td>
 						<a href="FormSearchSimple.jsp" class="btn btn-primary">Busqueda Simple</a>
 					</td>
@@ -28,15 +27,8 @@
 						<a href="FormSearchAdvance.jsp" class="btn btn-primary">Busqueda Avanzada</a>
 	  				</td>	  			
 	  			</tr>
-		  	</table>
-		</div>
-		<hr>
-		<h2>Personas</h2>
-		<div class="panel">
-			<table class="table table-responsive">	
-				<tr>
-					<td>
-					  
+	  			<tr>
+					<td>					  
 						<form action="AddPersonaServlet" method="get">
 							<input type="submit" value="Agregar Persona" class="btn btn-success">
 						</form>
@@ -47,13 +39,7 @@
 						</form>
 	  				</td>	  			
 	  			</tr>
-		  	</table>
-		</div>
-		<hr>
-		<h2>Empresa</h2>
-		<div class="panel">
-			<table class="table table-responsive">	
-				<tr>
+	  			<tr>
 					<td>
 			  			<a href="FormAddEmpresa.jsp" class="btn btn-success">Agregar Empresa</a>
 	  				</td>
@@ -64,8 +50,7 @@
 	  				</td>	  			
 	  			</tr>
 		  	</table>
-		</div>
-		<hr>		
+		</div>				
 	</div>
 </body>
 </html>
