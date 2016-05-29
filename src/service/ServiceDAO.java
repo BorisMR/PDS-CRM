@@ -50,15 +50,8 @@ public class ServiceDAO {
 			usuario.setPassword("");
 		}
 		
-		valido = usuario.validarUsuarioBusiness(usuario) ? "s" : "n"; //con ternario
+		valido = usuario.validarUsuarioBusiness(usuario) ? "s" : "n";
 		
-		/*
-		if(usuario.validarUsuarioBusiness(usuario)){
-			valido = "s";
-		}else{
-			valido = "n";
-		}
-		*/
 		return valido;
 	}
 	

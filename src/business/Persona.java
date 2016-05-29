@@ -2,6 +2,7 @@ package business;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.criterion.Criterion;
@@ -197,6 +198,50 @@ public class Persona {
 			t.rollback();
 			return "No se pudo editar la data ";
 		}
+	}
+	
+	/**
+	 * Metodo que genera una Lista con las Personas de la Base de datos
+	 * 
+	 * @return List<Persona> Contiene la lista
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Persona> listPersonaBusiness() throws PersistentException{
+		List<Persona> listaPersona = new ArrayList<Persona>();
+		List<orm.Persona> listaPersonasBD = new ArrayList<orm.Persona>();
+		
+		listaPersonasBD = orm.PersonaDAO.queryPersona(null, null);
+		
+		if(!listaPersonasBD.isEmpty()){
+			for (orm.Persona personaORM : listaPersonasBD) {
+				
+				Empresa empresaB = new Empresa();
+
+				orm.Empresa empresaORM = orm.EmpresaDAO.loadEmpresaByORMID(personaORM.getEmpresaidE().getIdE());
+				
+				empresaB.setIdE(empresaORM.getIdE());				
+				empresaB.setRut(empresaORM.getRut());
+				empresaB.setNombre(empresaORM.getNombre());
+				
+				Persona personaB = new Persona();
+				
+				personaB.setIdP(personaORM.getIdP());
+				personaB.setRun(personaORM.getRun());
+				personaB.setNombre(personaORM.getNombre());
+				personaB.setApellido(personaORM.getApellido());
+				personaB.setEmail(personaORM.getEmail());
+				personaB.setFono(personaORM.getFono());
+				personaB.setDireccion(personaORM.getDireccion());
+				personaB.setGenero(personaORM.getGenero());
+				personaB.setFoto_b64(personaORM.getFoto_e64());
+				
+				personaB.setEmpresa(empresaB);
+				
+				listaPersona.add(personaB);
+			}
+		}
+		
+		return listaPersona;
 	}
 	
 	/**

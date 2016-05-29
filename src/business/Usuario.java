@@ -117,15 +117,12 @@ public class Usuario {
 		orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		boolean validador = false;
 		
-		orm.Usuario[] usuarioQ; 
+		orm.Usuario[] usuarioQ;
 		usuarioQ = orm.UsuarioDAO.listUsuarioByQuery("Usuario.usser = '"+usuario.usser+"' AND Usuario.pass = '"+usuario.pass+"'", null);
+				
+		validador = (usuarioQ.length > 0) ? true : false;
 		
-		if(usuarioQ.length > 0){
-			validador = true;
-			return validador;
-		}else{
-			return validador;
-		}
+		return validador;
 	}
 	
 	/**
@@ -137,23 +134,23 @@ public class Usuario {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Usuario> busquedaSimpleUsuario(String busqueda) throws PersistentException {
-		List<Usuario> listaUsuario = new ArrayList<Usuario>();
-		List<orm.Usuario> listaUsuarios = new ArrayList<orm.Usuario>();
+		List<Usuario> listaUsuariosFinded = new ArrayList<Usuario>();
+		List<orm.Usuario> listaUsuariosQuery = new ArrayList<orm.Usuario>();
 		
-		listaUsuarios = orm.UsuarioDAO.queryUsuario("Usuario.usser='"+busqueda
+		listaUsuariosQuery = orm.UsuarioDAO.queryUsuario("Usuario.usser='"+busqueda, null);
 				//+"' OR Usuario.pass='"+busqueda
-				+"' ",null);
-		if(!listaUsuarios.isEmpty()){
-			for (orm.Usuario usuarioORM : listaUsuarios) {
+				//+"' ",null);
+		if(!listaUsuariosQuery.isEmpty()){
+			for (orm.Usuario usuarioORM : listaUsuariosQuery) {
 				Usuario usuario = new Usuario();
 				
 				usuario.setUser(usuarioORM.getPass());
 				usuario.setPassword(usuarioORM.getPass());
 				
-				listaUsuario.add(usuario);
+				listaUsuariosFinded.add(usuario);
 			}
 		}		
-		return listaUsuario;
+		return listaUsuariosFinded;
 	}
 	
 	/**

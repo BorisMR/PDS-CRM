@@ -81,7 +81,9 @@ public class EditPersonaMiddleServlet extends HttpServlet {
 			}else{
 				request.setAttribute("listaEmpresas", listaEmpresas);
 				
-				String outList = "<div class='form-group'><select multiple class='form-control' name='empresaIde'>'";
+				String outList = "<div class='form-group'>"
+						+ "<label>Ingrese el dato a buscar:</label>"
+						+ "<select multiple class='form-control' name='empresaIde'>'";
 				for (orm.Empresa empresaL : listaEmpresas) {
 					if(empresaL.getNombre().equals(empresanombre)){
 						outList += "<option value='"+empresaL.getIdE()+"' selected>"+empresaL.getNombre()+"</option>";
@@ -92,12 +94,12 @@ public class EditPersonaMiddleServlet extends HttpServlet {
 				outList += "</select></div>";
 				
 				request.setAttribute("LISTA", outList);
-				request.getRequestDispatcher("/FormEditPersona.jsp").forward(request, response);
+				request.getRequestDispatcher("/FormEditPersona.jsp");
+				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
 			rs.forward(request, response);
-		}
-				
+		}				
 		rs.forward(request, response);
 	}
 

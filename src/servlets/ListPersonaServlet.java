@@ -51,7 +51,7 @@ public class ListPersonaServlet extends HttpServlet {
 		List<Persona> listaPersonas = new ArrayList<Persona>();
 		
 		try {
-			listaPersonas = persona.busquedaSimple("");
+			listaPersonas = persona.listPersonaBusiness();
 			
 			if(listaPersonas.isEmpty()){
 				RequestDispatcher rs = request.getRequestDispatcher("/ListPersona.jsp");

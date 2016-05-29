@@ -191,10 +191,6 @@ $(document).ready(function() {
                     stringLength: {
                         max: 60,
                         message: 'El nombre debe contener máximo 60 caracteres'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Zñáéíóú]+$/,
-                        message: 'El nombre solo puede tener letras'
                     }
                 }
             }

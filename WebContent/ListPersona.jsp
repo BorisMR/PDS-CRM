@@ -10,7 +10,8 @@
 	<title>Lista</title>
 </head>
 <body>
-	<h2><b>Lista de Personas</b><br></h2>
+<div class="container">
+	<h3><b>Lista de Personas</b><br></h3>
 	<hr>
 		<h3>${ListPersonaStatus}</h3>
 		<h3>${DelEmpresaStatus}</h3>
@@ -42,8 +43,7 @@
 			<td><img src="${persona.foto_b64}" class="img-responsive"></img></td>
 			<td>
 				<table>
-					<tr>
-						 
+					<tr>						 
 						<td>
 							<form action="EditPersonaMiddleServlet" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
@@ -71,5 +71,6 @@
 		</tr>
 	</i:forEach>
 	</table>
+</div>
 </body>
 </html>
