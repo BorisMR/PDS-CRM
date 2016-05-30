@@ -97,8 +97,10 @@
 				<table>
 					<tr>
 						<td>
-							<form action="AddBitacoraServlet" method="post">
+							<form action="AddBitacoraMiddleServlet" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="hidden" value="${persona.nombre}" name="nombre">
+								<input type="hidden" value="${persona.apellido}" name="apellido">
 								<input type="submit" value="Bitacora" class="btn btn-info">	
 							</form>
 							<br>

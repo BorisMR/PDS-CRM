@@ -73,7 +73,7 @@
 	  		</div>  
 	  		<div class="form-group">
 	  			<label for="foto">Empresa:</label>	
-		  		<select multiple class="form-control" name="empresaIde">  
+		  		<select multiple class="form-control" name="empresaIde" required>  
 		  		<i:forEach items="${listaEmpresas}" var="empresa">				
 					<option value="${empresa.idE}">${empresa.nombre}</option>
 				</i:forEach>

@@ -33,7 +33,7 @@ public class EditEmpresaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+		RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
 	}
@@ -54,7 +54,7 @@ public class EditEmpresaServlet extends HttpServlet {
 		
 		empresaEdit.editEmpresaBusiness(empresaEdit);//string
 		
-		RequestDispatcher rs = request.getRequestDispatcher("Index.jsp");
+		RequestDispatcher rs = request.getRequestDispatcher("/Index.jsp");
 		//request.setAttribute("fieldhtmlvalue", "mensaje");
 		rs.forward(request, response);
 	}

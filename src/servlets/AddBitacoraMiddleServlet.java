@@ -11,18 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class EditEmpresaMiddleServlet
+ * Servlet implementation class AddBitacoraMiddleServlet
  */
-@WebServlet("/EditEmpresaMiddleServlet")
-public class EditEmpresaMiddleServlet extends HttpServlet {
+@WebServlet("/AddBitacoraMiddleServlet")
+public class AddBitacoraMiddleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditEmpresaMiddleServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+    public AddBitacoraMiddleServlet() {
+        super();        
     }
 
 	/**
@@ -31,7 +30,7 @@ public class EditEmpresaMiddleServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+		RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
 		rs.forward(request, response);
 	}
@@ -40,15 +39,17 @@ public class EditEmpresaMiddleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String idE = request.getParameter("idE");
-		String rut = request.getParameter("rut");
+		String idP = request.getParameter("idP");
 		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
 		
-		RequestDispatcher rs = request.getRequestDispatcher("/FormEditEmpresa.jsp");
-		request.setAttribute("idE", idE);
-		request.setAttribute("rut", rut);
+		RequestDispatcher rs = request.getRequestDispatcher("/FormAddBitacora.jsp");
+		
+		request.setAttribute("idP", idP);
 		request.setAttribute("nombre", nombre);
+		request.setAttribute("apellido", apellido);
+		request.setAttribute("AddBitacoraStatus", "");
+		
 		rs.forward(request, response);
 	}
 
