@@ -145,10 +145,10 @@ public class Persona {
 	 * @param persona
 	 * @return persona
 	 */
-	public Persona getPersonaBusiness(Persona persona) throws PersistentException {
+	public Persona getPersonaBusinessByRun(Persona persona) throws PersistentException {
 		//PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		try{
-			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run = '"+persona.run+"'", null);
+			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run='"+persona.run+"'", null);
 			persona.setIdP(lormPersona.getIdP());
 			persona.setRun(lormPersona.getRun());
 			persona.setNombre(lormPersona.getNombre());
@@ -557,7 +557,9 @@ public class Persona {
 	public void addBitacora(Bitacora bit){
 		this.bitacora.add(bit);
 	}
-
+	
+	
+	
 	
 
 }

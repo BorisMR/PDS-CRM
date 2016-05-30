@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"></link>
 	
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>    
     <script type="text/javascript" src="js/validator.js"></script>
     <script type="text/javascript" src="js/image.js"></script>

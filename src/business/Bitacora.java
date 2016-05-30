@@ -1,5 +1,8 @@
 package business;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
@@ -49,6 +52,32 @@ public class Bitacora {
 			t.rollback();
 			return "No se pudo almacenar el registro";
 		}	
+	}
+	
+	/**
+	 * Obtiene un ID de persona y devuelve una lista de bitacoras
+	 */
+	public List<Bitacora> ListBitacorasByIDP(int idP){
+		List<Bitacora> listaBitacoras = new ArrayList<Bitacora>();
+		orm.Bitacora[] listabitacoraORM;
+		
+		try {
+			listabitacoraORM = orm.BitacoraDAO.listBitacoraByQuery("Bitacora.personaidP="+idP, null);
+			if(listabitacoraORM.length > 0){
+				for (orm.Bitacora bitacora : listabitacoraORM) {
+					Bitacora bitacoraB = new Bitacora();
+					
+					bitacoraB.setEntrada(bitacora.getEntrada());
+					bitacoraB.setIdB(bitacora.getIdB());					
+					
+					listaBitacoras.add(bitacoraB);
+				}
+			}
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listaBitacoras;
 	}
 
 	/**

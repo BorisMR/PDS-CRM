@@ -10,6 +10,7 @@
 	<title>Lista</title>
 </head>
 <body>
+<div class="container">
 	<h2><b>Lista de Empresas</b><br></h2>
 	<hr>
 	<h3>${ListEmpresaStatus}</h3>
@@ -49,5 +50,6 @@
 		</tr>
 	</i:forEach>
 	</table>
+</div>
 </body>
 </html>

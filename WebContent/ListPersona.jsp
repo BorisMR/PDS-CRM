@@ -29,6 +29,7 @@
 		<th>Genero</th>
 		<th>Empresa</th>
 		<th>Foto</th>
+		<th>Menu</th>
 	</tr>
 	<i:forEach items="${listaPersonas}" var="persona">
 		<tr>
@@ -47,11 +48,22 @@
 						<td>
 							<form action="AddBitacoraMiddleServlet" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="hidden" value="${persona.run}" name="run">
 								<input type="hidden" value="${persona.nombre}" name="nombre">
 								<input type="hidden" value="${persona.apellido}" name="apellido">
-								<input type="submit" value="Bitacora" class="btn btn-info">	
+								<input type="submit" value="Bitacora" class="btn btn-success">	
 							</form>
-							<br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form action="ListBitacoraServlet" method="post">
+								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="hidden" value="${persona.run}" name="run">
+								<input type="hidden" value="${persona.nombre}" name="nombre">
+								<input type="hidden" value="${persona.apellido}" name="apellido">
+								<input type="submit" value="Bitacora Info" class="btn btn-info">	
+							</form>
 						</td>
 					</tr>
 					<tr>
@@ -69,7 +81,6 @@
 								<input type="hidden" value="${persona.foto_b64}" name="foto_b64">
 								<input type="submit" value="Editar" class="btn btn-warning">	
 							</form>
-							<br>
 						</td>
 					</tr>
 					<tr>
@@ -78,7 +89,6 @@
 								<input type="hidden" value="${persona.idP}" name="idP">
 								<input type="submit" value="Eliminar" class="btn btn-danger">	
 							</form>
-							<br>
 						</td>
 					</tr>
 				</table>

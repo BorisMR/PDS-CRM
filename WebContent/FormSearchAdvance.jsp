@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"></link>
 	
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>    
     <script type="text/javascript" src="js/validator.js"></script>
     
@@ -99,11 +99,22 @@
 						<td>
 							<form action="AddBitacoraMiddleServlet" method="post">
 								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="hidden" value="${persona.run}" name="run">
 								<input type="hidden" value="${persona.nombre}" name="nombre">
 								<input type="hidden" value="${persona.apellido}" name="apellido">
-								<input type="submit" value="Bitacora" class="btn btn-info">	
+								<input type="submit" value="Bitacora" class="btn btn-success">	
 							</form>
-							<br>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<form action="ListBitacoraServlet" method="post">
+								<input type="hidden" value="${persona.idP}" name="idP">
+								<input type="hidden" value="${persona.run}" name="run">
+								<input type="hidden" value="${persona.nombre}" name="nombre">
+								<input type="hidden" value="${persona.apellido}" name="apellido">
+								<input type="submit" value="Bitacora Info" class="btn btn-info">	
+							</form>
 						</td>
 					</tr>
 					<tr>
@@ -121,7 +132,6 @@
 								<input type="hidden" value="${persona.foto_b64}" name="foto_b64">
 								<input type="submit" value="Editar" class="btn btn-warning">	
 							</form>
-							<br>
 						</td>
 					</tr>
 					<tr>
@@ -130,7 +140,6 @@
 								<input type="hidden" value="${persona.idP}" name="idP">
 								<input type="submit" value="Eliminar" class="btn btn-danger">	
 							</form>
-							<br>
 						</td>
 					</tr>
 				</table>

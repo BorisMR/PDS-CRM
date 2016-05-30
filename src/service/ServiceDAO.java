@@ -188,7 +188,7 @@ public class ServiceDAO {
 				
 		try{
 			
-			resultado = gson.toJson(persona = persona.getPersonaBusiness(persona));
+			resultado = gson.toJson(persona = persona.getPersonaBusinessByRun(persona));
 			/*
 					if(listaPersonas.isEmpty()){
 				resultado = "No se encontraron datos";

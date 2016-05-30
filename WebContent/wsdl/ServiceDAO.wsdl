@@ -5,17 +5,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://service" xmlns="http://www.w3.org/2001/XMLSchema">
    <import namespace="http://orm.org"/>
-   <element name="busquedaSimple">
+   <element name="verPerfil">
     <complexType>
      <sequence>
-      <element name="cadenaBusqueda" type="xsd:string"/>
+      <element name="run" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="busquedaSimpleResponse">
+   <element name="verPerfilResponse">
     <complexType>
      <sequence>
-      <element name="busquedaSimpleReturn" type="xsd:string"/>
+      <element name="verPerfilReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -40,17 +40,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="verPerfil">
+   <element name="busquedaSimple">
     <complexType>
      <sequence>
-      <element name="run" type="xsd:string"/>
+      <element name="cadenaBusqueda" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="verPerfilResponse">
+   <element name="busquedaSimpleResponse">
     <complexType>
      <sequence>
-      <element name="verPerfilReturn" type="xsd:string"/>
+      <element name="busquedaSimpleReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -151,13 +151,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="ServiceDAO">
 
-      <wsdl:operation name="busquedaSimple">
+      <wsdl:operation name="verPerfil">
 
-         <wsdl:input message="impl:busquedaSimpleRequest" name="busquedaSimpleRequest">
+         <wsdl:input message="impl:verPerfilRequest" name="verPerfilRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:busquedaSimpleResponse" name="busquedaSimpleResponse">
+         <wsdl:output message="impl:verPerfilResponse" name="verPerfilResponse">
 
        </wsdl:output>
 
@@ -183,13 +183,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="verPerfil">
+      <wsdl:operation name="busquedaSimple">
 
-         <wsdl:input message="impl:verPerfilRequest" name="verPerfilRequest">
+         <wsdl:input message="impl:busquedaSimpleRequest" name="busquedaSimpleRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:verPerfilResponse" name="verPerfilResponse">
+         <wsdl:output message="impl:busquedaSimpleResponse" name="busquedaSimpleResponse">
 
        </wsdl:output>
 
@@ -221,17 +221,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="busquedaSimple">
+      <wsdl:operation name="verPerfil">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="busquedaSimpleRequest">
+         <wsdl:input name="verPerfilRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="busquedaSimpleResponse">
+         <wsdl:output name="verPerfilResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -269,17 +269,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="verPerfil">
+      <wsdl:operation name="busquedaSimple">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="verPerfilRequest">
+         <wsdl:input name="busquedaSimpleRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="verPerfilResponse">
+         <wsdl:output name="busquedaSimpleResponse">
 
             <wsdlsoap:body use="literal"/>
 
