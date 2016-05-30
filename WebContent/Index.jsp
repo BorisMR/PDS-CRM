@@ -50,7 +50,11 @@
 	  				</td>	  			
 	  			</tr>
 		  	</table>
-		</div>				
+		</div>
+		
+		<form action="LoginServlet" method="get">
+			<input type="submit" value="Logout" class="btn btn-danger">
+		</form>				
 	</div>
 </body>
 </html>
