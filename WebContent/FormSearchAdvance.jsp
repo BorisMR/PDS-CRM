@@ -68,7 +68,9 @@
 		<h3>${SearchAdvanceStatus}</h3>
 	</div>	
 	<hr>
-	<a href="Index.jsp" class="btn btn-primary">Volver</a>
+	<form action="Index.jsp" method="post">
+		<input type="submit" value="Menu" class="btn btn-primary">	
+	</form>
 	<hr>
 	<table class="table table-bordered table-hover table-responsive">
 	<tr class="info">

@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
+import orm.BitacoraDAO;
 import orm.PersonaCriteria;
 
 
@@ -88,8 +89,10 @@ public class Persona {
 	  */
 	public String delPersonaBusinessIdP(Persona persona) throws PersistentException {
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
+		Bitacora bitU = new Bitacora();
 		try {
 			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByORMID(persona.getIdP());
+			bitU.delBitacorasByIDP(lormPersona.getIdP());
 			orm.PersonaDAO.delete(lormPersona);
 			//borra empresa al borrar persona
 			//orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
@@ -176,9 +179,13 @@ public class Persona {
 		PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		
 		try {
-			orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
-			lormEmpresa.setNombre(persona.getEmpresa().getNombre());
-			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run='"+persona.run+"'", null);
+			orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByQuery("Empresa.idE="+persona.empresa.getIdE(), null);
+			
+			orm.Persona lormPersona = orm.PersonaDAO.createPersona();
+			lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run='"+persona.run+"'", null);
+			
+			orm.EmpresaDAO.save(lormEmpresa);
+			
 			
 			lormPersona.setRun(persona.run);
 			lormPersona.setNombre(persona.nombre);
@@ -188,14 +195,14 @@ public class Persona {
 			lormPersona.setDireccion(persona.direccion);
 			lormPersona.setGenero(persona.genero);
 			lormPersona.setFoto_e64(persona.foto_b64);
-							
+			
+			lormPersona.setEmpresaidE(lormEmpresa);
 			orm.PersonaDAO.save(lormPersona);
-			orm.PersonaDAO.refresh(lormPersona);
 			t.commit();
 			return "Data Editada";
 		}catch (Exception e) {
 			t.rollback();
-			return "No se pudo editar la data ";
+			return "No se pudo editar la data : "+t.toString();
 		}
 	}
 	

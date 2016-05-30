@@ -25,10 +25,14 @@
 		<hr>
 			<h3>${EditPersonaStatus}</h3>
 		<hr>
+		<form action="Index.jsp" method="post">
+			<input type="submit" value="Menu" class="btn btn-primary">	
+		</form>
+		<hr>
 		<form class="form-horizontal" action="EditPersonaServlet" method="post">
 	  		<div class="form-group">
 	    		<label for="run">ID:</label>
-	    		<input type="text" class="form-control" id="idP" name="run" value="${idP}" readonly>
+	    		<input type="text" class="form-control" id="idP" name="idP" value="${idP}" readonly>
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="run">Run:</label>
@@ -55,21 +59,32 @@
 	    		<input type="text" class="form-control" id="direccion" name="direccion" value="${direccion}" required>
 	  		</div>
 	  		<div class="form-group">
-	    		<label for="genero">Genero:</label>
-	    		<input type="text" class="form-control" id="genero" name="genero" value="${genero}" required>
+		  		<label for="genero">Genero:</label>
+		  		<div class="radio">		  			
+		  			<label>
+						<input type="radio" name="genero" id="m" value="m">
+					  	Masculino
+					</label>
+		  		</div>
+		  		<div class="radio">
+		  			<label>
+						<input type="radio" name="genero" id="f" value="f">
+					  	Femenino
+					</label>
+		  		</div>
 	  		</div>
-	  		<div>
+	  		<div class="form-group" >
 	  			<label for="foto">Foto Contacto:</label>
-	  			<div class="form-group" id="imgContainer"></div>
-	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" />
-	  		</div>
-	  		<textarea id="textArea" name="textArea" class="form-control textbox" value="${foto_b64}" style="display:none;"></textarea> 
+	  			<div class="form-group" id="imgContainer"><img src="${foto_b64}" class="img-responsive"></img></div>
+	  			<input id="inputImagen" name="inputImagen" type="file" multiple accept='image/*' onchange="encodeImage();" value="${foto_b64}"/>
+	  			<textarea id="textArea" name="textArea" class="form-control textbox" style="display:none;">${foto_b64}</textarea>
+	  		</div>	  		 
 	  		<!-- Select viene desde servlet -->
 	  		${LISTA} 
 	  		<button type="submit" class="btn btn-warning" value="Editar">Editar</button>
 		</form>
 		<hr>
-		<a href="Index.jsp" class="btn btn-primary">Volver</a>
+		
 	</div>
 </body>
 </html>

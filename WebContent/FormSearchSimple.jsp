@@ -29,9 +29,9 @@
 		<button type="submit" class="btn btn-success">Buscar</button>
 	</form>
 	<h3>${SearchSimpleStatus}</h3>
-	<hr>	
-	<a href="Index.jsp" class="btn btn-primary">Volver</a>
-	<hr>
+	<form action="Index.jsp" method="post">
+		<input type="submit" value="Menu" class="btn btn-primary">	
+	</form>
 	<table class="table table-bordered table-hover table-responsive">
 	<tr class="info">
 		<th>Run</th>

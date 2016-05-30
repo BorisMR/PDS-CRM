@@ -24,6 +24,10 @@
 		<hr>
 		<h4>${EditEmpresaStatus}</h4>
 		<hr>
+		<form action="Index.jsp" method="post">
+			<input type="submit" value="Menu" class="btn btn-primary">	
+		</form>
+		<hr>
 		<form class="form-horizontal" action="EditEmpresaServlet" method="post" id="FormEditEmpresa">
 	  		<div class="form-group">
 	    		<label for="idE">ID:</label>
@@ -38,9 +42,7 @@
 	    		<input type="text" class="form-control" id="nombre" name="nombre" value="${nombre}" required>
 	  		</div>
 	  		<button type="submit" class="btn btn-warning" value="Editar">Editar</button>
-		</form>
-		<hr>
-		<a href="Index.jsp" class="btn btn-primary">Volver</a>
+		</form>		
 	</div>
 </body>
 </html>
