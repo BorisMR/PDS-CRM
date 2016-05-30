@@ -10,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
-import orm.BitacoraDAO;
 import orm.PersonaCriteria;
 
 
@@ -94,9 +93,7 @@ public class Persona {
 			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByORMID(persona.getIdP());
 			bitU.delBitacorasByIDP(lormPersona.getIdP());
 			orm.PersonaDAO.delete(lormPersona);
-			//borra empresa al borrar persona
-			//orm.Empresa lormEmpresa = orm.EmpresaDAO.loadEmpresaByORMID(persona.getEmpresa().getIdE());
-			//orm.EmpresaDAO.delete(lormEmpresa);
+			
 			t.commit();
 			return "Data Eliminada";
 		}
@@ -148,7 +145,6 @@ public class Persona {
 	 * @return persona
 	 */
 	public Persona getPersonaBusinessByRun(Persona persona) throws PersistentException {
-		//PersistentTransaction t = orm.PDSN1PersistentManager.instance().getSession().beginTransaction();
 		try{
 			orm.Persona lormPersona = orm.PersonaDAO.loadPersonaByQuery("Persona.run='"+persona.run+"'", null);
 			persona.setIdP(lormPersona.getIdP());
@@ -333,6 +329,7 @@ public class Persona {
 		
 		List<orm.Persona> listaPersonasFromQuery = new ArrayList<orm.Persona>();
 		List<Persona> listaPersonaBD = new ArrayList<Persona>();
+		Bitacora bit = new Bitacora();
 		
 		String gRun = persona.getRun().toLowerCase();
 		String gNombre = persona.getNombre().toLowerCase();

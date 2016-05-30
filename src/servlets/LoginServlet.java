@@ -49,6 +49,7 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 		
 		Usuario usuarioAVerificar = new Usuario();
+		
 		usuarioAVerificar.setUser(user);
 		usuarioAVerificar.setPassword(pass);
 		

@@ -40,6 +40,7 @@ public class ListBitacoraServlet extends HttpServlet {
 		session.invalidate();
 		RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
 		request.setAttribute("LoginStatus",	" Error, No se aceptan peticiones GET");
+		rs.forward(request, response);
 		
 	}
 
@@ -61,12 +62,11 @@ public class ListBitacoraServlet extends HttpServlet {
 		try {
 			persona = persona.getPersonaBusinessByRun(persona);
 			listaBitacoras = bitacora.ListBitacorasByIDP(Integer.parseInt(idP));
-			System.out.println(listaBitacoras.toString());
 			request.setAttribute("listaBitacoras", listaBitacoras);
 			request.setAttribute("persona",	persona);			
 			rs.forward(request, response);
 		} catch (PersistentException e) {
-			
+			rs.forward(request, response);
 		}		
 	}
 }

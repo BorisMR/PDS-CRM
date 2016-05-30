@@ -111,7 +111,6 @@ public class ServiceDAO {
 		List<business.Persona> listaPersonasB = new ArrayList<business.Persona>();
 		business.Persona persona = new business.Persona();
 		
-		//verificar campos nulos y efectuar asignaciones vacias en caso de.
 		if(run != null){
 			persona.setRun(run);
 		}			
@@ -154,7 +153,6 @@ public class ServiceDAO {
 		}else{
 			persona.setGenero("");
 		}
-		// FIN asignaciones
 		
 		Gson gson = new GsonBuilder().create();
 		
@@ -189,12 +187,7 @@ public class ServiceDAO {
 		try{
 			
 			resultado = gson.toJson(persona = persona.getPersonaBusinessByRun(persona));
-			/*
-					if(listaPersonas.isEmpty()){
-				resultado = "No se encontraron datos";
-			}else{
-				resultado = gson.toJson(listaPersonas);
-			}*/			
+					
 		}catch(PersistentException p){
 			resultado = null;
 		}
