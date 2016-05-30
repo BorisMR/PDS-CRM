@@ -38,7 +38,7 @@ $(document).ready(function() {
                         message: 'El nombre debe contener máximo 60 caracteres'
                     },
                     regexp: {
-                        regexp: /^[a-zA-Z]+$/,
+                        regexp: /^[a-zA-Z \u00f1 \u00d1]*$/,
                         message: 'El nombre solo puede tener letras'
                     }
                 }
@@ -117,7 +117,7 @@ $(document).ready(function() {
                         message: 'El nombre debe contener máximo 60 caracteres'
                     },
                     regexp: {
-                        regexp: /^[a-zA-Z]+$/,
+                        regexp: /^[a-zA-Z \u00f1 \u00d1]*$/,
                         message: 'El nombre solo puede tener letras'
                     }
                 }
@@ -191,6 +191,10 @@ $(document).ready(function() {
                     stringLength: {
                         max: 60,
                         message: 'El nombre debe contener máximo 60 caracteres'
+                    },
+                    regexp: {
+                        regexp: /^[a-zA-Z \u00f1 \u00d1]*$/,
+                        message: 'El nombre solo puede tener letras'
                     }
                 }
             }
