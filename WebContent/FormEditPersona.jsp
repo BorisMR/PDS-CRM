@@ -28,7 +28,7 @@
 		<form class="form-horizontal" action="EditPersonaServlet" method="post">
 	  		<div class="form-group">
 	    		<label for="run">ID:</label>
-	    		<input type="text" class="form-control" id="idP" name="run" value="${idE}" readonly>
+	    		<input type="text" class="form-control" id="idP" name="run" value="${idP}" readonly>
 	  		</div>
 	  		<div class="form-group">
 	    		<label for="run">Run:</label>

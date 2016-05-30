@@ -75,7 +75,7 @@
 								<input type="hidden" value="${persona.run}" name="run">
 								<input type="hidden" value="${persona.nombre}" name="nombre">
 								<input type="hidden" value="${persona.apellido}" name="apellido">
-								<input type="submit" value="Bitacora Info" class="btn btn-info">	
+								<input type="submit" value="Perfil" class="btn btn-info">	
 							</form>
 						</td>
 					</tr>
