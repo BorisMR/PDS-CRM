@@ -36,7 +36,9 @@
 	  		<button type="submit" class="btn btn-success" value="Agregar">Agregar</button>
 		</form>
 		<hr>
-		<a href="Index.jsp" class="btn btn-primary">Volver</a>
+		<form action="Index.jsp" method="post">
+			<input type="submit" value="Menu" class="btn btn-primary">	
+		</form>
 	</div>
 </body>
 </html>

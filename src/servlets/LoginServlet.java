@@ -54,17 +54,17 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			if(usuarioAVerificar.validarUsuarioBusiness(usuarioAVerificar)){
-				RequestDispatcher rs = request.getRequestDispatcher("/Index.jsp");
+				RequestDispatcher rs = request.getRequestDispatcher("Index.jsp");
 				session.setAttribute("user", usuarioAVerificar);
 				rs.forward(request, response);
 			}else{				
-				RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
+				RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
 				request.setAttribute("LoginStatus",	"Error en los datos ingresados");
 				rs.forward(request, response);
 			}
 		} catch (PersistentException e) {
-			RequestDispatcher rs = request.getRequestDispatcher("/Login.jsp");
-			request.setAttribute("LoginStatus",	e.toString());
+			RequestDispatcher rs = request.getRequestDispatcher("Login.jsp");
+			request.setAttribute("LoginStatus",	"Error: Business Tier");
 			rs.forward(request, response);			
 		}
 	}

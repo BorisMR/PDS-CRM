@@ -14,7 +14,9 @@
 <div class="container">
 	<h3><b>Registros en bitacora</b><br></h3>
 	<hr>	
-	<a href="Index.jsp" class="btn btn-primary">Volver a Menu</a>
+	<form action="Index.jsp" method="post">
+		<input type="submit" value="Menu" class="btn btn-primary">	
+	</form>
 	<hr>
 	<table class="table table-bordered table-hover table-responsive">
 		<tr class="info">
