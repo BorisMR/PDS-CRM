@@ -56,6 +56,7 @@ public class Bitacora {
 	
 	/**
 	 * Obtiene un ID de persona y devuelve una lista de bitacoras
+	 * @param int ID de Persona
 	 */
 	public List<Bitacora> ListBitacorasByIDP(int idP){
 		List<Bitacora> listaBitacoras = new ArrayList<Bitacora>();
@@ -82,6 +83,8 @@ public class Bitacora {
 	
 	/**
 	 * Elimina todas las bitacoras asociadas al IDP
+	 * 
+	 * @param int ID Persona
 	 */
 	public boolean delBitacorasByIDP(int idP){
 		//List<Bitacora> listaBitacoras = new ArrayList<Bitacora>();
