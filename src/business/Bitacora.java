@@ -145,7 +145,4 @@ public class Bitacora {
 	public void setIdP_reg(int idP_reg) {
 		this.idP_reg = idP_reg;
 	}
-
-	
-
 }

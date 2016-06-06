@@ -24,6 +24,10 @@
         <parameter qname="pns:run" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="PersistentException" qname="fns:fault" xmlns:fns="http://service" class="org.orm.PersistentException" type="tns:PersistentException" xmlns:tns="http://orm.org"/>
       </operation>
+      <operation name="busquedaSimple" qname="operNS:busquedaSimple" xmlns:operNS="http://service" returnQName="retNS:busquedaSimpleReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="PersistentException" qname="fns:fault" xmlns:fns="http://service" class="org.orm.PersistentException" type="tns:PersistentException" xmlns:tns="http://orm.org"/>
+      </operation>
       <operation name="busquedaAvanzada" qname="operNS:busquedaAvanzada" xmlns:operNS="http://service" returnQName="retNS:busquedaAvanzadaReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:run" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:nombre" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
@@ -32,10 +36,6 @@
         <parameter qname="pns:fono" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:direccion" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:genero" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-        <fault name="PersistentException" qname="fns:fault" xmlns:fns="http://service" class="org.orm.PersistentException" type="tns:PersistentException" xmlns:tns="http://orm.org"/>
-      </operation>
-      <operation name="busquedaSimple" qname="operNS:busquedaSimple" xmlns:operNS="http://service" returnQName="retNS:busquedaSimpleReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:cadenaBusqueda" xmlns:pns="http://service" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <fault name="PersistentException" qname="fns:fault" xmlns:fns="http://service" class="org.orm.PersistentException" type="tns:PersistentException" xmlns:tns="http://orm.org"/>
       </operation>
       <operation name="verificarUsuario" qname="operNS:verificarUsuario" xmlns:operNS="http://service" returnQName="retNS:verificarUsuarioReturn" xmlns:retNS="http://service" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
